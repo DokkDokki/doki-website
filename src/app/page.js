@@ -1,48 +1,50 @@
-import SoundCloudEmbed from "../components/SoundCloudEmbed";
-import YouTubeEmbed from "../components/YouTubeEmbed";
-import SplitHero from "../components/SplitHero";
-import { FaInstagram, FaSpotify, FaSoundcloud, FaYoutube, FaApple, FaTwitch, FaGithub, FaDiscord, FaTwitter } from "react-icons/fa";
+import { AuroraBackground } from "../components/ui/aurora-background";
+import { FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
 
-export default function Home() {
+export default function UnderConstruction() {
   return (
-    <div className="h-screen w-screen overflow-hidden bg-[#050505] text-slate-200 font-inter selection:bg-teal-500/30">
-      
-      {/* ACETERNITY-STYLE FULL WIDTH NAVBAR */}
-      <nav className="fixed top-0 w-full z-50 bg-[#050505]/60 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-[1400px] mx-auto px-6 h-14 flex items-center justify-between text-sm">
+    <div className="h-screen w-screen overflow-hidden bg-[#050505] text-white">
+      <AuroraBackground className="h-full w-full">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
           
-          {/* Logo Left */}
-          <div className="flex items-center">
-             <div className="font-light tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-purple-400 text-lg">
-               DOKIMACHINE
-             </div>
+          {/* Logo */}
+          <div className="font-light tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-purple-400 text-2xl mb-12">
+            DOKIMACHINE
           </div>
 
-          {/* No Middle Links - Forces the user to choose a portal! */}
-
-          {/* Right Actions */}
-          <div className="flex items-center gap-4">
-             
-              {/* Socials & Action Button */}
-             <div className="flex items-center gap-4 text-slate-400">
-               <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" className="hover:text-white hover:scale-110 transition-all"><FaGithub size={18} /></a>
-               <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" className="hover:text-[#1DA1F2] hover:scale-110 transition-all"><FaTwitter size={18} /></a>
-               <a href="https://www.youtube.com/@dokimachine" target="_blank" rel="noreferrer" className="hover:text-[#FF0000] hover:scale-110 transition-all"><FaYoutube size={18} /></a>
-               <div className="w-[1px] h-4 bg-white/20 ml-1 mr-2"></div>
-               <a href="mailto:doki_mowmoe@outlook.com" className="bg-white/10 border border-white/10 hover:bg-white/20 text-white px-5 py-1.5 rounded-md font-medium transition-all shadow-lg hover:shadow-cyan-500/20">
-                  Contact
-               </a>
-             </div>
-          </div>
+          {/* Construction Message */}
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
+            Systems <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-purple-400">
+              Under Development.
+            </span>
+          </h1>
           
+          <p className="text-slate-400 max-w-lg mb-12 text-lg leading-relaxed">
+            I'm currently architecting a new digital experience. The portal between worlds will open shortly. 
+          </p>
+
+          {/* Social Links */}
+          <div className="flex gap-8 text-slate-400 mb-12">
+             <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" className="hover:text-white transition-all hover:scale-110">
+                <FaTwitter size={24} />
+             </a>
+             <a href="https://www.youtube.com/@dokimachine" target="_blank" rel="noreferrer" className="hover:text-white transition-all hover:scale-110">
+                <FaYoutube size={24} />
+             </a>
+             <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" className="hover:text-white transition-all hover:scale-110">
+                <FaGithub size={24} />
+             </a>
+          </div>
+
+          {/* Status Badge */}
+          <div className="px-6 py-2 bg-white/5 border border-white/10 rounded-full flex items-center gap-3">
+             <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></div>
+             <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-400/80">Calibration in progress</span>
+          </div>
+
         </div>
-      </nav>
-
-      {/* SICK INTERACTIVE SPLIT HERO */}
-      <SplitHero />
-
-      {/* The rest of the site is accessed via clicking the split portals! */}
-
+      </AuroraBackground>
     </div>
   );
 }
