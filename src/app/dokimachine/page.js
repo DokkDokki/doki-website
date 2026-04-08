@@ -1,5 +1,5 @@
-import SoundCloudEmbed from "../../components/SoundCloudEmbed";
-import YouTubeEmbed from "../../components/YouTubeEmbed";
+import SoundCloudEmbed from "@/components/SoundCloudEmbed";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 import Link from "next/link";
 import { FaSpotify, FaSoundcloud, FaYoutube, FaApple, FaExternalLinkAlt } from "react-icons/fa";
 
