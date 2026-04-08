@@ -23,11 +23,13 @@ export default function Home() {
           </div>
 
           {/* SOCIALS */}
-          <div className="flex items-center space-x-6">
-            <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaGithub size={18} /></a>
-            <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaTwitter size={18} /></a>
-            <a href="https://www.youtube.com/@dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaYoutube size={18} /></a>
-            <a href="mailto:doki_mowmoe@outlook.com" className="ml-4 px-5 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold tracking-[0.1em] text-white hover:bg-white hover:text-black transition-all uppercase">
+          <div className="flex items-center space-x-3 sm:space-x-6">
+            <div className="hidden sm:flex items-center space-x-4">
+              <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaGithub size={16} /></a>
+              <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaTwitter size={16} /></a>
+              <a href="https://www.youtube.com/@dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaYoutube size={16} /></a>
+            </div>
+            <a href="mailto:doki_mowmoe@outlook.com" className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[9px] font-bold tracking-[0.1em] text-white hover:bg-white hover:text-black transition-all uppercase whitespace-nowrap">
               Contact
             </a>
           </div>
@@ -44,14 +46,14 @@ export default function Home() {
         transition={{ duration: 1, delay: 1 }}
         className="fixed bottom-8 left-0 right-0 z-50 px-8 flex justify-between items-end pointer-events-none"
       >
-        <div className="space-y-1">
+        <div className="flex flex-col items-start space-y-1">
           <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest">System Status</p>
           <div className="flex items-center space-x-2">
             <div className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse"></div>
             <p className="text-[10px] font-mono text-teal-400/70 border-b border-teal-500/20">OPERATIONAL_v3.1</p>
           </div>
         </div>
-        <div className="text-right">
+        <div className="text-right hidden sm:block">
           <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest mb-1">Created By</p>
           <p className="text-lg font-light tracking-[0.2em] text-white/80">DOKIMACHINE</p>
         </div>
