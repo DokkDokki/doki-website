@@ -85,7 +85,7 @@ export default function DokiPersonalPage() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 self-start">
                    <StatItem title="Location" value="Bangkok, Thailand" />
-                   <StatItem title="Education" value="Bachelor of Engineering, Digital Engineering (International Program), Thai-Nichi Institude of Technology" />
+                   <StatItem title="Education" value="Bachelor of Engineering, Digital Engineering (International Program), Thai-Nichi Institute of Technology" />
                    <StatItem title="Interests" value="Server Machines, Photography, Trains, Computer Hardware, Electronic Music" />
                    <StatItem title="Language" value="Thai (Native), English (CEFR C1), Japanese (JLPT N3)" />
                 </div>
