@@ -16,8 +16,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Doki - Music Producer & Developer",
-  description: "Personal portfolio showcasing music and coding projects.",
+  title: "DOKIMACHINE",
+  description: "The Split Reality Portfolio of a Digital Engineer, Vocaloid-P, and Trance Producer.",
 };
 
 export default function RootLayout({ children }) {

@@ -1,51 +1,62 @@
-import { AuroraBackground } from "../components/ui/aurora-background";
-// Deployment nudge: Force Cloudflare build 
-import { FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
+"use client";
+import SoundCloudEmbed from "@/components/SoundCloudEmbed";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
+import SplitHero from "@/components/SplitHero";
+import { FaInstagram, FaSpotify, FaSoundcloud, FaYoutube, FaApple, FaTwitch, FaGithub, FaDiscord, FaTwitter } from "react-icons/fa";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-export default function UnderConstruction() {
+export default function Home() {
   return (
-    <div className="h-screen w-screen overflow-hidden bg-[#050505] text-white">
-      <AuroraBackground className="h-full w-full">
-        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
-          
-          {/* Logo */}
-          <div className="font-light tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-purple-400 text-2xl mb-12">
-            DOKIMACHINE
+    <div className="h-screen w-screen overflow-hidden bg-[#050505] text-slate-200 font-inter selection:bg-teal-500/30">
+      
+      {/* ACETERNITY-STYLE FULL WIDTH NAVBAR */}
+      <motion.nav 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="fixed top-0 left-0 right-0 z-[100] px-6 py-8"
+      >
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-8">
+            <span className="text-2xl font-light text-white opacity-90">DOKIMACHINE</span>
           </div>
 
-          {/* Construction Message */}
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
-            Systems <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-purple-400">
-              Under Development.
-            </span>
-          </h1>
-          
-          <p className="text-slate-400 max-w-lg mb-12 text-lg leading-relaxed">
-            I'm currently architecting a new digital experience. The portal between worlds will open shortly. 
-          </p>
-
-          {/* Social Links */}
-          <div className="flex gap-8 text-slate-400 mb-12">
-             <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" className="hover:text-white transition-all hover:scale-110">
-                <FaTwitter size={24} />
-             </a>
-             <a href="https://www.youtube.com/@dokimachine" target="_blank" rel="noreferrer" className="hover:text-white transition-all hover:scale-110">
-                <FaYoutube size={24} />
-             </a>
-             <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" className="hover:text-white transition-all hover:scale-110">
-                <FaGithub size={24} />
-             </a>
+          {/* SOCIALS */}
+          <div className="flex items-center space-x-6">
+            <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaGithub size={18} /></a>
+            <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaTwitter size={18} /></a>
+            <a href="https://www.youtube.com/@dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaYoutube size={18} /></a>
+            <a href="mailto:doki_mowmoe@outlook.com" className="ml-4 px-5 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold tracking-[0.1em] text-white hover:bg-white hover:text-black transition-all uppercase">
+              Contact
+            </a>
           </div>
-
-          {/* Status Badge */}
-          <div className="px-6 py-2 bg-white/5 border border-white/10 rounded-full flex items-center gap-3">
-             <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></div>
-             <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-400/80">Calibration in progress</span>
-          </div>
-
         </div>
-      </AuroraBackground>
+      </motion.nav>
+
+      {/* CORE SPLIT HERO */}
+      <SplitHero />
+
+      {/* FOOTER DATA */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+        className="fixed bottom-8 left-0 right-0 z-50 px-8 flex justify-between items-end pointer-events-none"
+      >
+        <div className="space-y-1">
+          <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest">System Status</p>
+          <div className="flex items-center space-x-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse"></div>
+            <p className="text-[10px] font-mono text-teal-400/70 border-b border-teal-500/20">OPERATIONAL_v3.1</p>
+          </div>
+        </div>
+        <div className="text-right">
+          <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest mb-1">Created By</p>
+          <p className="text-lg font-light tracking-[0.2em] text-white/80">DOKIMACHINE</p>
+        </div>
+      </motion.div>
+
     </div>
   );
 }
