@@ -1,6 +1,6 @@
-import SoundCloudEmbed from "../components/SoundCloudEmbed";
-import YouTubeEmbed from "../components/YouTubeEmbed";
-import SplitHero from "../components/SplitHero";
+import SoundCloudEmbed from "../../components/SoundCloudEmbed";
+import YouTubeEmbed from "../../components/YouTubeEmbed";
+import SplitHero from "../../components/SplitHero";
 import { FaInstagram, FaSpotify, FaSoundcloud, FaYoutube, FaApple, FaTwitch, FaGithub, FaDiscord, FaTwitter } from "react-icons/fa";
 
 export default function Home() {
