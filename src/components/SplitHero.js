@@ -48,7 +48,7 @@ export default function SplitHero() {
              transition={{ duration: 0.4 }}
              className="text-center mt-4 md:mt-6"
           >
-            <p className="text-teal-200/70 text-[10px] md:text-lg uppercase tracking-[0.4em] font-medium">Software /// Photography</p>
+            <p className="text-teal-200/70 text-[10px] md:text-lg uppercase tracking-[0.4em] font-medium">Engineering /// Photography</p>
             <Link href="/doki">
               <button className="mt-6 md:mt-8 px-6 md:px-8 py-2 md:py-3 bg-white text-black rounded-full hover:scale-105 transition-transform shadow-[0_0_40px_rgba(45,212,191,0.4)] font-bold text-xs md:text-base">
                  Explore Doki

@@ -42,7 +42,7 @@ export default function DokiMachinePage() {
           </div>
           <h1 className="text-6xl md:text-9xl font-black tracking-tighter text-white mb-8 leading-none">
             Enter The <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-500 drop-shadow-[0_0_40px_rgba(192,38,211,0.2)]">Sphere.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-500 drop-shadow-[0_0_40px_rgba(192,38,211,0.2)]">Machine.</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-400 max-w-2xl leading-relaxed italic font-light">
             Electronic music producer (Mostly make Trance), <span className="text-white font-medium not-italic">VOCALOID-P</span>, and DJ. Creating music that takes you out of this world.

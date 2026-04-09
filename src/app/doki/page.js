@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaGithub, FaInstagram, FaExternalLinkAlt, FaCamera, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaExternalLinkAlt, FaCamera, FaTwitter, FaExpandAlt } from "react-icons/fa";
 
 export default function DokiPersonalPage() {
   return (
@@ -247,13 +247,18 @@ export default function DokiPersonalPage() {
                <div className="relative z-10">
                  <FaInstagram className="text-5xl text-teal-400 mx-auto mb-6" />
                  <h3 className="text-2xl font-bold text-white mb-2">Artistic Gallery</h3>
-                 <p className="text-teal-400 font-medium mb-6 text-sm tracking-widest uppercase">@doki_a6000</p>
-                 <p className="text-slate-400 mb-8 leading-relaxed">
+                 <p className="text-teal-400 font-medium mb-6 text-sm tracking-widest uppercase font-montserrat">@DOKI_A6000</p>
+                 <p className="text-slate-400 mb-8 leading-relaxed px-4">
                    Street photography and visual stories captured through my Sony α6000.
                  </p>
-                 <a href="https://instagram.com/doki_a6000" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-teal-500 text-black rounded-full font-bold hover:scale-105 transition-transform text-sm">
-                   Visit Gallery <FaExternalLinkAlt size={12}/>
-                 </a>
+                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                   <a href="https://instagram.com/doki_a6000" target="_blank" rel="noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 bg-teal-500 text-black rounded-full font-bold hover:scale-105 transition-transform text-sm shadow-[0_0_20px_rgba(20,184,166,0.2)]">
+                     Visit Gallery <FaExternalLinkAlt size={12}/>
+                   </a>
+                   <Link href="/photography" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-full font-bold hover:bg-white/10 transition-all text-sm group">
+                     Expand <FaExpandAlt size={12} className="group-hover:scale-110 transition-transform"/>
+                   </Link>
+                 </div>
                </div>
             </motion.div>
           </div>
