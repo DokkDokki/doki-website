@@ -1,8 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { AuroraBackground } from "./ui/aurora-background";
 
 export default function SplitHero() {
@@ -25,7 +25,15 @@ export default function SplitHero() {
         onMouseLeave={() => setHoveredSide(null)}
       >
         {/* Vibe Background */}
-        <div className="absolute inset-0 bg-[url('/doki-rao.jpg')] bg-cover bg-center bg-no-repeat opacity-40 z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+           <Image 
+             src="/doki-rao.jpg" 
+             alt="Doki" 
+             fill 
+             className="object-cover object-center" 
+             priority
+           />
+        </div>
         {/* Readability Overlay */}
         <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.8)_0%,transparent_70%)] z-0 pointer-events-none"></div>
@@ -73,7 +81,15 @@ export default function SplitHero() {
            <AuroraBackground className="h-full w-full opacity-60" />
         </div>
         
-        <div className="absolute inset-0 bg-[url('/doki_iconrima_square.jpg')] bg-cover bg-center bg-no-repeat opacity-40 z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+           <Image 
+             src="/doki_iconrima_square.jpg" 
+             alt="Dokimachine" 
+             fill 
+             className="object-cover object-center" 
+             priority
+           />
+        </div>
         <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.8)_0%,transparent_70%)] z-0 pointer-events-none"></div>
 
