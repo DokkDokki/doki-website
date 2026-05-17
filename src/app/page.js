@@ -2,7 +2,7 @@
 import { useState } from "react";
 import SplitHero from "@/components/SplitHero";
 import SpaceWarpIntro from "@/components/SpaceWarpIntro";
-import { FaGithub, FaYoutube, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaYoutube, FaTwitter, FaDiscord } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
@@ -47,8 +47,9 @@ export default function Home() {
                 <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaGithub size={16} /></a>
                 <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaTwitter size={16} /></a>
                 <a href="https://www.youtube.com/@dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaYoutube size={16} /></a>
+                <a href="https://discord.gg/R8JB5JHvaZ" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all" aria-label="Discord"><FaDiscord size={16} /></a>
               </div>
-              <a href="mailto:doki_mowmoe@outlook.com" className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[9px] font-bold tracking-[0.1em] text-white hover:bg-white hover:text-black transition-all uppercase whitespace-nowrap">
+              <a href="mailto:dokkdokki@dokimachine.net" className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[9px] font-bold tracking-[0.1em] text-white hover:bg-white hover:text-black transition-all uppercase whitespace-nowrap">
                 Contact
               </a>
             </div>
