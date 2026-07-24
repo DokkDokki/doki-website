@@ -3,7 +3,7 @@ import SoundCloudEmbed from "@/components/SoundCloudEmbed";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaSpotify, FaSoundcloud, FaYoutube, FaApple, FaExternalLinkAlt, FaInstagram, FaArrowLeft, FaMusic, FaMicrophone, FaHeadphones, FaWaveSquare, FaTwitter } from "react-icons/fa";
+import { FaSpotify, FaSoundcloud, FaYoutube, FaApple, FaExternalLinkAlt, FaInstagram, FaArrowLeft, FaArrowRight, FaMusic, FaMicrophone, FaHeadphones, FaWaveSquare, FaTwitter } from "react-icons/fa";
 
 export default function DokiMachinePage() {
   return (
@@ -100,6 +100,9 @@ export default function DokiMachinePage() {
           <div className="flex items-center gap-4 mb-12">
             <h2 className="text-xl md:text-2xl font-bold text-white uppercase tracking-[0.3em]">The Master Files</h2>
             <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
+            <Link href="/dokimachine/discography" className="inline-flex items-center gap-2 px-5 py-2 bg-purple-500 text-black rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap hover:scale-105 hover:bg-white transition-all">
+              Full Discography <FaArrowRight size={10} />
+            </Link>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -154,6 +157,20 @@ export default function DokiMachinePage() {
                   </div>
                </div>
             </div>
+
+            {/* CTA BANNER: FULL DISCOGRAPHY */}
+            <Link
+              href="/dokimachine/discography"
+              className="lg:col-span-12 group relative flex flex-col sm:flex-row items-center justify-between gap-6 bg-gradient-to-r from-purple-500/10 via-fuchsia-500/10 to-transparent border border-purple-500/20 rounded-[32px] px-8 py-8 hover:border-purple-500/50 transition-all"
+            >
+              <div className="text-center sm:text-left">
+                <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight">Want to hear everything?</h3>
+                <p className="text-slate-400 text-sm md:text-base mt-1">Browse every release, single, and cover in the full discography.</p>
+              </div>
+              <span className="inline-flex items-center gap-2 px-8 py-4 bg-purple-500 text-black rounded-full font-black text-sm uppercase tracking-widest whitespace-nowrap group-hover:scale-105 group-hover:bg-white transition-all">
+                View Discography <FaArrowRight />
+              </span>
+            </Link>
           </div>
         </motion.section>
 
@@ -347,15 +364,6 @@ function TimelineNode({ year, era, desc, status, active }) {
        <h4 className="text-xl font-bold text-white mb-1">{year}</h4>
        <p className={`text-[10px] uppercase tracking-[0.2em] font-bold mb-4 ${active ? 'text-purple-400' : 'text-slate-500'}`}>{era}</p>
        <p className="text-slate-400 text-xs leading-relaxed">{desc}</p>
-    </div>
-  );
-}
-
-function DiscographyItem({ title, year, type }) {
-  return (
-    <div className="p-4 bg-white/5 border border-white/5 rounded-2xl text-left flex flex-col justify-between hover:bg-white/10 transition-all group">
-       <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-2 group-hover:text-purple-400">{type} // {year}</span>
-       <h5 className="text-white font-bold text-sm">{title}</h5>
     </div>
   );
 }
