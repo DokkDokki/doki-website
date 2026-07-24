@@ -3,7 +3,7 @@ import SoundCloudEmbed from "@/components/SoundCloudEmbed";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaSpotify, FaSoundcloud, FaYoutube, FaApple, FaExternalLinkAlt, FaInstagram, FaArrowLeft, FaArrowRight, FaMusic, FaMicrophone, FaHeadphones, FaWaveSquare, FaTwitter } from "react-icons/fa";
+import { FaSoundcloud, FaYoutube, FaExternalLinkAlt, FaInstagram, FaArrowRight, FaMusic, FaMicrophone, FaHeadphones, FaWaveSquare, FaTwitter } from "react-icons/fa";
 
 export default function DokiMachinePage() {
   return (
