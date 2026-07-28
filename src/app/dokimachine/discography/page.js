@@ -83,6 +83,14 @@ function VocalistBadge({ name }) {
 // Catalog Data
 const CLARIS_COVER = "/doki_iconrima_square.jpg";
 
+function getYouTubeThumbnail(videoId) {
+  return videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : null;
+}
+
+function getReleaseArtwork({ cover, youtubeId }) {
+  return cover || getYouTubeThumbnail(youtubeId);
+}
+
 const CLARIS_TRACKLIST = [
   { title: "Can You Hear Me?", format: "ALBUM", year: "2024", desc: "Introductory ambient prelude establishing the Claris universe." },
   { title: "Cosmic Transmission", format: "ALBUM", feat: "GUMI", year: "2024", desc: "Driving 138 BPM Vocal Trance with celestial synths." },
@@ -169,6 +177,8 @@ function Section({ title, badge, count, children }) {
 
 // Enhanced Big Release Card Component
 function ReleaseCard({ title, format, feat, originalBy, youtubeId, cover, year, desc, onSelect }) {
+  const artwork = getReleaseArtwork({ cover, youtubeId });
+
   return (
     <motion.div
       layout
@@ -177,13 +187,13 @@ function ReleaseCard({ title, format, feat, originalBy, youtubeId, cover, year, 
       exit={{ opacity: 0, scale: 0.95 }}
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
-      onClick={() => onSelect({ title, format, feat, originalBy, youtubeId, cover, year, desc })}
+      onClick={() => onSelect({ title, format, feat, originalBy, youtubeId, cover, artwork, year, desc })}
       className="group relative bg-[#0d0d0d] border border-white/10 rounded-[32px] overflow-hidden cursor-pointer flex flex-col justify-between transition-all duration-300 hover:border-purple-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.18)]"
     >
       <div>
         {/* BIG ALBUM COVER JACKET */}
         <div className="relative aspect-square w-full bg-slate-900 overflow-hidden border-b border-white/5">
-          <AlbumArt src={cover} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          <AlbumArt src={artwork} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           
           {/* TOP OVERLAY BADGES */}
           <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10 pointer-events-none">
@@ -630,7 +640,7 @@ export default function DiscographyPage() {
               {/* LEFT: COVER ARTWORK & BADGES */}
               <div className="w-full md:w-[380px] bg-gradient-to-b from-purple-900/20 via-black to-black p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-white/10 shrink-0 relative">
                 <div className="relative w-full max-w-[280px] aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/10 group mb-6">
-                  <AlbumArt src={selectedRelease.cover} alt={selectedRelease.title} className="w-full h-full object-cover" />
+                  <AlbumArt src={selectedRelease.artwork} alt={selectedRelease.title} className="w-full h-full object-cover" />
                 </div>
 
                 <div className="flex items-center gap-2 flex-wrap justify-center mb-2">
