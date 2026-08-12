@@ -20,7 +20,7 @@ export const landingTranslations = {
   jp: {
     languageName: "日本語", chooseWorld: "世界を選ぶ", discoverMore: "さらに見る",
     worlds: {
-      doki: { eyebrow: "その人", description: "工学を学ぶ学生。時々フォトグラファー、そしてオタク。", meta: "エンジニアリング · 写真 · 日常", cta: "Dokiを知る" },
+      doki: { eyebrow: "その人", description: "工学を学ぶ学生。時々カメラマン、そしてオタク。", meta: "エンジニアリング · 写真 · 日常", cta: "ドキを知る" },
       dokimachine: { eyebrow: "その音", description: "星々、宇宙、そして真夜中の想像力から生まれたエレクトロニック・ミュージック・プロジェクト。", meta: "音楽 · DJ · ディスコグラフィー", cta: "マシンの世界へ" },
     },
     intro: { interface: "二つの世界をつなぐインターフェース", skip: "クリックまたはキー入力でスキップ", skipLabel: "イントロをスキップ", lines: [["アイデンティティ", "DOKI"], ["クリエイティブコア", "DOKIMACHINE"], ["モジュール", "エンジニアリング / 音楽 / 写真"], ["システム", "準備完了"]] },
