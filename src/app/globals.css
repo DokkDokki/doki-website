@@ -90,6 +90,17 @@ h6 {
   font-family: var(--font-body), system-ui, sans-serif;
 }
 
-.font-thai {
+.font-thai,
+.font-thai button,
+.font-thai input,
+.font-thai textarea,
+.font-thai select,
+.font-thai h1,
+.font-thai h2,
+.font-thai h3,
+.font-thai h4,
+.font-thai h5,
+.font-thai h6 {
   --font-body: var(--font-thai);
+  font-family: var(--font-thai), system-ui, sans-serif;
 }
