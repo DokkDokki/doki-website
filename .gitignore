@@ -20,6 +20,9 @@
 
 # production
 /build
+/dist
+/sites-build.tar.gz
+/sites-package-stage/
 
 # misc
 .DS_Store

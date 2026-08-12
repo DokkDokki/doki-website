@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaArrowLeft, FaCamera, FaTrain, FaUserAstronaut, FaExpandAlt, FaInfoCircle, FaInstagram, FaTwitter, FaLink } from "react-icons/fa";
+import { FaArrowLeft, FaCamera, FaTrain, FaUserAstronaut, FaExpandAlt, FaInfoCircle, FaInstagram } from "react-icons/fa";
 import { useState } from "react";
 
 const photos = [
