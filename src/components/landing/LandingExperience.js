@@ -24,7 +24,7 @@ export default function LandingExperience({ children, locale }) {
   return (
     <LandingLocaleProvider locale={locale}>
       {children}
-      {introState === "checking" && <div className="fixed inset-0 z-[1000] bg-[#030304]" aria-hidden="true" />}
+      {introState === "checking" && <div className="fixed inset-0 z-[1000] bg-[var(--claris-ink)]" aria-hidden="true" />}
       <AnimatePresence>
         {introState === "visible" && <TerminalBootIntro onComplete={finishIntro} />}
       </AnimatePresence>

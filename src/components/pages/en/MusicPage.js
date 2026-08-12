@@ -7,10 +7,10 @@ import { FaSoundcloud, FaYoutube, FaExternalLinkAlt, FaInstagram, FaArrowRight, 
 
 export default function DokiMachinePage() {
   return (
-    <div className="min-h-screen overflow-x-clip bg-[#050505] text-slate-200 selection:bg-purple-500/30 font-[family-name:var(--font-nunito)]">
+    <div className="claris-page min-h-screen overflow-x-clip text-slate-200 selection:bg-fuchsia-400/30 font-[family-name:var(--font-nunito)]">
       
       {/* NAVBAR */}
-      <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+      <nav className="claris-nav w-full backdrop-blur-md border-b sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/en" className="flex min-h-11 items-center font-light tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-400 text-lg uppercase sm:text-xl sm:tracking-[0.1em]">
             DOKIMACHINE
@@ -143,15 +143,15 @@ export default function DokiMachinePage() {
                   <div className="h-[1px] flex-1 bg-white/5"></div>
                </div>
                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="group relative bg-[#0a0a0a] border border-white/5 rounded-[32px] p-6 hover:border-purple-500/30 transition-all duration-500">
+                  <div className="group relative bg-[var(--claris-surface)] border border-white/5 rounded-[32px] p-6 hover:border-purple-500/30 transition-all duration-500">
                      <h3 className="text-[9px] font-bold text-purple-400 uppercase tracking-widest mb-4 block italic opacity-60">LINEMAN</h3>
                      <YouTubeEmbed videoId="cpZ9-0SkaHY" />
                   </div>
-                  <div className="group relative bg-[#0a0a0a] border border-white/5 rounded-[32px] p-6 hover:border-purple-500/30 transition-all duration-500">
+                  <div className="group relative bg-[var(--claris-surface)] border border-white/5 rounded-[32px] p-6 hover:border-purple-500/30 transition-all duration-500">
                      <h3 className="text-[9px] font-bold text-purple-400 uppercase tracking-widest mb-4 block italic opacity-60">VOID II</h3>
                      <YouTubeEmbed videoId="JYncxOM0wOs" />
                   </div>
-                  <div className="group relative bg-[#0a0a0a] border border-white/5 rounded-[32px] p-6 hover:border-purple-500/30 transition-all duration-500">
+                  <div className="group relative bg-[var(--claris-surface)] border border-white/5 rounded-[32px] p-6 hover:border-purple-500/30 transition-all duration-500">
                      <h3 className="text-[9px] font-bold text-purple-400 uppercase tracking-widest mb-4 block italic opacity-60">COSMIC EXPRESS</h3>
                      <YouTubeEmbed videoId="viIYF-Q-b5o" />
                   </div>
@@ -190,7 +190,7 @@ export default function DokiMachinePage() {
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
              
              {/* THE HUB */}
-             <div className="xl:col-span-5 bg-gradient-to-br from-[#121212] to-[#050505] border border-white/10 rounded-[40px] p-10 relative overflow-hidden group shadow-2xl">
+             <div className="xl:col-span-5 bg-gradient-to-br from-[var(--claris-surface)] to-[var(--claris-ink)] border border-white/10 rounded-[40px] p-10 relative overflow-hidden group shadow-2xl">
                 <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-500/10 blur-[80px] rounded-full translate-x-1/2 -translate-y-1/2 group-hover:bg-purple-500/20 transition-all duration-700"></div>
                 
                 <h4 className="text-purple-400 font-bold text-[10px] tracking-[0.4em] uppercase mb-8 flex items-center gap-2">

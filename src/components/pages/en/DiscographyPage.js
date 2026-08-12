@@ -188,7 +188,7 @@ function ReleaseCard({ title, format, feat, originalBy, youtubeId, cover, year, 
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
       onClick={() => onSelect({ title, format, feat, originalBy, youtubeId, cover, artwork, year, desc })}
-      className="group relative bg-[#0d0d0d] border border-white/10 rounded-[32px] overflow-hidden cursor-pointer flex flex-col justify-between transition-all duration-300 hover:border-purple-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.18)]"
+      className="group relative bg-[var(--claris-surface)] border border-white/10 rounded-[32px] overflow-hidden cursor-pointer flex flex-col justify-between transition-all duration-300 hover:border-purple-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.18)]"
     >
       <div>
         {/* BIG ALBUM COVER JACKET */}
@@ -313,10 +313,10 @@ export default function DiscographyPage() {
   const totalMk1Matches = filteredMk1.length;
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-[#050505] text-slate-200 selection:bg-purple-500/30 font-[family-name:var(--font-nunito)]">
+    <div className="claris-page min-h-screen overflow-x-clip text-slate-200 selection:bg-fuchsia-400/30 font-[family-name:var(--font-nunito)]">
 
       {/* NAVBAR */}
-      <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+      <nav className="claris-nav w-full backdrop-blur-md border-b sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/en/music" className="flex min-h-11 items-center gap-2 group text-slate-400 hover:text-white transition-colors">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
@@ -370,7 +370,7 @@ export default function DiscographyPage() {
         </motion.header>
 
         {/* SEARCH & FILTER CONTROLS BAR (HISAQUA STYLE) */}
-        <div className="min-w-0 bg-[#0a0a0a] border border-white/10 rounded-3xl p-4 mb-12 space-y-4 shadow-2xl sm:p-5">
+        <div className="min-w-0 bg-[var(--claris-ink-soft)] border border-white/10 rounded-3xl p-4 mb-12 space-y-4 shadow-2xl sm:p-5">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             
             {/* Search Input */}
@@ -557,7 +557,7 @@ export default function DiscographyPage() {
             </Section>
 
             {totalMk2Matches === 0 && (
-              <div className="py-20 text-center bg-[#0a0a0a] border border-white/5 rounded-3xl">
+              <div className="py-20 text-center bg-[var(--claris-ink-soft)] border border-white/5 rounded-3xl">
                 <p className="text-slate-400 text-lg mb-2">No releases match your filter criteria.</p>
                 <button
                   onClick={() => {
@@ -583,7 +583,7 @@ export default function DiscographyPage() {
             </Section>
 
             {totalMk1Matches === 0 && (
-              <div className="py-20 text-center bg-[#0a0a0a] border border-white/5 rounded-3xl">
+              <div className="py-20 text-center bg-[var(--claris-ink-soft)] border border-white/5 rounded-3xl">
                 <p className="text-slate-400 text-lg mb-2">No legacy tracks match your filter criteria.</p>
                 <button
                   onClick={() => {
@@ -626,7 +626,7 @@ export default function DiscographyPage() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-4xl bg-[#0a0a0a] border border-white/15 rounded-[36px] overflow-hidden shadow-[0_0_80px_rgba(168,85,247,0.25)] flex flex-col md:flex-row max-h-[90vh] z-10"
+              className="relative w-full max-w-4xl bg-[var(--claris-surface)] border border-white/15 rounded-[36px] overflow-hidden shadow-[0_0_80px_rgba(168,85,247,0.25)] flex flex-col md:flex-row max-h-[90vh] z-10"
             >
               {/* CLOSE BUTTON */}
               <button

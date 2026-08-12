@@ -52,7 +52,7 @@ export default function TerminalBootIntro({ onComplete }) {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.14, filter: "blur(12px)" }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-0 z-[1000] flex cursor-pointer items-center justify-center overflow-hidden bg-[#030304] px-6 text-white"
+      className="fixed inset-0 z-[1000] flex cursor-pointer items-center justify-center overflow-hidden bg-[var(--claris-ink)] px-6 text-white"
       onClick={onComplete}
       role="button"
       tabIndex={0}

@@ -28,7 +28,7 @@ export default function Home() {
   }, [router]);
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#050507] text-white">
+    <main className="flex min-h-screen items-center justify-center bg-[var(--claris-ink)] text-white">
       <p className="animate-pulse text-xs font-bold uppercase tracking-[0.3em] text-white/45">
         Selecting language…
       </p>

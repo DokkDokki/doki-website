@@ -96,7 +96,7 @@ function PhotoJourney({ text }) {
 
   if (prefersReducedMotion) {
     return (
-      <section className="border-y border-white/10 bg-[#08080b] py-24 sm:py-32">
+      <section className="border-y border-white/10 bg-[var(--claris-ink-soft)] py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6"><p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-300">{text.visualEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.visualTitle}</h2></div>
         <div className="mt-12 flex snap-x gap-4 overflow-x-auto px-6 pb-3 sm:px-[max(1.5rem,calc((100vw-80rem)/2))]">
           {photos.map(([src, label], index) => <PhotoFrame key={src} src={src} label={label} index={index} />)}
@@ -106,7 +106,7 @@ function PhotoJourney({ text }) {
   }
 
   return (
-    <section ref={sectionRef} className="relative h-[200vh] border-y border-white/10 bg-[#08080b] sm:h-[240vh]">
+    <section ref={sectionRef} className="relative h-[200vh] border-y border-white/10 bg-[var(--claris-ink-soft)] sm:h-[240vh]">
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-16">
         <motion.div style={{ x: titleX }} className="mx-auto w-full max-w-7xl px-6">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-300">{text.visualEyebrow}</p>
@@ -145,7 +145,7 @@ export default function LandingShowcase() {
   const contentLocale = locale === "en" ? locale : "en";
 
   return (
-    <div className="overflow-x-clip bg-[#050507] text-white">
+    <div className="claris-page overflow-x-clip text-white">
       <section className="px-6 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-12 max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.3em] text-teal-300">{text.featuredEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.featuredTitle}</h2><p className="mt-5 text-lg text-slate-400">{text.featuredIntro}</p></Reveal>

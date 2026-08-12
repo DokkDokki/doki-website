@@ -5,10 +5,10 @@ import { FaServer, FaLaptop, FaMicrochip, FaArrowLeft, FaMouse } from "react-ico
 
 export default function GearPage() {
   return (
-    <div className="min-h-screen overflow-x-clip bg-[#050505] text-slate-200 selection:bg-teal-500/30 font-[family-name:var(--font-nunito)]">
+    <div className="claris-page min-h-screen overflow-x-clip text-slate-200 selection:bg-teal-500/30 font-[family-name:var(--font-nunito)]">
       
       {/* NAVBAR */}
-      <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+      <nav className="claris-nav w-full backdrop-blur-md border-b sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/en/doki" className="flex min-h-11 items-center gap-2 group text-slate-400 hover:text-white transition-colors">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />

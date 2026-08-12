@@ -109,10 +109,10 @@ export default function PhotographyPage() {
   const filteredPhotos = filter === "All" ? photos : photos.filter(p => p.category === filter);
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-[#050505] text-slate-200 selection:bg-teal-500/30 font-[family-name:var(--font-nunito)]">
+    <div className="claris-page min-h-screen overflow-x-clip text-slate-200 selection:bg-teal-500/30 font-[family-name:var(--font-nunito)]">
       
       {/* NAVBAR */}
-      <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+      <nav className="claris-nav w-full backdrop-blur-md border-b sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/en/doki" className="flex min-h-11 items-center gap-2 group text-slate-400 hover:text-white transition-colors">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
@@ -351,14 +351,14 @@ export default function PhotographyPage() {
            <motion.div 
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
-             className="absolute inset-0 bg-[#050505]/95 backdrop-blur-2xl"
+             className="absolute inset-0 bg-[rgba(5,5,7,0.95)] backdrop-blur-2xl"
              onClick={() => setSelectedPhoto(null)}
            />
            
            <motion.div 
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="relative w-full max-w-6xl bg-[#0a0a0a] border border-white/10 rounded-[30px] md:rounded-[40px] overflow-hidden shadow-2xl flex flex-col lg:flex-row h-full max-h-[90vh] md:max-h-[85vh]"
+              className="relative w-full max-w-6xl bg-[var(--claris-surface)] border border-white/10 rounded-[30px] md:rounded-[40px] overflow-hidden shadow-2xl flex flex-col lg:flex-row h-full max-h-[90vh] md:max-h-[85vh]"
            >
               <div className="flex-1 bg-black relative flex items-center justify-center min-h-[300px]">
                  <img 

@@ -48,7 +48,7 @@ export default function SplitHero() {
     <motion.section
       ref={heroRef}
       style={prefersReducedMotion ? undefined : { scale: heroScale, opacity: heroOpacity, y: heroY }}
-      className="relative isolate min-h-[100svh] overflow-hidden bg-[#050507] text-white"
+      className="relative isolate min-h-[100svh] overflow-hidden bg-[var(--claris-ink)] text-white"
       onMouseLeave={() => setActiveWorld(null)}
     >
       <div className="pointer-events-none absolute left-1/2 top-6 z-30 hidden -translate-x-1/2 items-center gap-3 md:flex">
