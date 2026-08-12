@@ -2,7 +2,7 @@ export const landingTranslations = {
   en: {
     languageName: "English", chooseWorld: "Choose a world", discoverMore: "Discover more",
     worlds: {
-      doki: { eyebrow: "The person", description: "Digital engineer, photographer, and curious builder turning complex ideas into useful experiences.", meta: "Engineering · Photography · Life", cta: "Meet Doki" },
+      doki: { eyebrow: "The person", description: "Engineering student, occasional photographer, and tech nerd.", meta: "Engineering · Photography · Life", cta: "Meet Doki" },
       dokimachine: { eyebrow: "The sound", description: "An electronic music project shaped by trance, Vocaloid, machines, and late-night imagination.", meta: "Music · DJ · Discography", cta: "Enter the machine" },
     },
     intro: { interface: "Dual reality interface", skip: "Click or press any key to skip", skipLabel: "Skip intro", lines: [["IDENTITY", "DOKI"], ["CREATIVE CORE", "DOKIMACHINE"], ["MODULES", "ENGINEERING / MUSIC / PHOTO"], ["SYSTEM", "READY"]] },

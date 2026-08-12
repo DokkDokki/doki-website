@@ -10,13 +10,8 @@ import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 const worlds = [
   {
     id: "doki",
-    eyebrow: "The person",
     title: "Doki",
-    description:
-      "Digital engineer, photographer, and curious builder turning complex ideas into useful experiences.",
-    meta: "Engineering · Photography · Life",
     href: "/doki",
-    cta: "Meet Doki",
     image: "/images/personal/doki-hikari.jpg",
     imagePosition: "object-center",
     glow: "from-teal-400/30 via-cyan-500/10",
@@ -25,13 +20,8 @@ const worlds = [
   },
   {
     id: "dokimachine",
-    eyebrow: "The sound",
     title: "DOKIMACHINE",
-    description:
-      "An electronic music project shaped by trance, Vocaloid, machines, and late-night imagination.",
-    meta: "Music · DJ · Discography",
     href: "/music",
-    cta: "Enter the machine",
     image: "/images/brand/doki_iconrima_square.jpg",
     imagePosition: "object-center",
     glow: "from-fuchsia-500/30 via-purple-500/10",
