@@ -124,9 +124,9 @@ export default function SplitHero() {
         })}
       </div>
 
-      <div className="pointer-events-none absolute bottom-24 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
-        <span className="text-[9px] uppercase tracking-[0.3em] text-white/40">{copy.discoverMore}</span>
-        <span className="h-8 w-px bg-gradient-to-b from-white/40 to-transparent" />
+      <div className="pointer-events-none absolute bottom-3 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
+        <span className="hidden text-[9px] uppercase tracking-[0.3em] text-white/40 xl:block">{copy.discoverMore}</span>
+        <span className="h-7 w-px bg-gradient-to-b from-white/40 to-transparent" />
       </div>
     </motion.section>
   );
