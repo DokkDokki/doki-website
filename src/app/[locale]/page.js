@@ -3,7 +3,6 @@ import Footer from "@/components/landing/Footer";
 import LandingExperience from "@/components/landing/LandingExperience";
 import SplitHero from "@/components/landing/SplitHero";
 import LandingShowcase from "@/components/landing/LandingShowcase";
-import LandingHeader from "@/components/landing/LandingHeader";
 import { landingLocales } from "@/content/landing-translations";
 
 export const dynamicParams = false;
@@ -35,7 +34,6 @@ export default async function LocalizedHome({ params }) {
   return (
     <LandingExperience locale={locale}>
       <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-teal-500/30">
-        <LandingHeader />
         <main>
           <SplitHero />
           <LandingShowcase />
