@@ -110,7 +110,7 @@ export default function DokiPersonalPage() {
              <div className="lg:col-span-5 relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-3xl blur opacity-25"></div>
                 <div className="relative aspect-[4/5] bg-slate-900 border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
-                   <div className="absolute inset-0 bg-[url('/haneda_2024.jpg')] bg-cover bg-center">
+                   <div className="absolute inset-0 bg-[url('/images/events/haneda_2024.jpg')] bg-cover bg-center">
                       <div className="absolute bottom-6 left-6 right-6">
                          <span className="font-bold tracking-widest uppercase text-[10px] bg-black/60 px-4 py-2 rounded-full text-white backdrop-blur-md border border-white/10">
                             Haneda Airport T3, 2024
@@ -123,19 +123,19 @@ export default function DokiPersonalPage() {
              <div className="lg:col-span-7 grid grid-cols-2 gap-4">
                 {/* ... (squares are already grid-cols-2, this is fine for mobile) ... */}
                 <div className="aspect-square bg-slate-900 border border-white/10 rounded-2xl overflow-hidden relative group">
-                   <div className="absolute inset-0 bg-[url('/singapore_2025.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                   <div className="absolute inset-0 bg-[url('/images/events/singapore_2025.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
                    <div className="absolute bottom-2 left-2">
                        <span className="text-[8px] font-bold text-white/70 uppercase tracking-widest bg-black/40 px-2 py-1 rounded-md">Singapore, 2025</span>
                    </div>
                 </div>
                 <div className="aspect-square bg-slate-900 border border-white/10 rounded-2xl overflow-hidden relative group">
-                   <div className="absolute inset-0 bg-[url('/nerdland_2025.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                   <div className="absolute inset-0 bg-[url('/images/events/nerdland_2025.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
                    <div className="absolute bottom-2 left-2">
                        <span className="text-[8px] font-bold text-white/70 uppercase tracking-widest bg-black/40 px-2 py-1 rounded-md">DJ @ Nerdland, 2025</span>
                    </div>
                 </div>
                 <div className="aspect-square bg-slate-900 border border-white/10 rounded-2xl overflow-hidden relative group">
-                   <div className="absolute inset-0 bg-[url('/otaqlab_2025.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                   <div className="absolute inset-0 bg-[url('/images/events/otaqlab_2025.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
                    <div className="absolute bottom-2 left-2">
                        <span className="text-[8px] font-bold text-white/70 uppercase tracking-widest bg-black/40 px-2 py-1 rounded-md">DJ @ OtaQLab, 2025</span>
                    </div>

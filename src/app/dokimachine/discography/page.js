@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import SoundCloudEmbed from "@/components/SoundCloudEmbed";
-import YouTubeEmbed from "@/components/YouTubeEmbed";
+import SoundCloudEmbed from "@/components/media/SoundCloudEmbed";
+import YouTubeEmbed from "@/components/media/YouTubeEmbed";
 import {
   FaArrowLeft,
   FaSoundcloud,
@@ -81,7 +81,7 @@ function VocalistBadge({ name }) {
 }
 
 // Catalog Data
-const CLARIS_COVER = "/doki_iconrima_square.jpg";
+const CLARIS_COVER = "/images/brand/doki_iconrima_square.jpg";
 
 function getYouTubeThumbnail(videoId) {
   return videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : null;

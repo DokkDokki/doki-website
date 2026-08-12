@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo } from "react";
-import { landingTranslations } from "@/lib/landing-translations";
+import { landingTranslations } from "@/content/landing-translations";
 
 const LandingLocaleContext = createContext(null);
 const documentLanguages = { en: "en", jp: "ja", th: "th" };

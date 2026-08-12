@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DOKIMACHINE V2
 
-## Getting Started
+The redesign workspace for [dokimachine.net](https://dokimachine.net), built with Next.js 16, React 19, Tailwind CSS, and Framer Motion.
 
-First, run the development server:
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Use `npm run build` for the standard static export and `npm run build:sites` for the Sites deployment package.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+public/
+  images/
+    brand/        Logos, avatars, and identity artwork
+    events/       Travel and live-performance images
+    personal/     Doki portraits and illustrations
+    photography/ Photography archive
 
-## Learn More
+src/
+  app/            Routes, metadata, and global styles
+  components/
+    landing/      Localized landing-page experience
+    media/        SoundCloud and YouTube embeds
+  content/        Localized copy and structured content
 
-To learn more about Next.js, take a look at the following resources:
+scripts/          Deployment preparation
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content editing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Landing translations: `src/content/landing-translations.js`
+- Extended landing sections: `src/components/landing/LandingShowcase.js`
+- Doki page: `src/app/doki/page.js`
+- DOKIMACHINE page: `src/app/dokimachine/page.js`
+- Discography: `src/app/dokimachine/discography/page.js`
+- Photography: `src/app/photography/page.js`
+- Gear: `src/app/gear/page.js`
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The production maintenance page lives on `main`. V2 redesign work belongs on the `v2` branch; the previous site is preserved on `v1`.

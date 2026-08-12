@@ -8,8 +8,8 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import Link from "next/link";
-import { useLandingLocale } from "@/components/LandingLocaleProvider";
-import { landingTranslations } from "@/lib/landing-translations";
+import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
+import { landingTranslations } from "@/content/landing-translations";
 
 const footerLocales = ["en", "jp", "th"];
 

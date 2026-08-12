@@ -1,6 +1,6 @@
 "use client";
-import SoundCloudEmbed from "@/components/SoundCloudEmbed";
-import YouTubeEmbed from "@/components/YouTubeEmbed";
+import SoundCloudEmbed from "@/components/media/SoundCloudEmbed";
+import YouTubeEmbed from "@/components/media/YouTubeEmbed";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaSoundcloud, FaYoutube, FaExternalLinkAlt, FaInstagram, FaArrowRight, FaMusic, FaMicrophone, FaHeadphones, FaWaveSquare, FaTwitter } from "react-icons/fa";

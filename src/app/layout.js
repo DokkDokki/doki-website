@@ -11,8 +11,8 @@ const siteUrl = "https://dokimachine.net";
 const siteTitle = "DOKIMACHINE";
 const siteDescription =
   "The Split Reality Portfolio of a Digital Engineer, Vocaloid-P, and Trance Producer.";
-const ogImage = "/doki_iconrima_square.jpg";
-const siteIcon = "/doki_iconrima_square_transparent.png";
+const ogImage = "/images/brand/doki_iconrima_square.jpg";
+const siteIcon = "/images/brand/doki_iconrima_square_transparent.png";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),

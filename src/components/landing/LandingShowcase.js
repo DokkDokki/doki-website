@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaCamera, FaCode, FaHeadphones, FaMapMarkerAlt } from "react-icons/fa";
-import { useLandingLocale } from "@/components/LandingLocaleProvider";
+import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
 const showcaseCopy = {
   en: {
@@ -84,16 +84,16 @@ const showcaseCopy = {
 };
 
 const cardStyles = [
-  { Icon: FaCode, image: "/doki-hikari.jpg", color: "teal", gradient: "from-teal-400/35" },
-  { Icon: FaHeadphones, image: "/otaqlab_2025.jpg", color: "fuchsia", gradient: "from-fuchsia-500/40" },
-  { Icon: FaCamera, image: "/photography/sakura-chidorigafuchi-park.jpg", color: "sky", gradient: "from-sky-400/35" },
+  { Icon: FaCode, image: "/images/personal/doki-hikari.jpg", color: "teal", gradient: "from-teal-400/35" },
+  { Icon: FaHeadphones, image: "/images/events/otaqlab_2025.jpg", color: "fuchsia", gradient: "from-fuchsia-500/40" },
+  { Icon: FaCamera, image: "/images/photography/sakura-chidorigafuchi-park.jpg", color: "sky", gradient: "from-sky-400/35" },
 ];
 
 const photos = [
-  ["/photography/tokaido-line-e231-nippori.jpg", "Nippori · Tokyo"],
-  ["/photography/sakura-chidorigafuchi-park.jpg", "Chidorigafuchi · Tokyo"],
-  ["/photography/niigata-2025-street.jpg", "Niigata · 2025"],
-  ["/singapore_2025.jpg", "Singapore · 2025"],
+  ["/images/photography/tokaido-line-e231-nippori.jpg", "Nippori · Tokyo"],
+  ["/images/photography/sakura-chidorigafuchi-park.jpg", "Chidorigafuchi · Tokyo"],
+  ["/images/photography/niigata-2025-street.jpg", "Niigata · 2025"],
+  ["/images/events/singapore_2025.jpg", "Singapore · 2025"],
 ];
 
 function Reveal({ children, className = "" }) {

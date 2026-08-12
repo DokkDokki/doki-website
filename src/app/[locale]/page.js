@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
-import Footer from "@/components/Footer";
-import LandingExperience from "@/components/LandingExperience";
-import SplitHero from "@/components/SplitHero";
-import LandingShowcase from "@/components/LandingShowcase";
-import { landingLocales } from "@/lib/landing-translations";
+import Footer from "@/components/landing/Footer";
+import LandingExperience from "@/components/landing/LandingExperience";
+import SplitHero from "@/components/landing/SplitHero";
+import LandingShowcase from "@/components/landing/LandingShowcase";
+import { landingLocales } from "@/content/landing-translations";
 
 export const dynamicParams = false;
 

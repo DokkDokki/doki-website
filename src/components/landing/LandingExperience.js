@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import TerminalBootIntro from "@/components/TerminalBootIntro";
-import { LandingLocaleProvider } from "@/components/LandingLocaleProvider";
+import TerminalBootIntro from "@/components/landing/TerminalBootIntro";
+import { LandingLocaleProvider } from "@/components/landing/LandingLocaleProvider";
 
 const INTRO_SEEN_KEY = "dokimachine-intro-seen";
 

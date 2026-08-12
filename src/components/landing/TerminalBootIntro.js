@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useLandingLocale } from "@/components/LandingLocaleProvider";
+import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
 const BOOT_LINES = [
   { label: "IDENTITY", value: "DOKI", accent: "text-teal-300" },

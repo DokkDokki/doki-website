@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
-import { useLandingLocale } from "@/components/LandingLocaleProvider";
+import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
 const worlds = [
   {
@@ -16,7 +16,7 @@ const worlds = [
     meta: "Engineering · Photography · Life",
     href: "/doki",
     cta: "Meet Doki",
-    image: "/doki-hikari.jpg",
+    image: "/images/personal/doki-hikari.jpg",
     imagePosition: "object-center",
     glow: "from-teal-400/30 via-cyan-500/10",
     accent: "text-teal-200",
@@ -31,7 +31,7 @@ const worlds = [
     meta: "Music · DJ · Discography",
     href: "/dokimachine",
     cta: "Enter the machine",
-    image: "/doki_iconrima_square.jpg",
+    image: "/images/brand/doki_iconrima_square.jpg",
     imagePosition: "object-center",
     glow: "from-fuchsia-500/30 via-purple-500/10",
     accent: "text-fuchsia-200",

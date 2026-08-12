@@ -9,7 +9,7 @@ const photos = [
     id: 1,
     title: "Shinkansen E7 Series",
     category: "Train",
-    src: "/photography/shinkansen-e7-nippori.jpg",
+    src: "/images/photography/shinkansen-e7-nippori.jpg",
     location: "Nippori Station, Tokyo",
     exif: { gear: "Sony α6000", lens: "18-105mm G", iso: "400", shutter: "1/2000s", aperture: "f/4.0" },
     desc: "The E7 series speeding through Nippori. One of my favorite spots to capture the rail traffic of Northern Tokyo."
@@ -18,7 +18,7 @@ const photos = [
     id: 2,
     title: "Keihin-Tohoku E233",
     category: "Train",
-    src: "/photography/keihin-tohoku-e233-akabane.jpg",
+    src: "/images/photography/keihin-tohoku-e233-akabane.jpg",
     location: "Akabane Station, Tokyo",
     exif: { gear: "Sony α6000", lens: "18-105mm G", iso: "800", shutter: "1/1000s", aperture: "f/5.6" },
     desc: "Capturing the workhorse of the Tokyo metropolitan area at Akabane Station."
@@ -27,7 +27,7 @@ const photos = [
     id: 3,
     title: "Sakura Chidorigafuchi",
     category: "Street",
-    src: "/photography/sakura-chidorigafuchi-park.jpg",
+    src: "/images/photography/sakura-chidorigafuchi-park.jpg",
     location: "Chidorigafuchi Park, Tokyo",
     exif: { gear: "Sony α6000", lens: "18-105mm G", iso: "100", shutter: "1/500s", aperture: "f/8.0" },
     desc: "The iconic cherry blossoms reflected in the moat. A timeless Tokyo spring moment."
@@ -36,7 +36,7 @@ const photos = [
     id: 4,
     title: "Niigata Street Life",
     category: "Street",
-    src: "/photography/niigata-2025-street.jpg",
+    src: "/images/photography/niigata-2025-street.jpg",
     location: "Niigata, Japan",
     exif: { gear: "Sony α6000", lens: "18-105mm G", iso: "400", shutter: "1/250s", aperture: "f/4.0" },
     desc: "Exploring the quiet, snowy streets of Niigata in early 2025."
@@ -46,7 +46,7 @@ const photos = [
     title: "Dazai Osamu",
     category: "Cosplay",
     model: "Kari (@kari.layer)",
-    src: "/photography/kari-dazai-osamu.jpg",
+    src: "/images/photography/kari-dazai-osamu.jpg",
     location: "Bangkok",
     exif: { gear: "Sony α6000", lens: "30mm f/1.4", iso: "200", shutter: "1/125s", aperture: "f/2.8" },
     desc: "A stylized character study of Dazai from Bungo Stray Dogs. Focused on dramatic lighting and shadow."
@@ -56,7 +56,7 @@ const photos = [
     title: "Neon Stare",
     category: "Cosplay",
     model: "Kari (@kari.layer)",
-    src: "/photography/kari-stare.jpg",
+    src: "/images/photography/kari-stare.jpg",
     location: "Siam Square",
     exif: { gear: "Sony α6000", lens: "30mm f/1.4", iso: "1600", shutter: "1/60s", aperture: "f/1.4" },
     desc: "Capturing that intense connection through the lens. The bokeh from the street lights perfectly frames the subject."
@@ -66,7 +66,7 @@ const photos = [
     title: "Reflections",
     category: "Cosplay",
     model: "Kari (@kari.layer)",
-    src: "/photography/kari-glass.jpg",
+    src: "/images/photography/kari-glass.jpg",
     location: "MBK Center",
     exif: { gear: "Sony α6000", lens: "18-105mm G", iso: "400", shutter: "1/100s", aperture: "f/4.0" },
     desc: "Using glass surfaces to create a layering effect between the fictional world and reality."
@@ -76,7 +76,7 @@ const photos = [
     title: "Siam Square Sessions",
     category: "Cosplay",
     model: "Kari (@kari.layer)",
-    src: "/photography/kari-siamsquare.jpg",
+    src: "/images/photography/kari-siamsquare.jpg",
     location: "Siam Square, Bangkok",
     exif: { gear: "Sony α6000", lens: "30mm f/1.4", iso: "800", shutter: "1/80s", aperture: "f/1.8" },
     desc: "One of our classic street sessions. Mixing high-fashion character design with urban bustle."
@@ -86,7 +86,7 @@ const photos = [
     title: "Halloween Night",
     category: "Cosplay",
     model: "Kari (@kari.layer)",
-    src: "/photography/kari-halloween.jpg",
+    src: "/images/photography/kari-halloween.jpg",
     location: "Bangkok",
     exif: { gear: "Sony α6000", lens: "30mm f/1.4", iso: "3200", shutter: "1/50s", aperture: "f/1.4" },
     desc: "Low-light atmospheric shot from our Halloween collaboration. High grain and deep blacks for mood."
@@ -95,7 +95,7 @@ const photos = [
     id: 10,
     title: "Tokaido Line E231",
     category: "Train",
-    src: "/photography/tokaido-line-e231-nippori.jpg",
+    src: "/images/photography/tokaido-line-e231-nippori.jpg",
     location: "Nippori, Tokyo",
     exif: { gear: "Sony α6000", lens: "18-105mm G", iso: "400", shutter: "1/1600s", aperture: "f/4.0" },
     desc: "The familiar orange and green stripes of the E231 series. This shot at Nippori captures the classic energy of Tokyo's main rail arteries."
@@ -242,7 +242,7 @@ export default function PhotographyPage() {
              <div className="lg:col-span-4 aspect-square rounded-[40px] overflow-hidden border border-white/10 relative group bg-slate-900 shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/30 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
                 <img 
-                  src="/photography/kari-pfp.jpg" 
+                  src="/images/photography/kari-pfp.jpg"
                   alt="Kari (@kari.layer)"
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
