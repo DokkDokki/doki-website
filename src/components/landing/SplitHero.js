@@ -44,7 +44,7 @@ export default function SplitHero() {
 
   return (
     <section className="relative isolate min-h-screen overflow-hidden bg-[#050507] text-white">
-      <div className="pointer-events-none absolute left-1/2 top-6 z-30 hidden -translate-x-1/2 items-center gap-3 md:flex">
+      <div className="pointer-events-none absolute left-1/2 top-24 z-30 hidden -translate-x-1/2 items-center gap-3 md:flex">
         <span className="h-px w-10 bg-white/25" />
         <span className="text-[10px] font-bold uppercase tracking-[0.38em] text-white/55">
           {copy.chooseWorld}
