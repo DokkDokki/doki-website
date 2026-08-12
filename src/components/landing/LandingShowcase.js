@@ -21,7 +21,7 @@ const showcaseCopy = {
     featuredIntro: "A snapshot of the things I build, hear, and notice.",
     cards: [
       ["Engineering", "Building the systems behind the experience.", "Infrastructure, code, hardware, and experiments that turn curiosity into something useful.", "Explore Doki", "/doki"],
-      ["DOKIMACHINE", "Late-night emotion, rendered as sound.", "Trance energy, Vocaloid voices, and machine-made worlds shaped into an evolving music project.", "Hear the project", "/dokimachine"],
+      ["DOKIMACHINE", "Late-night emotion, rendered as sound.", "Trance energy, Vocaloid voices, and machine-made worlds shaped into an evolving music project.", "Hear the project", "/music"],
       ["Photography", "Small moments worth keeping.", "Trains, streets, people, and places collected between Bangkok, Tokyo, and everywhere in between.", "Open the archive", "/photography"],
     ],
     visualEyebrow: "Visual memory",
@@ -45,7 +45,7 @@ const showcaseCopy = {
     featuredIntro: "つくるもの、聴こえるもの、そして心に留まったもの。",
     cards: [
       ["エンジニアリング", "体験を支えるシステムをつくる。", "インフラ、コード、ハードウェア、そして好奇心を役立つものへ変える実験。", "Dokiを知る", "/doki"],
-      ["DOKIMACHINE", "真夜中の感情を、音に変える。", "トランスの熱量、Vocaloidの声、マシンが描く世界から生まれる音楽プロジェクト。", "プロジェクトを聴く", "/dokimachine"],
+      ["DOKIMACHINE", "真夜中の感情を、音に変える。", "トランスの熱量、Vocaloidの声、マシンが描く世界から生まれる音楽プロジェクト。", "プロジェクトを聴く", "/music"],
       ["写真", "残しておきたい、小さな瞬間。", "バンコク、東京、そして旅の途中で出会った電車、街、人々、風景。", "アーカイブを見る", "/photography"],
     ],
     visualEyebrow: "視覚の記憶",
@@ -69,7 +69,7 @@ const showcaseCopy = {
     featuredIntro: "ภาพรวมของสิ่งที่ผมสร้าง สิ่งที่ผมได้ยิน และสิ่งที่ผมมองเห็น",
     cards: [
       ["วิศวกรรม", "สร้างระบบเบื้องหลังประสบการณ์", "โครงสร้างพื้นฐาน โค้ด ฮาร์ดแวร์ และการทดลองที่เปลี่ยนความสงสัยให้เป็นสิ่งที่ใช้ได้จริง", "รู้จัก Doki", "/doki"],
-      ["DOKIMACHINE", "เปลี่ยนอารมณ์ยามดึกให้กลายเป็นเสียง", "พลังของแทรนซ์ เสียง Vocaloid และโลกจากเครื่องจักรที่ก่อตัวเป็นโปรเจกต์ดนตรี", "ฟังโปรเจกต์", "/dokimachine"],
+      ["DOKIMACHINE", "เปลี่ยนอารมณ์ยามดึกให้กลายเป็นเสียง", "พลังของแทรนซ์ เสียง Vocaloid และโลกจากเครื่องจักรที่ก่อตัวเป็นโปรเจกต์ดนตรี", "ฟังโปรเจกต์", "/music"],
       ["การถ่ายภาพ", "เก็บช่วงเวลาเล็ก ๆ ที่มีความหมาย", "รถไฟ ถนน ผู้คน และสถานที่ระหว่างกรุงเทพฯ โตเกียว และทุกจุดบนเส้นทาง", "เปิดคลังภาพ", "/photography"],
     ],
     visualEyebrow: "ความทรงจำผ่านภาพ",
@@ -106,6 +106,7 @@ function Reveal({ children, className = "" }) {
 export default function LandingShowcase() {
   const { locale } = useLandingLocale();
   const text = showcaseCopy[locale];
+  const contentLocale = locale === "en" ? locale : "en";
 
   return (
     <div className="overflow-hidden bg-[#050507] text-white">
@@ -151,7 +152,7 @@ export default function LandingShowcase() {
           <div className="grid gap-5 lg:grid-cols-3">
             {text.cards.map(([title, subtitle, description, cta, href], index) => {
               const style = cardStyles[index];
-              return <Reveal key={title} className="h-full"><Link href={href} className="group relative flex min-h-[520px] h-full flex-col justify-end overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900 p-7 transition hover:-translate-y-1 hover:border-white/25 sm:p-9"><Image src={style.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition duration-1000 group-hover:scale-105" /><div className="absolute inset-0 bg-black/30" /><div className={`absolute inset-0 bg-gradient-to-t ${style.gradient} via-[#050507]/80 to-transparent`} /><div className="relative"><style.Icon className="mb-5 h-5 w-5 text-white/70" /><p className="text-xs font-bold uppercase tracking-[0.25em] text-white/55">{title}</p><h3 className="mt-3 text-2xl font-semibold leading-tight">{subtitle}</h3><p className="mt-4 text-sm leading-6 text-slate-300/75">{description}</p><span className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em]">{cta}<FaArrowRight className="h-3 w-3 transition group-hover:translate-x-1" /></span></div></Link></Reveal>;
+              return <Reveal key={title} className="h-full"><Link href={`/${contentLocale}${href}`} className="group relative flex min-h-[520px] h-full flex-col justify-end overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900 p-7 transition hover:-translate-y-1 hover:border-white/25 sm:p-9"><Image src={style.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition duration-1000 group-hover:scale-105" /><div className="absolute inset-0 bg-black/30" /><div className={`absolute inset-0 bg-gradient-to-t ${style.gradient} via-[#050507]/80 to-transparent`} /><div className="relative"><style.Icon className="mb-5 h-5 w-5 text-white/70" /><p className="text-xs font-bold uppercase tracking-[0.25em] text-white/55">{title}</p><h3 className="mt-3 text-2xl font-semibold leading-tight">{subtitle}</h3><p className="mt-4 text-sm leading-6 text-slate-300/75">{description}</p><span className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em]">{cta}<FaArrowRight className="h-3 w-3 transition group-hover:translate-x-1" /></span></div></Link></Reveal>;
             })}
           </div>
         </div>
@@ -168,7 +169,7 @@ export default function LandingShowcase() {
 
       <section className="px-6 pb-28"><div className="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-white/10 bg-white/[0.025] p-7 sm:p-12 lg:grid-cols-[1fr_1.3fr]"><Reveal><p className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-300">{text.logEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-5xl">{text.logTitle}</h2></Reveal><div className="divide-y divide-white/10 border-y border-white/10">{text.log.map(([date, entry], index) => <Reveal key={`${date}-${entry}`}><div className="grid grid-cols-[70px_1fr] gap-5 py-6"><span className={`font-mono text-[10px] font-bold ${index === 0 ? "text-emerald-300" : "text-white/30"}`}>{date}</span><span className="text-sm text-slate-300">{entry}</span></div></Reveal>)}</div></div></section>
 
-      <section className="px-6 pb-28"><Reveal className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-teal-400/10 via-white/[0.03] to-fuchsia-500/10 p-8 text-center sm:p-16"><h2 className="text-4xl font-light tracking-tight sm:text-6xl">{text.closing}</h2><p className="mx-auto mt-5 max-w-xl text-slate-400">{text.closingNote}</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href="/doki" className="rounded-full bg-teal-300 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.person}</Link><Link href="/dokimachine" className="rounded-full bg-fuchsia-400 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.machine}</Link></div></Reveal></section>
+      <section className="px-6 pb-28"><Reveal className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-teal-400/10 via-white/[0.03] to-fuchsia-500/10 p-8 text-center sm:p-16"><h2 className="text-4xl font-light tracking-tight sm:text-6xl">{text.closing}</h2><p className="mx-auto mt-5 max-w-xl text-slate-400">{text.closingNote}</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href={`/${contentLocale}/doki`} className="rounded-full bg-teal-300 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.person}</Link><Link href={`/${contentLocale}/music`} className="rounded-full bg-fuchsia-400 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.machine}</Link></div></Reveal></section>
     </div>
   );
 }

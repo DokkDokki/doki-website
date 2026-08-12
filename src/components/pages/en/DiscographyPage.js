@@ -318,7 +318,7 @@ export default function DiscographyPage() {
       {/* NAVBAR */}
       <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/dokimachine" className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors">
+          <Link href="/en/music" className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
             <span>Back to Dokimachine</span>
           </Link>

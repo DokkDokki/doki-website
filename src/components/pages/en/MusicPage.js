@@ -12,11 +12,11 @@ export default function DokiMachinePage() {
       {/* NAVBAR */}
       <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="font-light tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-400 text-xl uppercase">
+          <Link href="/en" className="font-light tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-400 text-xl uppercase">
             DOKIMACHINE
           </Link>
           <div className="flex items-center gap-6 text-[10px] font-bold tracking-widest uppercase">
-             <Link href="/" className="text-slate-400 hover:text-white transition-colors">← Portal</Link>
+             <Link href="/en" className="text-slate-400 hover:text-white transition-colors">← Portal</Link>
              <div className="w-[1px] h-4 bg-white/20"></div>
              <div className="flex gap-4">
                 <a href="https://soundcloud.com/doki_chibi" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaSoundcloud size={18} /></a>
@@ -100,7 +100,7 @@ export default function DokiMachinePage() {
           <div className="flex items-center gap-4 mb-12">
             <h2 className="text-xl md:text-2xl font-bold text-white uppercase tracking-[0.3em]">The Master Files</h2>
             <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
-            <Link href="/dokimachine/discography" className="inline-flex items-center gap-2 px-5 py-2 bg-purple-500 text-black rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap hover:scale-105 hover:bg-white transition-all">
+            <Link href="/en/music/discography" className="inline-flex items-center gap-2 px-5 py-2 bg-purple-500 text-black rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap hover:scale-105 hover:bg-white transition-all">
               Full Discography <FaArrowRight size={10} />
             </Link>
           </div>
@@ -160,7 +160,7 @@ export default function DokiMachinePage() {
 
             {/* CTA BANNER: FULL DISCOGRAPHY */}
             <Link
-              href="/dokimachine/discography"
+              href="/en/music/discography"
               className="lg:col-span-12 group relative flex flex-col sm:flex-row items-center justify-between gap-6 bg-gradient-to-r from-purple-500/10 via-fuchsia-500/10 to-transparent border border-purple-500/20 rounded-[32px] px-8 py-8 hover:border-purple-500/50 transition-all"
             >
               <div className="text-center sm:text-left">

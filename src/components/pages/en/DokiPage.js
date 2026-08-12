@@ -10,11 +10,11 @@ export default function DokiPersonalPage() {
       {/* NAVBAR */}
       <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="font-light tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400 text-xl">
+          <Link href="/en" className="font-light tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400 text-xl">
             DOKI
           </Link>
           <div className="flex items-center gap-6 text-sm">
-             <Link href="/" className="text-slate-400 hover:text-white transition-colors">← Portal</Link>
+             <Link href="/en" className="text-slate-400 hover:text-white transition-colors">← Portal</Link>
              <div className="w-[1px] h-4 bg-white/20"></div>
              <div className="flex gap-4">
                 <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaGithub size={20} /></a>
@@ -189,7 +189,7 @@ export default function DokiPersonalPage() {
                 <FaCamera className="text-3xl text-teal-400 mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="text-teal-400 font-bold text-xs uppercase tracking-widest mb-4">The Hardware</h4>
                 <p className="text-slate-400 text-xs mb-8 leading-relaxed max-w-[150px] mx-auto">Sony α6000, 18-105 G, and my little workstation.</p>
-                <Link href="/gear" className="mt-auto px-6 py-3 bg-teal-500/10 hover:bg-teal-500 text-teal-400 hover:text-black border border-teal-500/20 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all">
+                <Link href="/en/doki/gear" className="mt-auto px-6 py-3 bg-teal-500/10 hover:bg-teal-500 text-teal-400 hover:text-black border border-teal-500/20 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all">
                    View Full Gear List
                 </Link>
              </motion.div>
@@ -255,7 +255,7 @@ export default function DokiPersonalPage() {
                    <a href="https://instagram.com/doki_a6000" target="_blank" rel="noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 bg-teal-500 text-black rounded-full font-bold hover:scale-105 transition-transform text-sm shadow-[0_0_20px_rgba(20,184,166,0.2)]">
                      Visit Gallery <FaExternalLinkAlt size={12}/>
                    </a>
-                   <Link href="/photography" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-full font-bold hover:bg-white/10 transition-all text-sm group">
+                   <Link href="/en/photography" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-full font-bold hover:bg-white/10 transition-all text-sm group">
                      Expand <FaExpandAlt size={12} className="group-hover:scale-110 transition-transform"/>
                    </Link>
                  </div>

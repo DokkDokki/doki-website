@@ -30,7 +30,7 @@ const worlds = [
     description:
       "An electronic music project shaped by trance, Vocaloid, machines, and late-night imagination.",
     meta: "Music · DJ · Discography",
-    href: "/dokimachine",
+    href: "/music",
     cta: "Enter the machine",
     image: "/images/brand/doki_iconrima_square.jpg",
     imagePosition: "object-center",
@@ -41,7 +41,8 @@ const worlds = [
 ];
 
 export default function SplitHero() {
-  const { copy } = useLandingLocale();
+  const { copy, locale } = useLandingLocale();
+  const contentLocale = locale === "en" ? locale : "en";
   const [activeWorld, setActiveWorld] = useState(null);
 
   return (
@@ -108,7 +109,7 @@ export default function SplitHero() {
                 {localizedWorld.meta}
               </p>
               <Link
-                href={world.href}
+                href={`/${contentLocale}${world.href}`}
                 onFocus={() => setActiveWorld(world.id)}
                 onBlur={() => setActiveWorld(null)}
                 className={`mt-8 inline-flex items-center gap-3 rounded-full px-6 py-3 text-xs font-extrabold uppercase tracking-[0.18em] transition duration-300 hover:-translate-y-0.5 ${world.button}`}

@@ -10,7 +10,7 @@ export default function GearPage() {
       {/* NAVBAR */}
       <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/doki" className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors">
+          <Link href="/en/doki" className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
             <span>Back to Doki</span>
           </Link>
@@ -225,7 +225,7 @@ export default function GearPage() {
       {/* FOOTER */}
       <footer className="max-w-[1000px] mx-auto px-6 py-20 border-t border-white/10 text-center">
          <p className="text-slate-500 text-sm mb-4 tracking-widest font-light uppercase">Engineered for Perfection</p>
-         <Link href="/doki" className="text-white font-bold hover:text-teal-400 transition-colors">Return to Doki's Reality</Link>
+         <Link href="/en/doki" className="text-white font-bold hover:text-teal-400 transition-colors">Return to Doki's Reality</Link>
       </footer>
     </div>
   );

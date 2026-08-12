@@ -43,11 +43,11 @@ V2 should be reviewed and tested before it is merged into `main` for deployment.
 /en               English landing page
 /jp               Japanese landing page
 /th               Thai landing page
-/doki             Personal portfolio
-/dokimachine      Music project
-/dokimachine/discography
-/photography      Photography archive
-/gear             Equipment and tools
+/en/doki          English personal portfolio
+/en/doki/gear     English equipment and tools
+/en/photography   English photography archive
+/en/music         English music project
+/en/music/discography
 ```
 
 ## Project structure
