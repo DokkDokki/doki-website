@@ -1,9 +1,15 @@
-import { Nunito_Sans } from "next/font/google";
+import { Noto_Sans_Thai, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
+});
+
+const notoSansThai = Noto_Sans_Thai({
+  subsets: ["thai"],
+  variable: "--font-thai",
   display: "swap",
 });
 
@@ -54,7 +60,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={nunitoSans.variable}>
+    <html lang="en" className={`${nunitoSans.variable} ${notoSansThai.variable}`}>
       <body>
         {children}
       </body>

@@ -89,3 +89,7 @@ h5,
 h6 {
   font-family: var(--font-body), system-ui, sans-serif;
 }
+
+.font-thai {
+  --font-body: var(--font-thai);
+}
