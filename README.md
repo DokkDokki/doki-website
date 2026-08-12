@@ -1,44 +1,89 @@
 # DOKIMACHINE V2
 
-The redesign workspace for [dokimachine.net](https://dokimachine.net), built with Next.js 16, React 19, Tailwind CSS, and Framer Motion.
+The next version of [dokimachine.net](https://dokimachine.net): a multilingual portfolio connecting Doki's engineering, photography, and personal work with the DOKIMACHINE music project.
 
-## Development
+## Technology
+
+- Next.js 16 with the App Router
+- React 19
+- Tailwind CSS 3
+- Framer Motion
+- Static HTML export
+
+## Getting started
 
 ```bash
 npm install
 npm run dev
 ```
 
-Use `npm run build` for the standard static export and `npm run build:sites` for the Sites deployment package.
+The development site is available at `http://localhost:3000`.
+
+## Commands
+
+```bash
+npm run dev          # Start the local development server
+npm run lint         # Check code quality
+npm run build        # Create the standard static export
+npm run build:sites  # Build and prepare the Sites deployment package
+```
+
+## Branches
+
+- `main` — production maintenance page
+- `v2` — active redesign work
+- `v1` — preserved previous version
+
+V2 should be reviewed and tested before it is merged into `main` for deployment.
+
+## Routes
+
+```text
+/                 Automatic device-language selection
+/en               English landing page
+/jp               Japanese landing page
+/th               Thai landing page
+/doki             Personal portfolio
+/dokimachine      Music project
+/dokimachine/discography
+/photography      Photography archive
+/gear             Equipment and tools
+```
 
 ## Project structure
 
 ```text
 public/
   images/
-    brand/        Logos, avatars, and identity artwork
-    events/       Travel and live-performance images
-    personal/     Doki portraits and illustrations
-    photography/ Photography archive
+    brand/          Identity artwork and icons
+    events/         Travel and performance images
+    personal/       Doki portraits and illustrations
+    photography/    Photography archive
 
 src/
-  app/            Routes, metadata, and global styles
+  app/              Routes, layouts, metadata, and global styles
   components/
-    landing/      Localized landing-page experience
-    media/        SoundCloud and YouTube embeds
-  content/        Localized copy and structured content
+    landing/        Localized landing-page interface
+    media/          SoundCloud and YouTube embeds
+  content/          Translations and structured copy
 
-scripts/          Deployment preparation
+scripts/            Deployment preparation utilities
 ```
 
-## Content editing
+Files inside `public` are referenced without the `public` prefix. For example:
+
+```jsx
+<Image src="/images/personal/doki-hikari.jpg" alt="Doki" />
+```
+
+## Editing content
 
 - Landing translations: `src/content/landing-translations.js`
-- Extended landing sections: `src/components/landing/LandingShowcase.js`
+- Landing showcase: `src/components/landing/LandingShowcase.js`
+- Split hero: `src/components/landing/SplitHero.js`
+- Footer and language switcher: `src/components/landing/Footer.js`
 - Doki page: `src/app/doki/page.js`
 - DOKIMACHINE page: `src/app/dokimachine/page.js`
 - Discography: `src/app/dokimachine/discography/page.js`
 - Photography: `src/app/photography/page.js`
 - Gear: `src/app/gear/page.js`
-
-The production maintenance page lives on `main`. V2 redesign work belongs on the `v2` branch; the previous site is preserved on `v1`.
