@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   FaDiscord,
   FaEnvelope,
@@ -23,10 +25,26 @@ const socialLinks = [
 
 export default function Footer() {
   const { copy, locale } = useLandingLocale();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const updateVisibility = () => setIsVisible(window.scrollY > 96);
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", updateVisibility);
+  }, []);
 
   return (
-    <footer className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] text-slate-400 sm:px-6">
-      <div className="pointer-events-auto mx-auto flex w-fit max-w-full flex-col items-center gap-2 rounded-[1.5rem] border border-white/15 bg-[#050507]/75 p-2 shadow-[0_16px_60px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:flex-row sm:rounded-full">
+    <AnimatePresence>
+      {isVisible && (
+      <motion.footer
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] text-slate-400 sm:px-6"
+      >
+        <div className="pointer-events-auto mx-auto flex w-fit max-w-full flex-col items-center gap-2 rounded-[1.5rem] border border-white/15 bg-[#050507]/75 p-2 shadow-[0_16px_60px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:flex-row sm:rounded-full">
         <div className="hidden px-3 lg:block">
           <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-white/45">DOKIMACHINE</p>
         </div>
@@ -71,7 +89,9 @@ export default function Footer() {
             ))}
           </nav>
         </div>
-      </div>
-    </footer>
+        </div>
+      </motion.footer>
+      )}
+    </AnimatePresence>
   );
 }
