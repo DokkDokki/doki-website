@@ -45,7 +45,7 @@ const photos = [
     id: 5,
     title: "Dazai Osamu",
     category: "Cosplay",
-    model: "Kari (@kari.layer)",
+    model: "Kari (@kari_cosser)",
     src: "/images/photography/kari-dazai-osamu.jpg",
     location: "Bangkok",
     exif: { gear: "Sony α6000", lens: "30mm f/1.4", iso: "200", shutter: "1/125s", aperture: "f/2.8" },
@@ -55,7 +55,7 @@ const photos = [
     id: 6,
     title: "Neon Stare",
     category: "Cosplay",
-    model: "Kari (@kari.layer)",
+    model: "Kari (@kari_cosser)",
     src: "/images/photography/kari-stare.jpg",
     location: "Siam Square",
     exif: { gear: "Sony α6000", lens: "30mm f/1.4", iso: "1600", shutter: "1/60s", aperture: "f/1.4" },
@@ -65,7 +65,7 @@ const photos = [
     id: 7,
     title: "Reflections",
     category: "Cosplay",
-    model: "Kari (@kari.layer)",
+    model: "Kari (@kari_cosser)",
     src: "/images/photography/kari-glass.jpg",
     location: "MBK Center",
     exif: { gear: "Sony α6000", lens: "18-105mm G", iso: "400", shutter: "1/100s", aperture: "f/4.0" },
@@ -75,7 +75,7 @@ const photos = [
     id: 8,
     title: "Siam Square Sessions",
     category: "Cosplay",
-    model: "Kari (@kari.layer)",
+    model: "Kari (@kari_cosser)",
     src: "/images/photography/kari-siamsquare.jpg",
     location: "Siam Square, Bangkok",
     exif: { gear: "Sony α6000", lens: "30mm f/1.4", iso: "800", shutter: "1/80s", aperture: "f/1.8" },
@@ -85,7 +85,7 @@ const photos = [
     id: 9,
     title: "Halloween Night",
     category: "Cosplay",
-    model: "Kari (@kari.layer)",
+    model: "Kari (@kari_cosser)",
     src: "/images/photography/kari-halloween.jpg",
     location: "Bangkok",
     exif: { gear: "Sony α6000", lens: "30mm f/1.4", iso: "3200", shutter: "1/50s", aperture: "f/1.4" },
@@ -139,7 +139,7 @@ export default function PhotographyPage() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-500">Archive.</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl leading-relaxed italic font-light">
-            Capturing the precision of <span className="text-white font-medium not-italic">Japanese Rail</span> and the artistic world of <span className="text-white font-medium not-italic">Cosplay</span>. Often found behind the lens for my close friend <span className="text-teal-400 font-bold not-italic">Kari (@kari.layer)</span>.
+            Capturing the precision of <span className="text-white font-medium not-italic">Japanese Rail</span> and the artistic world of <span className="text-white font-medium not-italic">Cosplay</span>. Often found behind the lens for my close friend <span className="text-teal-400 font-bold not-italic">Kari (@kari_cosser)</span>.
           </p>
         </motion.header>
 
@@ -243,7 +243,7 @@ export default function PhotographyPage() {
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/30 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
                 <img 
                   src="/images/photography/kari-pfp.jpg"
-                  alt="Kari (@kari.layer)"
+                  alt="Kari (@kari_cosser)"
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute bottom-6 left-6 z-20">
@@ -259,7 +259,7 @@ export default function PhotographyPage() {
                 </p>
                 
                 <div className="flex flex-wrap gap-6">
-                   <a href="https://instagram.com/kari.layer" target="_blank" rel="noreferrer" className="px-8 py-3 bg-purple-500/10 border border-purple-500/20 text-purple-400 rounded-full font-bold hover:bg-purple-500 hover:text-white transition-all flex items-center gap-3">
+                   <a href="https://instagram.com/kari_cosser" target="_blank" rel="noreferrer" className="px-8 py-3 bg-purple-500/10 border border-purple-500/20 text-purple-400 rounded-full font-bold hover:bg-purple-500 hover:text-white transition-all flex items-center gap-3">
                       <FaInstagram /> Instagram
                    </a>
                 </div>
