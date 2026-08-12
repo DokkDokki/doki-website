@@ -8,13 +8,6 @@ import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
 const showcaseCopy = {
   en: {
-    signal: "Currently transmitting",
-    status: [
-      ["Location", "Bangkok, Thailand"],
-      ["Focus", "Digital engineering"],
-      ["Sound", "Trance / Vocaloid"],
-      ["Camera", "Sony α6000"],
-    ],
     featuredEyebrow: "Selected signals",
     featuredTitle: "One mind, three frequencies.",
     featuredIntro: "A snapshot of the things I build, hear, and notice.",
@@ -36,8 +29,6 @@ const showcaseCopy = {
     machine: "Enter DOKIMACHINE",
   },
   jp: {
-    signal: "現在のシグナル",
-    status: [["拠点", "タイ・バンコク"], ["フォーカス", "デジタルエンジニアリング"], ["サウンド", "トランス / Vocaloid"], ["カメラ", "Sony α6000"]],
     featuredEyebrow: "選ばれたシグナル",
     featuredTitle: "ひとつの心、三つの周波数。",
     featuredIntro: "つくるもの、聴こえるもの、そして心に留まったもの。",
@@ -59,8 +50,6 @@ const showcaseCopy = {
     machine: "DOKIMACHINEへ",
   },
   th: {
-    signal: "กำลังส่งสัญญาณ",
-    status: [["ที่อยู่", "กรุงเทพฯ ประเทศไทย"], ["โฟกัส", "วิศวกรรมดิจิทัล"], ["เสียง", "แทรนซ์ / Vocaloid"], ["กล้อง", "Sony α6000"]],
     featuredEyebrow: "สัญญาณที่คัดสรร",
     featuredTitle: "หนึ่งความคิด สามความถี่",
     featuredIntro: "ภาพรวมของสิ่งที่ผมสร้าง สิ่งที่ผมได้ยิน และสิ่งที่ผมมองเห็น",
@@ -107,15 +96,6 @@ export default function LandingShowcase() {
 
   return (
     <div className="overflow-hidden bg-[#050507] text-white">
-      <section className="border-y border-white/10 bg-white/[0.025] px-6 py-7">
-        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.2fr_4fr] lg:items-center">
-          <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.28em] text-emerald-300"><span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-60" /><span className="relative h-2 w-2 rounded-full bg-emerald-300" /></span>{text.signal}</div>
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-4">
-            {text.status.map(([label, value]) => <div key={label} className="bg-[#09090c] px-4 py-4"><p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/30">{label}</p><p className="mt-1 text-xs font-semibold text-white/80">{value}</p></div>)}
-          </div>
-        </div>
-      </section>
-
       <section className="px-6 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-12 max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.3em] text-teal-300">{text.featuredEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.featuredTitle}</h2><p className="mt-5 text-lg text-slate-400">{text.featuredIntro}</p></Reveal>
