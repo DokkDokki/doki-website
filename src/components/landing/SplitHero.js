@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
@@ -34,9 +34,20 @@ export default function SplitHero() {
   const { copy, locale } = useLandingLocale();
   const contentLocale = locale === "en" ? locale : "en";
   const [activeWorld, setActiveWorld] = useState(null);
+  const heroRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.965]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.72, 1], [1, 0.82, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
   return (
-    <section
+    <motion.section
+      ref={heroRef}
+      style={prefersReducedMotion ? undefined : { scale: heroScale, opacity: heroOpacity, y: heroY }}
       className="relative isolate min-h-screen overflow-hidden bg-[#050507] text-white"
       onMouseLeave={() => setActiveWorld(null)}
     >
@@ -89,7 +100,7 @@ export default function SplitHero() {
               <p className={`text-xs font-bold uppercase tracking-[0.32em] ${world.accent}`}>
                 {localizedWorld.eyebrow}
               </p>
-              <h1 className="mt-4 text-5xl font-light tracking-[-0.025em] sm:text-6xl lg:text-7xl xl:text-8xl">
+              <h1 className={`mt-4 font-light tracking-[-0.025em] ${world.id === "dokimachine" ? "text-4xl sm:text-5xl lg:text-6xl xl:text-7xl" : "text-5xl sm:text-6xl lg:text-7xl xl:text-8xl"}`}>
                 {world.title}
               </h1>
               <p className="mt-5 max-w-lg text-base leading-7 text-slate-200/85 sm:text-lg">
@@ -117,6 +128,6 @@ export default function SplitHero() {
         <span className="text-[9px] uppercase tracking-[0.3em] text-white/40">{copy.discoverMore}</span>
         <span className="h-8 w-px bg-gradient-to-b from-white/40 to-transparent" />
       </div>
-    </section>
+    </motion.section>
   );
 }
