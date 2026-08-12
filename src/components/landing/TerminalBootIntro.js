@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
 const BOOT_LINES = [
-  { label: "IDENTITY", value: "DOKI", accent: "text-teal-300" },
-  { label: "CREATIVE CORE", value: "DOKIMACHINE", accent: "text-fuchsia-300" },
+  { label: "IDENTITY", value: "DOKI", accent: "text-[#58e8f2]" },
+  { label: "CREATIVE CORE", value: "DOKIMACHINE", accent: "text-[#e98ab8]" },
   { label: "MODULES", value: "ENGINEERING / MUSIC / PHOTO", accent: "text-white/75" },
   { label: "SYSTEM", value: "READY", accent: "text-emerald-300" },
 ];
@@ -58,7 +58,7 @@ export default function TerminalBootIntro({ onComplete }) {
       tabIndex={0}
       aria-label={copy.intro.skipLabel}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(45,212,191,0.09),transparent_30%),radial-gradient(circle_at_75%_70%,rgba(217,70,239,0.08),transparent_30%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(88,232,242,0.11),transparent_30%),radial-gradient(circle_at_75%_70%,rgba(154,117,210,0.11),transparent_30%)]" />
       <div className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:48px_48px]" />
 
       <motion.div
@@ -95,14 +95,14 @@ export default function TerminalBootIntro({ onComplete }) {
           {visibleCount < bootLines.length && (
             <div className="flex items-center gap-2 text-xs text-white/35">
               <span>&gt;</span>
-              <span className="h-3.5 w-1.5 animate-pulse bg-teal-300" />
+              <span className="h-3.5 w-1.5 animate-pulse bg-[#58e8f2]" />
             </div>
           )}
         </div>
 
         <div className="mt-10 h-px overflow-hidden bg-white/10">
           <motion.div
-            className="h-full bg-gradient-to-r from-teal-300 to-fuchsia-400"
+            className="h-full bg-gradient-to-r from-[#58e8f2] via-[#9a75d2] to-[#e98ab8]"
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           />

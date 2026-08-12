@@ -65,9 +65,9 @@ const showcaseCopy = {
 };
 
 const cardStyles = [
-  { Icon: FaCode, image: "/images/personal/doki-hikari.jpg", color: "teal", gradient: "from-teal-400/35" },
-  { Icon: FaHeadphones, image: "/images/events/otaqlab_2025.jpg", color: "fuchsia", gradient: "from-fuchsia-500/40" },
-  { Icon: FaCamera, image: "/images/photography/sakura-chidorigafuchi-park.jpg", color: "sky", gradient: "from-sky-400/35" },
+  { Icon: FaCode, image: "/images/personal/doki-hikari.jpg", gradient: "from-[#58e8f2]/35" },
+  { Icon: FaHeadphones, image: "/images/events/otaqlab_2025.jpg", gradient: "from-[#9a75d2]/40" },
+  { Icon: FaCamera, image: "/images/photography/sakura-chidorigafuchi-park.jpg", gradient: "from-[#e98ab8]/30" },
 ];
 
 const photos = [
@@ -97,7 +97,7 @@ function PhotoJourney({ text }) {
   if (prefersReducedMotion) {
     return (
       <section className="border-y border-white/10 bg-[var(--claris-ink-soft)] py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6"><p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-300">{text.visualEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.visualTitle}</h2></div>
+        <div className="mx-auto max-w-7xl px-6"><p className="text-xs font-bold uppercase tracking-[0.3em] text-[#58e8f2]">{text.visualEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.visualTitle}</h2></div>
         <div className="mt-12 flex snap-x gap-4 overflow-x-auto px-6 pb-3 sm:px-[max(1.5rem,calc((100vw-80rem)/2))]">
           {photos.map(([src, label], index) => <PhotoFrame key={src} src={src} label={label} index={index} />)}
         </div>
@@ -109,14 +109,14 @@ function PhotoJourney({ text }) {
     <section ref={sectionRef} className="relative h-[200vh] border-y border-white/10 bg-[var(--claris-ink-soft)] sm:h-[240vh]">
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-16">
         <motion.div style={{ x: titleX }} className="mx-auto w-full max-w-7xl px-6">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-300">{text.visualEyebrow}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#58e8f2]">{text.visualEyebrow}</p>
           <h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.visualTitle}</h2>
         </motion.div>
         <motion.div style={{ x: galleryX }} className="mt-10 flex w-max gap-4 pl-6 sm:pl-[max(1.5rem,calc((100vw-80rem)/2))]">
           {photos.map(([src, label], index) => <PhotoFrame key={src} src={src} label={label} index={index} />)}
         </motion.div>
         <div className="mx-auto mt-8 h-px w-[min(80rem,calc(100%-3rem))] overflow-hidden bg-white/10">
-          <motion.div style={{ scaleX: smoothProgress, transformOrigin: "left" }} className="h-full bg-gradient-to-r from-sky-300 via-teal-300 to-fuchsia-300" />
+          <motion.div style={{ scaleX: smoothProgress, transformOrigin: "left" }} className="h-full bg-gradient-to-r from-[#58e8f2] via-[#8ee5d6] to-[#e98ab8]" />
         </div>
       </div>
     </section>
@@ -148,11 +148,11 @@ export default function LandingShowcase() {
     <div className="claris-page overflow-x-clip text-white">
       <section className="px-6 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl">
-          <Reveal className="mb-12 max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.3em] text-teal-300">{text.featuredEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.featuredTitle}</h2><p className="mt-5 text-lg text-slate-400">{text.featuredIntro}</p></Reveal>
+          <Reveal className="mb-12 max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.3em] text-[#58e8f2]">{text.featuredEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.featuredTitle}</h2><p className="mt-5 text-lg text-[var(--claris-muted)]/80">{text.featuredIntro}</p></Reveal>
           <div className="grid gap-5 lg:grid-cols-3 lg:items-start">
             {text.cards.map(([title, subtitle, description, cta, href], index) => {
               const style = cardStyles[index];
-              return <Reveal key={title} className={`h-full ${index === 1 ? "lg:mt-14" : index === 2 ? "lg:mt-28" : ""}`}><motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 240, damping: 20 }} className="h-full"><Link href={`/${contentLocale}${href}`} className="group relative flex min-h-[520px] h-full flex-col justify-end overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900 p-7 transition hover:border-white/25 sm:p-9"><Image src={style.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition duration-1000 group-hover:scale-105" /><div className="absolute inset-0 bg-black/20" /><div className="absolute inset-0 bg-gradient-to-t from-[var(--claris-ink)] via-[rgba(5,5,7,0.34)] to-transparent" /><div className={`absolute inset-0 bg-gradient-to-t ${style.gradient} via-transparent to-transparent opacity-70`} /><div className="absolute inset-x-0 top-0 h-px -translate-x-full bg-gradient-to-r from-transparent via-white/70 to-transparent transition-transform duration-1000 group-hover:translate-x-full" /><div className="relative"><style.Icon className="mb-5 h-5 w-5 text-white/70" /><p className="text-xs font-bold uppercase tracking-[0.25em] text-white/55">{title}</p><h3 className="mt-3 text-2xl font-semibold leading-tight">{subtitle}</h3><p className="mt-4 text-sm leading-6 text-slate-300/75">{description}</p><span className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em]">{cta}<FaArrowRight className="h-3 w-3 transition group-hover:translate-x-1" /></span></div></Link></motion.div></Reveal>;
+              return <Reveal key={title} className={`h-full ${index === 1 ? "lg:mt-14" : index === 2 ? "lg:mt-28" : ""}`}><motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 240, damping: 20 }} className="h-full"><Link href={`/${contentLocale}${href}`} className="sphere-glass group relative flex min-h-[520px] h-full flex-col justify-end overflow-hidden rounded-[2rem] border p-7 transition hover:border-[#58e8f2]/45 sm:p-9"><Image src={style.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition duration-1000 group-hover:scale-105" /><div className="absolute inset-0 bg-black/20" /><div className="absolute inset-0 bg-gradient-to-t from-[var(--claris-ink)] via-[#071923]/45 to-transparent" /><div className={`absolute inset-0 bg-gradient-to-t ${style.gradient} via-transparent to-transparent opacity-70`} /><div className="absolute inset-x-0 top-0 h-px -translate-x-full bg-gradient-to-r from-transparent via-[#58e8f2] to-transparent transition-transform duration-1000 group-hover:translate-x-full" /><div className="relative"><style.Icon className="mb-5 h-5 w-5 text-[#58e8f2]" /><p className="text-xs font-bold uppercase tracking-[0.25em] text-white/55">{title}</p><h3 className="mt-3 text-2xl font-semibold leading-tight">{subtitle}</h3><p className="mt-4 text-sm leading-6 text-[var(--claris-muted)]/80">{description}</p><span className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#f5d76e]">{cta}<FaArrowRight className="h-3 w-3 transition group-hover:translate-x-1" /></span></div></Link></motion.div></Reveal>;
             })}
           </div>
         </div>
@@ -160,9 +160,9 @@ export default function LandingShowcase() {
 
       <PhotoJourney text={text} />
 
-      <section className="relative px-6 py-28 sm:py-40"><div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,.08),transparent_35%),radial-gradient(circle_at_60%_55%,rgba(217,70,239,.06),transparent_30%)]" /><div className="relative mx-auto max-w-5xl text-center"><div className="space-y-2 text-3xl font-light tracking-tight sm:text-5xl">{text.manifesto.map((line, index) => <motion.p key={line} initial={{ opacity: 0, y: 24, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }} className={index === 0 ? "text-teal-200" : index === 2 ? "text-fuchsia-200" : "text-white"}>{line}</motion.p>)}</div><motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.45 }} className="mx-auto mt-10 max-w-2xl text-base leading-7 text-slate-400">{text.manifestoNote}</motion.p></div></section>
+      <section className="relative px-6 py-28 sm:py-40"><div className="sphere-grid pointer-events-none absolute inset-0 opacity-40" /><div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(88,232,242,.1),transparent_35%),radial-gradient(circle_at_60%_55%,rgba(154,117,210,.09),transparent_30%)]" /><div className="relative mx-auto max-w-5xl text-center"><div className="space-y-2 text-3xl font-light tracking-tight sm:text-5xl">{text.manifesto.map((line, index) => <motion.p key={line} initial={{ opacity: 0, y: 24, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }} className={index === 0 ? "text-[#58e8f2]" : index === 2 ? "text-[#e98ab8]" : "text-white"}>{line}</motion.p>)}</div><motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.45 }} className="mx-auto mt-10 max-w-2xl text-base leading-7 text-[var(--claris-muted)]/80">{text.manifestoNote}</motion.p></div></section>
 
-      <section className="px-6 pb-28"><Reveal className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-teal-400/10 via-white/[0.03] to-fuchsia-500/10 p-8 text-center sm:p-16"><h2 className="text-4xl font-light tracking-tight sm:text-6xl">{text.closing}</h2><p className="mx-auto mt-5 max-w-xl text-slate-400">{text.closingNote}</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href={`/${contentLocale}/doki`} className="rounded-full bg-teal-300 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.person}</Link><Link href={`/${contentLocale}/music`} className="rounded-full bg-fuchsia-400 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.machine}</Link></div></Reveal></section>
+      <section className="px-6 pb-28"><Reveal className="sphere-glass mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border bg-[radial-gradient(circle_at_10%_10%,rgba(88,232,242,.12),transparent_36%),radial-gradient(circle_at_90%_90%,rgba(233,138,184,.11),transparent_36%)] p-8 text-center sm:p-16"><h2 className="text-4xl font-light tracking-tight sm:text-6xl">{text.closing}</h2><p className="mx-auto mt-5 max-w-xl text-[var(--claris-muted)]/80">{text.closingNote}</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href={`/${contentLocale}/doki`} className="rounded-full bg-[#58e8f2] px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-[#02080d] transition hover:bg-white">{text.person}</Link><Link href={`/${contentLocale}/music`} className="rounded-full bg-[#f5d76e] px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-[#02080d] transition hover:bg-white">{text.machine}</Link></div></Reveal></section>
     </div>
   );
 }
