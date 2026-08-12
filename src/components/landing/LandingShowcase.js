@@ -106,7 +106,7 @@ function PhotoJourney({ text }) {
   }
 
   return (
-    <section ref={sectionRef} className="relative h-[240vh] border-y border-white/10 bg-[#08080b]">
+    <section ref={sectionRef} className="relative h-[200vh] border-y border-white/10 bg-[#08080b] sm:h-[240vh]">
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-16">
         <motion.div style={{ x: titleX }} className="mx-auto w-full max-w-7xl px-6">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-300">{text.visualEyebrow}</p>

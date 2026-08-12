@@ -5,27 +5,27 @@ import { FaGithub, FaInstagram, FaExternalLinkAlt, FaCamera, FaTwitter, FaExpand
 
 export default function DokiPersonalPage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-slate-200 selection:bg-teal-500/30 font-[family-name:var(--font-nunito)]">
+    <div className="min-h-screen overflow-x-clip bg-[#050505] text-slate-200 selection:bg-teal-500/30 font-[family-name:var(--font-nunito)]">
       
       {/* NAVBAR */}
       <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
-        <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/en" className="font-light tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400 text-xl">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <Link href="/en" className="flex min-h-11 items-center font-light tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400 text-xl">
             DOKI
           </Link>
-          <div className="flex items-center gap-6 text-sm">
-             <Link href="/en" className="text-slate-400 hover:text-white transition-colors">← Portal</Link>
-             <div className="w-[1px] h-4 bg-white/20"></div>
-             <div className="flex gap-4">
-                <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaGithub size={20} /></a>
-                <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaTwitter size={20} /></a>
-                <a href="https://instagram.com/doki_chibi" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaInstagram size={20} /></a>
+          <div className="flex items-center gap-1 text-sm sm:gap-3">
+             <Link href="/en" className="flex min-h-11 items-center px-2 text-slate-400 hover:text-white transition-colors">← Portal</Link>
+             <div className="hidden w-[1px] h-4 bg-white/20 sm:block"></div>
+             <div className="flex gap-0.5">
+                <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" aria-label="GitHub" className="flex h-10 w-10 items-center justify-center text-slate-400 hover:text-white transition-all"><FaGithub size={20} /></a>
+                <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" aria-label="X / Twitter" className="flex h-10 w-10 items-center justify-center text-slate-400 hover:text-white transition-all"><FaTwitter size={20} /></a>
+                <a href="https://instagram.com/doki_chibi" target="_blank" rel="noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center text-slate-400 hover:text-white transition-all"><FaInstagram size={20} /></a>
              </div>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-[1000px] mx-auto px-6 py-20">
+      <main className="max-w-[1000px] mx-auto px-4 py-14 sm:px-6 sm:py-20">
                {/* HERO / INTRO */}
         <motion.header 
           initial={{ opacity: 0, y: 30 }}

@@ -109,20 +109,20 @@ export default function PhotographyPage() {
   const filteredPhotos = filter === "All" ? photos : photos.filter(p => p.category === filter);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-slate-200 selection:bg-teal-500/30 font-[family-name:var(--font-nunito)]">
+    <div className="min-h-screen overflow-x-clip bg-[#050505] text-slate-200 selection:bg-teal-500/30 font-[family-name:var(--font-nunito)]">
       
       {/* NAVBAR */}
       <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
-        <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/en/doki" className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <Link href="/en/doki" className="flex min-h-11 items-center gap-2 group text-slate-400 hover:text-white transition-colors">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
             <span>Back to Doki</span>
           </Link>
-          <div className="font-light tracking-[0.2em] text-white/40 text-sm uppercase">Visual Archive V4.2</div>
+          <div className="hidden font-light tracking-[0.2em] text-white/40 text-sm uppercase sm:block">Visual Archive V4.2</div>
         </div>
       </nav>
 
-      <main className="max-w-[1400px] mx-auto px-6 py-20">
+      <main className="max-w-[1400px] mx-auto px-4 py-14 sm:px-6 sm:py-20">
         
         {/* HEADER */}
         <motion.header 
@@ -149,7 +149,7 @@ export default function PhotographyPage() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-6 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase border transition-all ${
+              className={`min-h-11 px-6 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase border transition-all ${
                 filter === cat 
                 ? "bg-teal-500 border-teal-500 text-black shadow-[0_0_20px_rgba(20,184,166,0.3)]" 
                 : "bg-white/5 border-white/10 text-slate-400 hover:border-white/30"

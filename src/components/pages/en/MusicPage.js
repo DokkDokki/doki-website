@@ -7,27 +7,27 @@ import { FaSoundcloud, FaYoutube, FaExternalLinkAlt, FaInstagram, FaArrowRight, 
 
 export default function DokiMachinePage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-slate-200 selection:bg-purple-500/30 font-[family-name:var(--font-nunito)]">
+    <div className="min-h-screen overflow-x-clip bg-[#050505] text-slate-200 selection:bg-purple-500/30 font-[family-name:var(--font-nunito)]">
       
       {/* NAVBAR */}
       <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
-        <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/en" className="font-light tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-400 text-xl uppercase">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <Link href="/en" className="flex min-h-11 items-center font-light tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-400 text-lg uppercase sm:text-xl sm:tracking-[0.1em]">
             DOKIMACHINE
           </Link>
-          <div className="flex items-center gap-6 text-[10px] font-bold tracking-widest uppercase">
-             <Link href="/en" className="text-slate-400 hover:text-white transition-colors">← Portal</Link>
-             <div className="w-[1px] h-4 bg-white/20"></div>
-             <div className="flex gap-4">
-                <a href="https://soundcloud.com/doki_chibi" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaSoundcloud size={18} /></a>
-                <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaTwitter size={18} /></a>
-                <a href="https://instagram.com/dokimachine" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all"><FaInstagram size={18} /></a>
+          <div className="flex items-center gap-0.5 text-[10px] font-bold tracking-widest uppercase sm:gap-2">
+             <Link href="/en" aria-label="Back to portal" className="flex min-h-11 items-center px-1 text-slate-400 hover:text-white transition-colors sm:px-2">←<span className="hidden sm:inline">&nbsp;Portal</span></Link>
+             <div className="hidden w-[1px] h-4 bg-white/20 sm:block"></div>
+             <div className="flex gap-0.5">
+                <a href="https://soundcloud.com/doki_chibi" target="_blank" rel="noreferrer" aria-label="SoundCloud" className="flex h-10 w-10 items-center justify-center text-slate-400 hover:text-white transition-all"><FaSoundcloud size={18} /></a>
+                <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" aria-label="X / Twitter" className="flex h-10 w-10 items-center justify-center text-slate-400 hover:text-white transition-all"><FaTwitter size={18} /></a>
+                <a href="https://instagram.com/dokimachine" target="_blank" rel="noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center text-slate-400 hover:text-white transition-all"><FaInstagram size={18} /></a>
              </div>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-[1100px] mx-auto px-6 py-20 md:py-32">
+      <main className="max-w-[1100px] mx-auto px-4 py-14 sm:px-6 sm:py-20 md:py-32">
         
         {/* HERO / INTRO */}
         <motion.header 
@@ -57,7 +57,7 @@ export default function DokiMachinePage() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-32 px-2 md:px-0"
         >
-          <div className="flex items-center gap-4 mb-12">
+          <div className="flex flex-wrap items-center gap-4 mb-12">
             <h2 className="text-xl md:text-2xl font-bold text-white uppercase tracking-[0.3em]">Project Evolution</h2>
             <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
           </div>
@@ -100,7 +100,7 @@ export default function DokiMachinePage() {
           <div className="flex items-center gap-4 mb-12">
             <h2 className="text-xl md:text-2xl font-bold text-white uppercase tracking-[0.3em]">The Master Files</h2>
             <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
-            <Link href="/en/music/discography" className="inline-flex items-center gap-2 px-5 py-2 bg-purple-500 text-black rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap hover:scale-105 hover:bg-white transition-all">
+            <Link href="/en/music/discography" className="inline-flex min-h-11 items-center gap-2 px-5 py-2 bg-purple-500 text-black rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap hover:scale-105 hover:bg-white transition-all">
               Full Discography <FaArrowRight size={10} />
             </Link>
           </div>

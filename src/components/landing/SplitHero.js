@@ -48,7 +48,7 @@ export default function SplitHero() {
     <motion.section
       ref={heroRef}
       style={prefersReducedMotion ? undefined : { scale: heroScale, opacity: heroOpacity, y: heroY }}
-      className="relative isolate min-h-screen overflow-hidden bg-[#050507] text-white"
+      className="relative isolate min-h-[100svh] overflow-hidden bg-[#050507] text-white"
       onMouseLeave={() => setActiveWorld(null)}
     >
       <div className="pointer-events-none absolute left-1/2 top-6 z-30 hidden -translate-x-1/2 items-center gap-3 md:flex">
@@ -59,7 +59,7 @@ export default function SplitHero() {
         <span className="h-px w-10 bg-white/25" />
       </div>
 
-      <div className="flex min-h-screen flex-col md:flex-row">
+      <div className="flex min-h-[100svh] flex-col md:flex-row">
         {worlds.map((world, index) => {
           const localizedWorld = copy.worlds[world.id];
           return (
@@ -113,7 +113,7 @@ export default function SplitHero() {
                 href={`/${contentLocale}${world.href}`}
                 onFocus={() => setActiveWorld(world.id)}
                 onBlur={() => setActiveWorld(null)}
-                className={`mt-8 inline-flex items-center gap-3 rounded-full px-6 py-3 text-xs font-extrabold uppercase tracking-[0.18em] transition duration-300 hover:-translate-y-0.5 ${world.button}`}
+                className={`mt-8 inline-flex min-h-11 items-center gap-3 rounded-full px-6 py-3 text-xs font-extrabold uppercase tracking-[0.18em] transition duration-300 hover:-translate-y-0.5 ${world.button}`}
               >
                 {localizedWorld.cta}
                 <FaArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />

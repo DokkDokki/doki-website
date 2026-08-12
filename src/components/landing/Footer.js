@@ -49,7 +49,7 @@ export default function Footer() {
           <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-white/45">DOKIMACHINE</p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col items-center gap-2 sm:flex-row">
           <div
             role="group"
             aria-label={copy.footer.languageLabel}
@@ -62,7 +62,7 @@ export default function Footer() {
                 hrefLang={language === "jp" ? "ja" : language}
                 onClick={() => window.localStorage.setItem("dokimachine-locale", language)}
                 aria-current={locale === language ? "page" : undefined}
-                className={`rounded-full px-3 py-2 text-[9px] font-bold tracking-[0.1em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${
+                className={`flex min-h-10 items-center rounded-full px-3 py-2 text-[9px] font-bold tracking-[0.1em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${
                   locale === language ? "bg-white text-slate-950" : "text-slate-400 hover:bg-white/10 hover:text-white"
                 }`}
               >
@@ -82,7 +82,7 @@ export default function Footer() {
                 rel={href.startsWith("http") ? "noreferrer" : undefined}
                 aria-label={label}
                 title={label}
-                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:-translate-y-0.5 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-slate-400 transition hover:-translate-y-0.5 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
               >
                 <Icon className="h-3.5 w-3.5" />
               </a>

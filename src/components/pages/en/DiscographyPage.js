@@ -153,11 +153,11 @@ function Section({ title, badge, count, children }) {
   if (count === 0) return null;
 
   return (
-    <section className="mb-20">
-      <div className="flex items-center gap-4 mb-8">
-        <h2 className="text-xl md:text-2xl font-black text-white uppercase tracking-[0.2em] whitespace-nowrap">{title}</h2>
+    <section className="mb-20 min-w-0">
+      <div className="flex min-w-0 flex-wrap items-center gap-3 mb-8 sm:gap-4">
+        <h2 className="min-w-0 text-xl md:text-2xl font-black text-white uppercase tracking-[0.12em] sm:tracking-[0.2em]">{title}</h2>
         {badge && (
-          <span className="px-3.5 py-1 bg-purple-500/10 border border-purple-500/30 rounded-full text-[10px] font-bold text-purple-400 uppercase tracking-widest whitespace-nowrap">
+          <span className="max-w-full px-3.5 py-1 bg-purple-500/10 border border-purple-500/30 rounded-full text-[10px] font-bold text-purple-400 uppercase tracking-widest">
             {badge}
           </span>
         )}
@@ -166,7 +166,7 @@ function Section({ title, badge, count, children }) {
             {count} {count === 1 ? "release" : "releases"}
           </span>
         )}
-        <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
+        <div className="hidden h-[1px] min-w-8 flex-1 bg-gradient-to-r from-white/10 to-transparent sm:block"></div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {children}
@@ -313,23 +313,23 @@ export default function DiscographyPage() {
   const totalMk1Matches = filteredMk1.length;
 
   return (
-    <div className="min-h-screen bg-[#050505] text-slate-200 selection:bg-purple-500/30 font-[family-name:var(--font-nunito)]">
+    <div className="min-h-screen overflow-x-clip bg-[#050505] text-slate-200 selection:bg-purple-500/30 font-[family-name:var(--font-nunito)]">
 
       {/* NAVBAR */}
       <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
-        <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/en/music" className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <Link href="/en/music" className="flex min-h-11 items-center gap-2 group text-slate-400 hover:text-white transition-colors">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
             <span>Back to Dokimachine</span>
           </Link>
-          <div className="font-light tracking-[0.2em] text-white/40 text-sm uppercase flex items-center gap-2">
+          <div className="hidden font-light tracking-[0.2em] text-white/40 text-sm uppercase items-center gap-2 sm:flex">
             <FaCompactDisc className="text-purple-400 animate-spin-slow" />
             <span>Releases // Discography</span>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-[1100px] mx-auto px-6 py-16 md:py-24">
+      <main className="max-w-[1100px] mx-auto min-w-0 px-4 py-14 sm:px-6 sm:py-16 md:py-24">
 
         {/* HEADER */}
         <motion.header
@@ -370,7 +370,7 @@ export default function DiscographyPage() {
         </motion.header>
 
         {/* SEARCH & FILTER CONTROLS BAR (HISAQUA STYLE) */}
-        <div className="bg-[#0a0a0a] border border-white/10 rounded-3xl p-5 mb-12 space-y-4 shadow-2xl">
+        <div className="min-w-0 bg-[#0a0a0a] border border-white/10 rounded-3xl p-4 mb-12 space-y-4 shadow-2xl sm:p-5">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             
             {/* Search Input */}
@@ -395,10 +395,10 @@ export default function DiscographyPage() {
             </div>
 
             {/* ERA TABS */}
-            <div className="flex items-center gap-2 shrink-0 bg-white/5 p-1 rounded-full border border-white/10 self-start sm:self-auto">
+            <div className="grid w-full grid-cols-2 items-center gap-1 bg-white/5 p-1 rounded-2xl border border-white/10 sm:flex sm:w-auto sm:shrink-0 sm:rounded-full">
               <button
                 onClick={() => setEra("mk2")}
-                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
+                className={`min-h-11 px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all sm:rounded-full sm:px-4 sm:text-xs sm:tracking-widest ${
                   era === "mk2" ? "bg-purple-500 text-black shadow-md" : "text-slate-400 hover:text-white"
                 }`}
               >
@@ -406,7 +406,7 @@ export default function DiscographyPage() {
               </button>
               <button
                 onClick={() => setEra("mk1")}
-                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
+                className={`min-h-11 px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all sm:rounded-full sm:px-4 sm:text-xs sm:tracking-widest ${
                   era === "mk1" ? "bg-purple-500 text-black shadow-md" : "text-slate-400 hover:text-white"
                 }`}
               >
@@ -418,7 +418,7 @@ export default function DiscographyPage() {
           {/* DUAL FILTER CHIPS: FORMAT & VOCALIST */}
           <div className="flex flex-col gap-3 pt-2 border-t border-white/5">
             {/* Format Filter */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
+            <div className="flex w-full min-w-0 items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
               <span className="text-[10px] font-bold uppercase tracking-widest text-purple-400 shrink-0 w-16">
                 Format:
               </span>
@@ -426,7 +426,7 @@ export default function DiscographyPage() {
                 <button
                   key={fmt}
                   onClick={() => setSelectedFormat(fmt)}
-                  className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider whitespace-nowrap transition-all border ${
+                  className={`min-h-10 px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider whitespace-nowrap transition-all border ${
                     selectedFormat === fmt
                       ? "bg-purple-500 text-black border-purple-500 shadow-sm"
                       : "bg-white/5 border-white/5 text-slate-400 hover:border-white/20 hover:text-white"
@@ -438,7 +438,7 @@ export default function DiscographyPage() {
             </div>
 
             {/* Vocalist Filter */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
+            <div className="flex w-full min-w-0 items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 shrink-0 w-16">
                 Vocalist:
               </span>
@@ -446,7 +446,7 @@ export default function DiscographyPage() {
                 <button
                   key={v}
                   onClick={() => setSelectedVocalist(v)}
-                  className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap transition-all border ${
+                  className={`min-h-10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap transition-all border ${
                     selectedVocalist === v
                       ? "bg-purple-500/20 border-purple-500 text-purple-300"
                       : "bg-white/5 border-white/5 text-slate-400 hover:border-white/20 hover:text-white"
