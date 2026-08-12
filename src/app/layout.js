@@ -1,18 +1,10 @@
-import { Nunito_Sans, Montserrat } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 
-const nunitoSans = Nunito_Sans({ 
-  subsets: ["latin"], 
-  display: "swap", 
-  variable: "--font-nunito",
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"]
-});
-
-const montserrat = Montserrat({
+const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-body",
   display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
 });
 
 const siteUrl = "https://dokimachine.net";
@@ -20,6 +12,7 @@ const siteTitle = "DOKIMACHINE";
 const siteDescription =
   "The Split Reality Portfolio of a Digital Engineer, Vocaloid-P, and Trance Producer.";
 const ogImage = "/doki_iconrima_square.jpg";
+const siteIcon = "/doki_iconrima_square_transparent.png";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,8 +22,8 @@ export const metadata = {
   },
   description: siteDescription,
   icons: {
-    icon: ogImage,
-    apple: ogImage,
+    icon: [{ url: siteIcon, type: "image/png" }],
+    apple: [{ url: siteIcon, type: "image/png" }],
   },
   openGraph: {
     title: siteTitle,
@@ -61,8 +54,8 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${nunitoSans.variable} ${montserrat.variable}`}>
-      <body style={{ fontFamily: "var(--font-nunito), sans-serif" }}>
+    <html lang="en" className={nunitoSans.variable}>
+      <body>
         {children}
       </body>
     </html>

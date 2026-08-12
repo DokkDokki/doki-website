@@ -1,93 +1,119 @@
 "use client";
-import { useState } from "react";
+
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
-import { AuroraBackground } from "./ui/aurora-background";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
+import { useLandingLocale } from "@/components/LandingLocaleProvider";
+
+const worlds = [
+  {
+    id: "doki",
+    eyebrow: "The person",
+    title: "Doki",
+    description:
+      "Digital engineer, photographer, and curious builder turning complex ideas into useful experiences.",
+    meta: "Engineering · Photography · Life",
+    href: "/doki",
+    cta: "Meet Doki",
+    image: "/doki-hikari.jpg",
+    imagePosition: "object-center",
+    glow: "from-teal-400/30 via-cyan-500/10",
+    accent: "text-teal-200",
+    button: "bg-teal-300 text-slate-950 hover:bg-white",
+  },
+  {
+    id: "dokimachine",
+    eyebrow: "The sound",
+    title: "DOKIMACHINE",
+    description:
+      "An electronic music project shaped by trance, Vocaloid, machines, and late-night imagination.",
+    meta: "Music · DJ · Discography",
+    href: "/dokimachine",
+    cta: "Enter the machine",
+    image: "/doki_iconrima_square.jpg",
+    imagePosition: "object-center",
+    glow: "from-fuchsia-500/30 via-purple-500/10",
+    accent: "text-fuchsia-200",
+    button: "bg-fuchsia-400 text-slate-950 hover:bg-white",
+  },
+];
 
 export default function SplitHero() {
-  const [hoveredSide, setHoveredSide] = useState(null);
+  const { copy } = useLandingLocale();
 
   return (
-    <div className="flex flex-col md:flex-row w-full min-h-[calc(100vh-4rem)] bg-[#050505] text-white">
-
-      {/* =========================================
-          LEFT/TOP SIDE: DOKI (Code & Life)
-      ========================================= */}
-      <div
-        className="relative flex-1 flex items-center justify-center border-b md:border-b-0 md:border-r border-white/5 overflow-hidden min-h-[60vh] md:min-h-0 py-16 md:py-0"
-        onMouseEnter={() => setHoveredSide("doki")}
-        onMouseLeave={() => setHoveredSide(null)}
-      >
-        {/* Background photo, dimmed for readability */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-25">
-          <Image src="/doki-rao.jpg" alt="" fill className="object-cover object-center" priority />
-        </div>
-        <div className="absolute inset-0 bg-black/60 z-0 pointer-events-none" />
-
-        {/* Content */}
-        <motion.div
-          className="relative z-10 flex flex-col items-center px-4 text-center"
-          animate={{ scale: hoveredSide === "doki" ? 1.03 : 1 }}
-          transition={{ type: "spring", stiffness: 150, damping: 20 }}
-        >
-          <p className="text-base sm:text-lg md:text-2xl font-light text-slate-400 mb-2 tracking-widest">
-            Hi, I&apos;m
-          </p>
-          <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-teal-200">
-            Doki.
-          </h1>
-          <p className="text-teal-200/80 text-xs md:text-base uppercase tracking-[0.3em] font-medium mt-4">
-            Engineering /// Photography
-          </p>
-          <Link
-            href="/doki"
-            className="mt-8 px-8 py-3 bg-white text-black rounded-full font-bold text-sm hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          >
-            Explore Doki
-          </Link>
-        </motion.div>
+    <section className="relative isolate min-h-screen overflow-hidden bg-[#050507] text-white">
+      <div className="pointer-events-none absolute left-1/2 top-6 z-30 hidden -translate-x-1/2 items-center gap-3 md:flex">
+        <span className="h-px w-10 bg-white/25" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.38em] text-white/55">
+          {copy.chooseWorld}
+        </span>
+        <span className="h-px w-10 bg-white/25" />
       </div>
 
-      {/* =========================================
-          RIGHT/BOTTOM SIDE: DOKIMACHINE (Music World)
-      ========================================= */}
-      <div
-        className="relative flex-1 flex items-center justify-center overflow-hidden min-h-[60vh] md:min-h-0 py-16 md:py-0"
-        onMouseEnter={() => setHoveredSide("machine")}
-        onMouseLeave={() => setHoveredSide(null)}
-      >
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <AuroraBackground className="h-full w-full opacity-50" />
-        </div>
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-25 mix-blend-overlay">
-          <Image src="/doki_iconrima_square.jpg" alt="" fill className="object-cover object-center" priority />
-        </div>
-        <div className="absolute inset-0 bg-black/60 z-0 pointer-events-none" />
-
-        {/* Content */}
-        <motion.div
-          className="relative z-10 flex flex-col items-center px-4 text-center"
-          animate={{ scale: hoveredSide === "machine" ? 1.03 : 1 }}
-          transition={{ type: "spring", stiffness: 150, damping: 20 }}
-        >
-          <p className="text-base md:text-xl font-light text-slate-400 mb-2 tracking-[0.4em] uppercase">
-            Or
-          </p>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-light tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-500 leading-tight">
-            DOKIMACHINE
-          </h1>
-          <p className="text-fuchsia-200/80 text-xs md:text-base uppercase tracking-[0.3em] font-medium mt-4">
-            Music /// DJ
-          </p>
-          <Link
-            href="/dokimachine"
-            className="mt-8 px-8 py-3 border border-fuchsia-500/50 bg-black/50 text-white rounded-full font-bold tracking-widest text-sm hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+      <div className="grid min-h-screen md:grid-cols-2">
+        {worlds.map((world, index) => {
+          const localizedWorld = copy.worlds[world.id];
+          return (
+          <motion.article
+            key={world.id}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="group relative flex min-h-[70svh] items-end overflow-hidden border-white/10 md:min-h-0 md:border-r md:last:border-r-0"
           >
-            Enter The Machine
-          </Link>
-        </motion.div>
+            <motion.div
+              className="absolute inset-0"
+              initial={{ scale: 1.12 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.4, delay: 0.2 + index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="absolute inset-0 transition duration-[1400ms] ease-out group-hover:scale-[1.045]">
+                <Image
+                  src={world.image}
+                  alt=""
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className={`object-cover ${world.imagePosition}`}
+                />
+              </div>
+            </motion.div>
+            <div className="absolute inset-0 bg-black/35 transition duration-700 group-hover:bg-black/20" />
+            <div className={`absolute inset-0 bg-gradient-to-t ${world.glow} to-transparent opacity-80`} />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/35 to-[#050507]/15" />
+
+            <div className="relative z-10 w-full px-7 pb-10 pt-24 sm:px-10 sm:pb-14 lg:px-14 lg:pb-16 xl:px-20">
+              <p className={`text-xs font-bold uppercase tracking-[0.32em] ${world.accent}`}>
+                {localizedWorld.eyebrow}
+              </p>
+              <h1 className="mt-4 text-5xl font-light tracking-[-0.025em] sm:text-6xl lg:text-7xl xl:text-8xl">
+                {world.title}
+              </h1>
+              <p className="mt-5 max-w-lg text-base leading-7 text-slate-200/85 sm:text-lg">
+                {localizedWorld.description}
+              </p>
+              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 sm:text-xs">
+                {localizedWorld.meta}
+              </p>
+              <Link
+                href={world.href}
+                className={`mt-8 inline-flex items-center gap-3 rounded-full px-6 py-3 text-xs font-extrabold uppercase tracking-[0.18em] transition duration-300 hover:-translate-y-0.5 ${world.button}`}
+              >
+                {localizedWorld.cta}
+                <FaArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </motion.article>
+          );
+        })}
       </div>
-    </div>
+
+      <div className="pointer-events-none absolute bottom-5 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
+        <span className="text-[9px] uppercase tracking-[0.3em] text-white/40">{copy.discoverMore}</span>
+        <span className="h-8 w-px bg-gradient-to-b from-white/40 to-transparent" />
+      </div>
+    </section>
   );
 }

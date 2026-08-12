@@ -12,7 +12,7 @@ export default function DokiMachinePage() {
       {/* NAVBAR */}
       <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="font-light tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-400 text-xl font-montserrat uppercase">
+          <Link href="/" className="font-light tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-400 text-xl uppercase">
             DOKIMACHINE
           </Link>
           <div className="flex items-center gap-6 text-[10px] font-bold tracking-widest uppercase">

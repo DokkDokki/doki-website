@@ -1,0 +1,144 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { FaArrowRight, FaCamera, FaCode, FaHeadphones, FaMapMarkerAlt } from "react-icons/fa";
+import { useLandingLocale } from "@/components/LandingLocaleProvider";
+
+const showcaseCopy = {
+  en: {
+    signal: "Currently transmitting",
+    status: [
+      ["Location", "Bangkok, Thailand"],
+      ["Focus", "Digital engineering"],
+      ["Sound", "Trance / Vocaloid"],
+      ["Camera", "Sony α6000"],
+    ],
+    featuredEyebrow: "Selected signals",
+    featuredTitle: "One mind, three frequencies.",
+    featuredIntro: "A snapshot of the things I build, hear, and notice.",
+    cards: [
+      ["Engineering", "Building the systems behind the experience.", "Infrastructure, code, hardware, and experiments that turn curiosity into something useful.", "Explore Doki", "/doki"],
+      ["DOKIMACHINE", "Late-night emotion, rendered as sound.", "Trance energy, Vocaloid voices, and machine-made worlds shaped into an evolving music project.", "Hear the project", "/dokimachine"],
+      ["Photography", "Small moments worth keeping.", "Trains, streets, people, and places collected between Bangkok, Tokyo, and everywhere in between.", "Open the archive", "/photography"],
+    ],
+    visualEyebrow: "Visual memory",
+    visualTitle: "Frames from the journey.",
+    manifesto: ["Engineering builds the machine.", "Photography captures its world.", "Music gives it a voice."],
+    manifestoNote: "Doki and DOKIMACHINE are not separate lives. They are two interfaces to the same curiosity.",
+    logEyebrow: "Activity log",
+    logTitle: "The signal is alive.",
+    log: [["NOW", "Building the next version of this world"], ["2025", "Performing at OtaQLab and Nerdland"], ["2025", "Collecting photographs across Japan and Thailand"]],
+    closing: "Pick up the signal.",
+    closingNote: "Follow the person, enter the machine, or simply say hello.",
+    person: "Meet Doki",
+    machine: "Enter DOKIMACHINE",
+  },
+  jp: {
+    signal: "現在のシグナル",
+    status: [["拠点", "タイ・バンコク"], ["フォーカス", "デジタルエンジニアリング"], ["サウンド", "トランス / Vocaloid"], ["カメラ", "Sony α6000"]],
+    featuredEyebrow: "選ばれたシグナル",
+    featuredTitle: "ひとつの心、三つの周波数。",
+    featuredIntro: "つくるもの、聴こえるもの、そして心に留まったもの。",
+    cards: [
+      ["エンジニアリング", "体験を支えるシステムをつくる。", "インフラ、コード、ハードウェア、そして好奇心を役立つものへ変える実験。", "Dokiを知る", "/doki"],
+      ["DOKIMACHINE", "真夜中の感情を、音に変える。", "トランスの熱量、Vocaloidの声、マシンが描く世界から生まれる音楽プロジェクト。", "プロジェクトを聴く", "/dokimachine"],
+      ["写真", "残しておきたい、小さな瞬間。", "バンコク、東京、そして旅の途中で出会った電車、街、人々、風景。", "アーカイブを見る", "/photography"],
+    ],
+    visualEyebrow: "視覚の記憶",
+    visualTitle: "旅の途中で切り取った景色。",
+    manifesto: ["エンジニアリングがマシンをつくる。", "写真がその世界を写す。", "音楽がそこに声を与える。"],
+    manifestoNote: "DokiとDOKIMACHINEは別々の人生ではない。同じ好奇心につながる、二つのインターフェース。",
+    logEyebrow: "アクティビティログ",
+    logTitle: "シグナルは生きている。",
+    log: [["NOW", "この世界の次のバージョンを制作中"], ["2025", "OtaQLabとNerdlandに出演"], ["2025", "日本とタイで写真を記録"]],
+    closing: "シグナルを受け取ろう。",
+    closingNote: "Dokiを知る、マシンの世界へ入る、あるいは気軽に声をかける。",
+    person: "Dokiを知る",
+    machine: "DOKIMACHINEへ",
+  },
+  th: {
+    signal: "กำลังส่งสัญญาณ",
+    status: [["ที่อยู่", "กรุงเทพฯ ประเทศไทย"], ["โฟกัส", "วิศวกรรมดิจิทัล"], ["เสียง", "แทรนซ์ / Vocaloid"], ["กล้อง", "Sony α6000"]],
+    featuredEyebrow: "สัญญาณที่คัดสรร",
+    featuredTitle: "หนึ่งความคิด สามความถี่",
+    featuredIntro: "ภาพรวมของสิ่งที่ผมสร้าง สิ่งที่ผมได้ยิน และสิ่งที่ผมมองเห็น",
+    cards: [
+      ["วิศวกรรม", "สร้างระบบเบื้องหลังประสบการณ์", "โครงสร้างพื้นฐาน โค้ด ฮาร์ดแวร์ และการทดลองที่เปลี่ยนความสงสัยให้เป็นสิ่งที่ใช้ได้จริง", "รู้จัก Doki", "/doki"],
+      ["DOKIMACHINE", "เปลี่ยนอารมณ์ยามดึกให้กลายเป็นเสียง", "พลังของแทรนซ์ เสียง Vocaloid และโลกจากเครื่องจักรที่ก่อตัวเป็นโปรเจกต์ดนตรี", "ฟังโปรเจกต์", "/dokimachine"],
+      ["การถ่ายภาพ", "เก็บช่วงเวลาเล็ก ๆ ที่มีความหมาย", "รถไฟ ถนน ผู้คน และสถานที่ระหว่างกรุงเทพฯ โตเกียว และทุกจุดบนเส้นทาง", "เปิดคลังภาพ", "/photography"],
+    ],
+    visualEyebrow: "ความทรงจำผ่านภาพ",
+    visualTitle: "เฟรมจากการเดินทาง",
+    manifesto: ["วิศวกรรมสร้างเครื่องจักร", "ภาพถ่ายบันทึกโลกของมัน", "ดนตรีมอบเสียงให้กับมัน"],
+    manifestoNote: "Doki และ DOKIMACHINE ไม่ใช่สองชีวิตที่แยกจากกัน แต่คือสองอินเทอร์เฟซของความอยากรู้อยากเห็นเดียวกัน",
+    logEyebrow: "บันทึกกิจกรรม",
+    logTitle: "สัญญาณนี้ยังมีชีวิต",
+    log: [["NOW", "กำลังสร้างโลกใบนี้ในเวอร์ชันถัดไป"], ["2025", "แสดงที่ OtaQLab และ Nerdland"], ["2025", "บันทึกภาพระหว่างญี่ปุ่นและไทย"]],
+    closing: "รับสัญญาณต่อไป",
+    closingNote: "ทำความรู้จัก Doki เข้าสู่โลกของเครื่องจักร หรือแค่ทักทายกัน",
+    person: "รู้จัก Doki",
+    machine: "เข้าสู่ DOKIMACHINE",
+  },
+};
+
+const cardStyles = [
+  { Icon: FaCode, image: "/doki-hikari.jpg", color: "teal", gradient: "from-teal-400/35" },
+  { Icon: FaHeadphones, image: "/otaqlab_2025.jpg", color: "fuchsia", gradient: "from-fuchsia-500/40" },
+  { Icon: FaCamera, image: "/photography/sakura-chidorigafuchi-park.jpg", color: "sky", gradient: "from-sky-400/35" },
+];
+
+const photos = [
+  ["/photography/tokaido-line-e231-nippori.jpg", "Nippori · Tokyo"],
+  ["/photography/sakura-chidorigafuchi-park.jpg", "Chidorigafuchi · Tokyo"],
+  ["/photography/niigata-2025-street.jpg", "Niigata · 2025"],
+  ["/singapore_2025.jpg", "Singapore · 2025"],
+];
+
+function Reveal({ children, className = "" }) {
+  return <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className={className}>{children}</motion.div>;
+}
+
+export default function LandingShowcase() {
+  const { locale } = useLandingLocale();
+  const text = showcaseCopy[locale];
+
+  return (
+    <div className="overflow-hidden bg-[#050507] text-white">
+      <section className="border-y border-white/10 bg-white/[0.025] px-6 py-7">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.2fr_4fr] lg:items-center">
+          <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.28em] text-emerald-300"><span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-60" /><span className="relative h-2 w-2 rounded-full bg-emerald-300" /></span>{text.signal}</div>
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-4">
+            {text.status.map(([label, value]) => <div key={label} className="bg-[#09090c] px-4 py-4"><p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/30">{label}</p><p className="mt-1 text-xs font-semibold text-white/80">{value}</p></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="mb-12 max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.3em] text-teal-300">{text.featuredEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.featuredTitle}</h2><p className="mt-5 text-lg text-slate-400">{text.featuredIntro}</p></Reveal>
+          <div className="grid gap-5 lg:grid-cols-3">
+            {text.cards.map(([title, subtitle, description, cta, href], index) => {
+              const style = cardStyles[index];
+              return <Reveal key={title} className="h-full"><Link href={href} className="group relative flex min-h-[520px] h-full flex-col justify-end overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900 p-7 transition hover:-translate-y-1 hover:border-white/25 sm:p-9"><Image src={style.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition duration-1000 group-hover:scale-105" /><div className="absolute inset-0 bg-black/30" /><div className={`absolute inset-0 bg-gradient-to-t ${style.gradient} via-[#050507]/80 to-transparent`} /><div className="relative"><style.Icon className="mb-5 h-5 w-5 text-white/70" /><p className="text-xs font-bold uppercase tracking-[0.25em] text-white/55">{title}</p><h3 className="mt-3 text-2xl font-semibold leading-tight">{subtitle}</h3><p className="mt-4 text-sm leading-6 text-slate-300/75">{description}</p><span className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em]">{cta}<FaArrowRight className="h-3 w-3 transition group-hover:translate-x-1" /></span></div></Link></Reveal>;
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-[#08080b] py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6"><Reveal><p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-300">{text.visualEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.visualTitle}</h2></Reveal></div>
+        <div className="mt-12 flex snap-x gap-4 overflow-x-auto px-6 pb-3 sm:px-[max(1.5rem,calc((100vw-80rem)/2))]">
+          {photos.map(([src, label], index) => <figure key={src} className={`group relative h-[420px] shrink-0 snap-center overflow-hidden rounded-3xl border border-white/10 ${index % 2 ? "w-[280px] sm:w-[340px]" : "w-[360px] sm:w-[500px]"}`}><Image src={src} alt={label} fill sizes="500px" className="object-cover transition duration-1000 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" /><figcaption className="absolute bottom-5 left-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/75"><FaMapMarkerAlt className="mr-2 inline h-3 w-3" />{label}</figcaption></figure>)}
+        </div>
+      </section>
+
+      <section className="relative px-6 py-28 sm:py-40"><div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,.08),transparent_35%),radial-gradient(circle_at_60%_55%,rgba(217,70,239,.06),transparent_30%)]" /><Reveal className="relative mx-auto max-w-5xl text-center"><div className="space-y-2 text-3xl font-light tracking-tight sm:text-5xl">{text.manifesto.map((line, index) => <p key={line} className={index === 0 ? "text-teal-200" : index === 2 ? "text-fuchsia-200" : "text-white"}>{line}</p>)}</div><p className="mx-auto mt-10 max-w-2xl text-base leading-7 text-slate-400">{text.manifestoNote}</p></Reveal></section>
+
+      <section className="px-6 pb-28"><div className="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-white/10 bg-white/[0.025] p-7 sm:p-12 lg:grid-cols-[1fr_1.3fr]"><Reveal><p className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-300">{text.logEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-5xl">{text.logTitle}</h2></Reveal><div className="divide-y divide-white/10 border-y border-white/10">{text.log.map(([date, entry], index) => <Reveal key={`${date}-${entry}`}><div className="grid grid-cols-[70px_1fr] gap-5 py-6"><span className={`font-mono text-[10px] font-bold ${index === 0 ? "text-emerald-300" : "text-white/30"}`}>{date}</span><span className="text-sm text-slate-300">{entry}</span></div></Reveal>)}</div></div></section>
+
+      <section className="px-6 pb-28"><Reveal className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-teal-400/10 via-white/[0.03] to-fuchsia-500/10 p-8 text-center sm:p-16"><h2 className="text-4xl font-light tracking-tight sm:text-6xl">{text.closing}</h2><p className="mx-auto mt-5 max-w-xl text-slate-400">{text.closingNote}</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href="/doki" className="rounded-full bg-teal-300 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.person}</Link><Link href="/dokimachine" className="rounded-full bg-fuchsia-400 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.machine}</Link></div></Reveal></section>
+    </div>
+  );
+}

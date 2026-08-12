@@ -247,7 +247,7 @@ export default function DokiPersonalPage() {
                <div className="relative z-10">
                  <FaInstagram className="text-5xl text-teal-400 mx-auto mb-6" />
                  <h3 className="text-2xl font-bold text-white mb-2">Artistic Gallery</h3>
-                 <p className="text-teal-400 font-medium mb-6 text-sm tracking-widest uppercase font-montserrat">@DOKI_A6000</p>
+                 <p className="text-teal-400 font-medium mb-6 text-sm tracking-widest uppercase">@DOKI_A6000</p>
                  <p className="text-slate-400 mb-8 leading-relaxed px-4">
                    Street photography and visual stories captured through my Sony α6000.
                  </p>
