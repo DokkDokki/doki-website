@@ -20,9 +20,6 @@ const showcaseCopy = {
     visualTitle: "Frames from the journey.",
     manifesto: ["Engineering builds the machine.", "Photography captures its world.", "Music gives it a voice."],
     manifestoNote: "Doki and DOKIMACHINE are not separate lives. They are two interfaces to the same curiosity.",
-    logEyebrow: "Activity log",
-    logTitle: "The signal is alive.",
-    log: [["NOW", "Building the next version of this world"], ["2025", "Performing at OtaQLab and Nerdland"], ["2025", "Collecting photographs across Japan and Thailand"]],
     closing: "Pick up the signal.",
     closingNote: "Follow the person, enter the machine, or simply say hello.",
     person: "Meet Doki",
@@ -41,9 +38,6 @@ const showcaseCopy = {
     visualTitle: "旅の途中で切り取った景色。",
     manifesto: ["エンジニアリングがマシンをつくる。", "写真がその世界を写す。", "音楽がそこに声を与える。"],
     manifestoNote: "DokiとDOKIMACHINEは別々の人生ではない。同じ好奇心につながる、二つのインターフェース。",
-    logEyebrow: "アクティビティログ",
-    logTitle: "シグナルは生きている。",
-    log: [["NOW", "この世界の次のバージョンを制作中"], ["2025", "OtaQLabとNerdlandに出演"], ["2025", "日本とタイで写真を記録"]],
     closing: "シグナルを受け取ろう。",
     closingNote: "Dokiを知る、マシンの世界へ入る、あるいは気軽に声をかける。",
     person: "Dokiを知る",
@@ -62,9 +56,6 @@ const showcaseCopy = {
     visualTitle: "เฟรมจากการเดินทาง",
     manifesto: ["วิศวกรรมสร้างเครื่องจักร", "ภาพถ่ายบันทึกโลกของมัน", "ดนตรีมอบเสียงให้กับมัน"],
     manifestoNote: "Doki และ DOKIMACHINE ไม่ใช่สองชีวิตที่แยกจากกัน แต่คือสองอินเทอร์เฟซของความอยากรู้อยากเห็นเดียวกัน",
-    logEyebrow: "บันทึกกิจกรรม",
-    logTitle: "สัญญาณนี้ยังมีชีวิต",
-    log: [["NOW", "กำลังสร้างโลกใบนี้ในเวอร์ชันถัดไป"], ["2025", "แสดงที่ OtaQLab และ Nerdland"], ["2025", "บันทึกภาพระหว่างญี่ปุ่นและไทย"]],
     closing: "รับสัญญาณต่อไป",
     closingNote: "ทำความรู้จัก Doki เข้าสู่โลกของเครื่องจักร หรือแค่ทักทายกัน",
     person: "รู้จัก Doki",
@@ -116,8 +107,6 @@ export default function LandingShowcase() {
       </section>
 
       <section className="relative px-6 py-28 sm:py-40"><div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,.08),transparent_35%),radial-gradient(circle_at_60%_55%,rgba(217,70,239,.06),transparent_30%)]" /><div className="relative mx-auto max-w-5xl text-center"><div className="space-y-2 text-3xl font-light tracking-tight sm:text-5xl">{text.manifesto.map((line, index) => <motion.p key={line} initial={{ opacity: 0, y: 24, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }} className={index === 0 ? "text-teal-200" : index === 2 ? "text-fuchsia-200" : "text-white"}>{line}</motion.p>)}</div><motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.45 }} className="mx-auto mt-10 max-w-2xl text-base leading-7 text-slate-400">{text.manifestoNote}</motion.p></div></section>
-
-      <section className="px-6 pb-28"><div className="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-white/10 bg-white/[0.025] p-7 sm:p-12 lg:grid-cols-[1fr_1.3fr]"><Reveal><p className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-300">{text.logEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-5xl">{text.logTitle}</h2></Reveal><div className="divide-y divide-white/10 border-y border-white/10">{text.log.map(([date, entry], index) => <Reveal key={`${date}-${entry}`}><div className="grid grid-cols-[70px_1fr] gap-5 py-6"><span className={`font-mono text-[10px] font-bold ${index === 0 ? "text-emerald-300" : "text-white/30"}`}>{date}</span><span className="text-sm text-slate-300">{entry}</span></div></Reveal>)}</div></div></section>
 
       <section className="px-6 pb-28"><Reveal className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-teal-400/10 via-white/[0.03] to-fuchsia-500/10 p-8 text-center sm:p-16"><h2 className="text-4xl font-light tracking-tight sm:text-6xl">{text.closing}</h2><p className="mx-auto mt-5 max-w-xl text-slate-400">{text.closingNote}</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href={`/${contentLocale}/doki`} className="rounded-full bg-teal-300 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.person}</Link><Link href={`/${contentLocale}/music`} className="rounded-full bg-fuchsia-400 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.machine}</Link></div></Reveal></section>
     </div>
