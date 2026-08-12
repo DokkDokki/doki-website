@@ -2,7 +2,7 @@
 import SoundCloudEmbed from "@/components/media/SoundCloudEmbed";
 import YouTubeEmbed from "@/components/media/YouTubeEmbed";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FaSoundcloud, FaYoutube, FaExternalLinkAlt, FaInstagram, FaArrowRight, FaMusic, FaMicrophone, FaHeadphones, FaWaveSquare, FaTwitter } from "react-icons/fa";
 
 export default function DokiMachinePage() {
@@ -31,8 +31,8 @@ export default function DokiMachinePage() {
         
         {/* HERO / INTRO */}
         <motion.header 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.98, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mb-24 md:mb-32"
         >
@@ -51,8 +51,8 @@ export default function DokiMachinePage() {
 
         {/* PROJECT EVOLUTION / TIMELINE */}
         <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.97, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-32 px-2 md:px-0"
@@ -91,8 +91,8 @@ export default function DokiMachinePage() {
           </div>
         </motion.section>        {/* MASTER TRACKS / RELEASES */}
         <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.97, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="mb-32"
@@ -291,8 +291,8 @@ export default function DokiMachinePage() {
 
         {/* STREAMING LINKS */}
         <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.97, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="mb-32"

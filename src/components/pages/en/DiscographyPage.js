@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import SoundCloudEmbed from "@/components/media/SoundCloudEmbed";
 import YouTubeEmbed from "@/components/media/YouTubeEmbed";
@@ -322,10 +322,7 @@ export default function DiscographyPage() {
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
             <span>Back to Dokimachine</span>
           </Link>
-          <div className="hidden font-light tracking-[0.2em] text-white/40 text-sm uppercase items-center gap-2 sm:flex">
-            <FaCompactDisc className="text-purple-400 animate-spin-slow" />
-            <span>Releases // Discography</span>
-          </div>
+          <div className="flex items-center gap-4"><Link href="/en/doki" className="min-h-11 pt-3 text-[10px] font-bold uppercase tracking-widest text-teal-200 hover:text-white">Doki</Link><div className="hidden font-light tracking-[0.2em] text-white/40 text-sm uppercase items-center gap-2 sm:flex"><FaCompactDisc className="text-purple-400 animate-spin-slow" /><span>Releases // Discography</span></div></div>
         </div>
       </nav>
 

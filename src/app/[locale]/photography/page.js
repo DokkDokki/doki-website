@@ -1,11 +1,10 @@
-import PhotographyPage from "@/components/pages/en/PhotographyPage";
+import { notFound } from "next/navigation";
+import CorePhotographyPage from "@/components/pages/CorePhotographyPage";
+import { landingLocales } from "@/content/landing-translations";
 
 export const dynamicParams = false;
 
-export function generateStaticParams() {
-  return [{ locale: "en" }];
-}
+export function generateStaticParams() { return landingLocales.map((locale) => ({ locale })); }
 
-export default function Page() {
-  return <PhotographyPage />;
-}
+export async function generateMetadata({ params }) { const { locale } = await params; return { title: "Photography", description: "Photography by Doki: Japanese rail, street scenes, and cosplay.", alternates: { canonical: `/${locale}/photography`, languages: { en: "/en/photography", ja: "/jp/photography", th: "/th/photography" } } }; }
+export default async function Page({ params }) { const { locale } = await params; if (!landingLocales.includes(locale)) notFound(); return <CorePhotographyPage locale={locale} />; }

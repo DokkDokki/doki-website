@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 import TerminalBootIntro from "@/components/landing/TerminalBootIntro";
 import { LandingLocaleProvider } from "@/components/landing/LandingLocaleProvider";
 

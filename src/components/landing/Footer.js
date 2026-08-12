@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import {
   FaDiscord,
   FaEnvelope,
@@ -44,7 +44,7 @@ export default function Footer() {
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] text-[var(--claris-muted)] sm:px-6"
       >
-        <div className="sphere-glass pointer-events-auto mx-auto flex w-fit max-w-full flex-col items-center gap-2 rounded-[1.5rem] border p-2 sm:flex-row sm:rounded-full">
+        <div className="claris-glass pointer-events-auto mx-auto flex w-fit max-w-full flex-col items-center gap-2 rounded-[1.5rem] border p-2 sm:flex-row sm:rounded-full">
         <div className="hidden px-3 lg:block">
           <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-white/45">DOKIMACHINE</p>
         </div>
@@ -62,8 +62,8 @@ export default function Footer() {
                 hrefLang={language === "jp" ? "ja" : language}
                 onClick={() => window.localStorage.setItem("dokimachine-locale", language)}
                 aria-current={locale === language ? "page" : undefined}
-                className={`flex min-h-10 items-center rounded-full px-3 py-2 text-[9px] font-bold tracking-[0.1em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58e8f2] ${
-                  locale === language ? "bg-[#58e8f2] text-[#02080d]" : "text-[var(--claris-muted)] hover:bg-white/10 hover:text-white"
+                className={`flex min-h-10 items-center rounded-full px-3 py-2 text-[9px] font-bold tracking-[0.1em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${
+                  locale === language ? "bg-white text-slate-950" : "text-[var(--claris-muted)] hover:bg-white/10 hover:text-white"
                 }`}
               >
                 {landingTranslations[language].languageName}
@@ -82,7 +82,7 @@ export default function Footer() {
                 rel={href.startsWith("http") ? "noreferrer" : undefined}
                 aria-label={label}
                 title={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full text-[var(--claris-muted)] transition hover:-translate-y-0.5 hover:bg-[#58e8f2]/10 hover:text-[#58e8f2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58e8f2]"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-[var(--claris-muted)] transition hover:-translate-y-0.5 hover:bg-teal-300/10 hover:text-teal-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
               >
                 <Icon className="h-3.5 w-3.5" />
               </a>

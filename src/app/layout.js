@@ -1,5 +1,6 @@
 import { Anuphan, Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import MotionProvider from "@/components/motion/MotionProvider";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -53,16 +54,16 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#02080d",
+  themeColor: "#050507",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${nunitoSans.variable} ${anuphan.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${nunitoSans.variable} ${anuphan.variable}`}>
       <body>
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

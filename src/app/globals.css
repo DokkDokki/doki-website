@@ -4,18 +4,18 @@
 
 :root {
   color-scheme: dark;
-  --claris-ink: #02080d;
-  --claris-ink-soft: #071923;
-  --claris-surface: #10243b;
-  --claris-mint: #8ee5d6;
-  --claris-sky: #58e8f2;
-  --claris-violet: #9a75d2;
-  --claris-rose: #e98ab8;
+  --claris-ink: #050507;
+  --claris-ink-soft: #09090f;
+  --claris-surface: #0d0d16;
+  --claris-mint: #67e8d1;
+  --claris-sky: #7dd3fc;
+  --claris-violet: #c084fc;
+  --claris-rose: #e879f9;
   --claris-yellow: #f5d76e;
   --claris-coral: #f29a78;
   --claris-white: #f7fafc;
-  --claris-muted: #b8c9d5;
-  --claris-border: rgba(88, 232, 242, 0.16);
+  --claris-muted: #9ca3b8;
+  --claris-border: rgba(255, 255, 255, 0.1);
   --bg: var(--claris-ink);
   --bg-accent: rgba(103, 232, 209, 0.14);
   --text-main: var(--claris-white);
@@ -48,8 +48,8 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background: radial-gradient(circle at top left, rgba(88, 232, 242, 0.12), transparent 32%),
-    radial-gradient(circle at bottom right, rgba(154, 117, 210, 0.13), transparent 28%),
+  background: radial-gradient(circle at top left, rgba(125, 211, 252, 0.12), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(192, 132, 252, 0.13), transparent 28%),
     var(--bg);
   color: var(--text-main);
   font-feature-settings: "cv10" 1;
@@ -65,7 +65,7 @@ select {
 }
 
 ::selection {
-  background: rgba(88, 232, 242, 0.32);
+  background: rgba(103, 232, 209, 0.35);
   color: inherit;
 }
 
@@ -106,14 +106,14 @@ h6 {
   .claris-page {
     background-color: var(--claris-ink);
     background-image:
-      radial-gradient(circle at 8% 0%, rgba(88, 232, 242, 0.105), transparent 30rem),
-      radial-gradient(circle at 92% 18%, rgba(154, 117, 210, 0.095), transparent 32rem),
-      linear-gradient(180deg, var(--claris-ink), #030d14 72%, #02080d);
+      radial-gradient(circle at 8% 0%, rgba(103, 232, 209, 0.085), transparent 30rem),
+      radial-gradient(circle at 92% 18%, rgba(192, 132, 252, 0.08), transparent 32rem),
+      linear-gradient(180deg, var(--claris-ink), #040406 72%);
     position: relative;
   }
 
   .claris-nav {
-    background: rgba(2, 8, 13, 0.82);
+    background: rgba(5, 5, 7, 0.82);
     border-color: var(--claris-border);
   }
 
@@ -122,24 +122,24 @@ h6 {
     border-color: var(--claris-border);
   }
 
-  .sphere-grid {
-    background-image:
-      linear-gradient(rgba(88, 232, 242, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(88, 232, 242, 0.035) 1px, transparent 1px);
-    background-size: 72px 72px;
-    mask-image: linear-gradient(to bottom, black, transparent 82%);
-  }
-
-  .sphere-orbit {
-    border: 1px solid rgba(88, 232, 242, 0.2);
-    border-radius: 9999px;
-    box-shadow: 0 0 32px rgba(88, 232, 242, 0.08), inset 0 0 32px rgba(88, 232, 242, 0.04);
-  }
-
-  .sphere-glass {
-    background: linear-gradient(145deg, rgba(16, 36, 59, 0.78), rgba(7, 25, 35, 0.5));
-    border-color: rgba(88, 232, 242, 0.16);
+  .claris-glass {
+    background: linear-gradient(145deg, rgba(13, 13, 22, 0.82), rgba(9, 9, 15, 0.58));
+    border-color: rgba(255, 255, 255, 0.12);
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34), inset 0 1px rgba(247, 250, 252, 0.05);
+    backdrop-filter: blur(18px);
+  }
+
+  .machine-page {
+    background:
+      radial-gradient(circle at 82% 4%, rgba(232, 121, 249, 0.13), transparent 31rem),
+      radial-gradient(circle at 15% 38%, rgba(192, 132, 252, 0.1), transparent 28rem),
+      linear-gradient(180deg, #08050d, #040307 70%, #050507);
+  }
+
+  .machine-glass {
+    background: linear-gradient(145deg, rgba(30, 15, 42, 0.82), rgba(10, 7, 17, 0.62));
+    border-color: rgba(232, 121, 249, 0.18);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38), inset 0 1px rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(18px);
   }
 }

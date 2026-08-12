@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FaGithub, FaInstagram, FaExternalLinkAlt, FaCamera, FaTwitter, FaExpandAlt } from "react-icons/fa";
 
 export default function DokiPersonalPage() {
@@ -28,8 +28,8 @@ export default function DokiPersonalPage() {
       <main className="max-w-[1000px] mx-auto px-4 py-14 sm:px-6 sm:py-20">
                {/* HERO / INTRO */}
         <motion.header 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.98, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mb-20 md:mb-24"
         >
@@ -44,8 +44,8 @@ export default function DokiPersonalPage() {
 
         {/* ABOUT ME SECTION */}
         <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.97, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="mb-32"
@@ -95,8 +95,8 @@ export default function DokiPersonalPage() {
 
         {/* THE CREATOR / PERSONAL GALLERY */}
         <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.97, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="mb-32"
@@ -152,8 +152,8 @@ export default function DokiPersonalPage() {
 
         {/* THE ARSENAL / ENGINEERING STACK */}
         <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.97, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="mb-32"
@@ -207,8 +207,8 @@ export default function DokiPersonalPage() {
 
         {/* PHOTOGRAPHY */}
         <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.97, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="mb-32"

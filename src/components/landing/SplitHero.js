@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,9 +14,9 @@ const worlds = [
     href: "/doki",
     image: "/images/personal/doki-hikari.jpg",
     imagePosition: "object-center",
-    glow: "from-[#58e8f2]/30 via-[#8ee5d6]/10",
-    accent: "text-[#8ee5d6]",
-    button: "bg-[#58e8f2] text-[#02080d] shadow-[0_0_28px_rgba(88,232,242,.2)] hover:bg-white",
+    glow: "from-teal-400/30 via-sky-400/10",
+    accent: "text-teal-200",
+    button: "bg-teal-300 text-slate-950 shadow-[0_0_28px_rgba(94,234,212,.2)] hover:bg-white",
   },
   {
     id: "dokimachine",
@@ -24,15 +24,15 @@ const worlds = [
     href: "/music",
     image: "/images/brand/doki_iconrima_square.jpg",
     imagePosition: "object-center",
-    glow: "from-[#9a75d2]/30 via-[#e98ab8]/10",
-    accent: "text-[#e98ab8]",
-    button: "bg-[#f5d76e] text-[#02080d] shadow-[0_0_28px_rgba(245,215,110,.16)] hover:bg-white",
+    glow: "from-fuchsia-500/30 via-purple-500/10",
+    accent: "text-fuchsia-200",
+    button: "bg-fuchsia-400 text-slate-950 shadow-[0_0_28px_rgba(232,121,249,.18)] hover:bg-white",
   },
 ];
 
 export default function SplitHero() {
   const { copy, locale } = useLandingLocale();
-  const contentLocale = locale === "en" ? locale : "en";
+  const contentLocale = locale;
   const [activeWorld, setActiveWorld] = useState(null);
   const heroRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
@@ -51,9 +51,6 @@ export default function SplitHero() {
       className="relative isolate min-h-[100svh] overflow-hidden bg-[var(--claris-ink)] text-white"
       onMouseLeave={() => setActiveWorld(null)}
     >
-      <div className="sphere-grid pointer-events-none absolute inset-0 z-20 opacity-50" aria-hidden="true" />
-      <div className="sphere-orbit pointer-events-none absolute left-1/2 top-1/2 z-20 h-[62vw] max-h-[52rem] min-h-72 w-[62vw] max-w-[52rem] min-w-72 -translate-x-1/2 -translate-y-1/2 opacity-40" aria-hidden="true" />
-      <div className="sphere-orbit pointer-events-none absolute left-1/2 top-1/2 z-20 h-[36vw] max-h-[30rem] min-h-52 w-[70vw] max-w-[58rem] min-w-80 -translate-x-1/2 -translate-y-1/2 rotate-[28deg] opacity-25" aria-hidden="true" />
       <div className="pointer-events-none absolute left-1/2 top-6 z-30 hidden -translate-x-1/2 items-center gap-3 md:flex">
         <span className="h-px w-10 bg-white/25" />
         <span className="text-[10px] font-bold uppercase tracking-[0.38em] text-white/55">
@@ -68,9 +65,10 @@ export default function SplitHero() {
           return (
           <motion.article
             key={world.id}
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, scale: 0.98, y: 18 }}
             animate={{
               opacity: activeWorld && activeWorld !== world.id ? 0.78 : 1,
+              scale: 1,
               y: 0,
               flexGrow: activeWorld ? (activeWorld === world.id ? 1.12 : 0.88) : 1,
             }}
@@ -89,7 +87,7 @@ export default function SplitHero() {
                   src={world.image}
                   alt=""
                   fill
-                  priority
+                  loading="eager"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className={`object-cover ${world.imagePosition}`}
                 />
@@ -97,7 +95,7 @@ export default function SplitHero() {
             </motion.div>
             <div className={`absolute inset-0 bg-black/35 transition duration-700 ${activeWorld === world.id ? "bg-black/15" : "group-hover:bg-black/20"}`} />
             <div className={`absolute inset-0 bg-gradient-to-t ${world.glow} to-transparent opacity-80`} />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#02080d] via-[#02080d]/40 to-[#02080d]/15" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/35 to-[#050507]/15" />
 
             <div className="relative z-10 w-full px-7 pb-10 pt-24 sm:px-10 sm:pb-14 lg:px-14 lg:pb-16 xl:px-20">
               <p className={`text-xs font-bold uppercase tracking-[0.32em] ${world.accent}`}>

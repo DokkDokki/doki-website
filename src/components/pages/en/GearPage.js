@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FaServer, FaLaptop, FaMicrochip, FaArrowLeft, FaMouse } from "react-icons/fa";
 
 export default function GearPage() {
@@ -14,7 +14,7 @@ export default function GearPage() {
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
             <span>Back to Doki</span>
           </Link>
-          <div className="hidden font-light tracking-[0.2em] text-white/40 text-sm uppercase sm:block">Spec Sheet V4.0</div>
+          <div className="flex items-center gap-4"><Link href="/en/music" className="min-h-11 pt-3 text-[10px] font-bold uppercase tracking-widest text-fuchsia-200 hover:text-white">Music</Link><div className="hidden font-light tracking-[0.2em] text-white/40 text-sm uppercase sm:block">Spec Sheet V4.0</div></div>
         </div>
       </nav>
 

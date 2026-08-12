@@ -7,7 +7,7 @@ The next version of [dokimachine.net](https://dokimachine.net): a multilingual p
 - Next.js 16 with the App Router
 - React 19
 - Tailwind CSS 3
-- Framer Motion
+- Motion for React
 - Static HTML export
 
 ## Getting started
@@ -44,6 +44,7 @@ V2 should be reviewed and tested before it is merged into `main` for deployment.
 /jp               Japanese landing page
 /th               Thai landing page
 /en/doki          English personal portfolio
+/en/doki/projects English project archive (being assembled)
 /en/doki/gear     English equipment and tools
 /en/photography   English photography archive
 /en/music         English music project
@@ -82,8 +83,6 @@ Files inside `public` are referenced without the `public` prefix. For example:
 - Landing showcase: `src/components/landing/LandingShowcase.js`
 - Split hero: `src/components/landing/SplitHero.js`
 - Footer and language switcher: `src/components/landing/Footer.js`
-- Doki page: `src/app/doki/page.js`
-- DOKIMACHINE page: `src/app/dokimachine/page.js`
-- Discography: `src/app/dokimachine/discography/page.js`
-- Photography: `src/app/photography/page.js`
-- Gear: `src/app/gear/page.js`
+- Core localized copy: `src/content/core-content.js`
+- Localized Doki, Music, and Photography routes: `src/app/[locale]/`
+- English project archive: `src/app/en/doki/projects/page.js`

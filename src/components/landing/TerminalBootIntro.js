@@ -1,17 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
 const BOOT_LINES = [
-  { label: "IDENTITY", value: "DOKI", accent: "text-[#58e8f2]" },
-  { label: "CREATIVE CORE", value: "DOKIMACHINE", accent: "text-[#e98ab8]" },
+  { label: "IDENTITY", value: "DOKI", accent: "text-teal-300" },
+  { label: "CREATIVE CORE", value: "DOKIMACHINE", accent: "text-fuchsia-300" },
   { label: "MODULES", value: "ENGINEERING / MUSIC / PHOTO", accent: "text-white/75" },
   { label: "SYSTEM", value: "READY", accent: "text-emerald-300" },
 ];
 
-const STEP_TIME = 420;
+const STEP_TIME = 260;
 
 export default function TerminalBootIntro({ onComplete }) {
   const { copy } = useLandingLocale();
@@ -26,12 +26,12 @@ export default function TerminalBootIntro({ onComplete }) {
     if (visibleCount < bootLines.length) {
       const stepTimer = window.setTimeout(
         () => setVisibleCount((count) => count + 1),
-        visibleCount === 0 ? 250 : STEP_TIME,
+        visibleCount === 0 ? 140 : STEP_TIME,
       );
       return () => window.clearTimeout(stepTimer);
     }
 
-    const finishTimer = window.setTimeout(onComplete, 650);
+    const finishTimer = window.setTimeout(onComplete, 380);
     return () => window.clearTimeout(finishTimer);
   }, [bootLines.length, onComplete, visibleCount]);
 
@@ -95,14 +95,14 @@ export default function TerminalBootIntro({ onComplete }) {
           {visibleCount < bootLines.length && (
             <div className="flex items-center gap-2 text-xs text-white/35">
               <span>&gt;</span>
-              <span className="h-3.5 w-1.5 animate-pulse bg-[#58e8f2]" />
+              <span className="h-3.5 w-1.5 animate-pulse bg-teal-300" />
             </div>
           )}
         </div>
 
         <div className="mt-10 h-px overflow-hidden bg-white/10">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#58e8f2] via-[#9a75d2] to-[#e98ab8]"
+            className="h-full bg-gradient-to-r from-teal-300 via-sky-300 to-fuchsia-400"
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           />
