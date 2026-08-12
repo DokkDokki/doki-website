@@ -8,6 +8,7 @@ import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
 const showcaseCopy = {
   en: {
+    bridge: ["Two identities", "One signal"],
     signal: "Currently transmitting",
     status: [
       ["Location", "Bangkok, Thailand"],
@@ -36,6 +37,7 @@ const showcaseCopy = {
     machine: "Enter DOKIMACHINE",
   },
   jp: {
+    bridge: ["二つのアイデンティティ", "一つのシグナル"],
     signal: "現在のシグナル",
     status: [["拠点", "タイ・バンコク"], ["フォーカス", "デジタルエンジニアリング"], ["サウンド", "トランス / Vocaloid"], ["カメラ", "Sony α6000"]],
     featuredEyebrow: "選ばれたシグナル",
@@ -59,6 +61,7 @@ const showcaseCopy = {
     machine: "DOKIMACHINEへ",
   },
   th: {
+    bridge: ["สองตัวตน", "หนึ่งสัญญาณ"],
     signal: "กำลังส่งสัญญาณ",
     status: [["ที่อยู่", "กรุงเทพฯ ประเทศไทย"], ["โฟกัส", "วิศวกรรมดิจิทัล"], ["เสียง", "แทรนซ์ / Vocaloid"], ["กล้อง", "Sony α6000"]],
     featuredEyebrow: "สัญญาณที่คัดสรร",
@@ -106,6 +109,33 @@ export default function LandingShowcase() {
 
   return (
     <div className="overflow-hidden bg-[#050507] text-white">
+      <section className="relative flex min-h-[42svh] items-center justify-center overflow-hidden border-t border-white/10 px-6 py-20 text-center">
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute left-0 right-1/2 top-1/2 h-px origin-right bg-gradient-to-l from-teal-300/60 to-transparent"
+        />
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute left-1/2 right-0 top-1/2 h-px origin-left bg-gradient-to-r from-fuchsia-400/60 to-transparent"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="relative z-10 rounded-full border border-white/10 bg-[#050507] px-8 py-5 shadow-[0_0_80px_rgba(255,255,255,0.04)]"
+        >
+          <p className="text-[9px] font-bold uppercase tracking-[0.34em] text-white/35">{text.bridge[0]}</p>
+          <p className="mt-2 text-xl font-light uppercase tracking-[0.2em] text-white sm:text-2xl">{text.bridge[1]}</p>
+        </motion.div>
+      </section>
+
       <section className="border-y border-white/10 bg-white/[0.025] px-6 py-7">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.2fr_4fr] lg:items-center">
           <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.28em] text-emerald-300"><span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-60" /><span className="relative h-2 w-2 rounded-full bg-emerald-300" /></span>{text.signal}</div>
@@ -134,7 +164,7 @@ export default function LandingShowcase() {
         </div>
       </section>
 
-      <section className="relative px-6 py-28 sm:py-40"><div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,.08),transparent_35%),radial-gradient(circle_at_60%_55%,rgba(217,70,239,.06),transparent_30%)]" /><Reveal className="relative mx-auto max-w-5xl text-center"><div className="space-y-2 text-3xl font-light tracking-tight sm:text-5xl">{text.manifesto.map((line, index) => <p key={line} className={index === 0 ? "text-teal-200" : index === 2 ? "text-fuchsia-200" : "text-white"}>{line}</p>)}</div><p className="mx-auto mt-10 max-w-2xl text-base leading-7 text-slate-400">{text.manifestoNote}</p></Reveal></section>
+      <section className="relative px-6 py-28 sm:py-40"><div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,.08),transparent_35%),radial-gradient(circle_at_60%_55%,rgba(217,70,239,.06),transparent_30%)]" /><div className="relative mx-auto max-w-5xl text-center"><div className="space-y-2 text-3xl font-light tracking-tight sm:text-5xl">{text.manifesto.map((line, index) => <motion.p key={line} initial={{ opacity: 0, y: 24, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }} className={index === 0 ? "text-teal-200" : index === 2 ? "text-fuchsia-200" : "text-white"}>{line}</motion.p>)}</div><motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.45 }} className="mx-auto mt-10 max-w-2xl text-base leading-7 text-slate-400">{text.manifestoNote}</motion.p></div></section>
 
       <section className="px-6 pb-28"><div className="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-white/10 bg-white/[0.025] p-7 sm:p-12 lg:grid-cols-[1fr_1.3fr]"><Reveal><p className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-300">{text.logEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-5xl">{text.logTitle}</h2></Reveal><div className="divide-y divide-white/10 border-y border-white/10">{text.log.map(([date, entry], index) => <Reveal key={`${date}-${entry}`}><div className="grid grid-cols-[70px_1fr] gap-5 py-6"><span className={`font-mono text-[10px] font-bold ${index === 0 ? "text-emerald-300" : "text-white/30"}`}>{date}</span><span className="text-sm text-slate-300">{entry}</span></div></Reveal>)}</div></div></section>
 

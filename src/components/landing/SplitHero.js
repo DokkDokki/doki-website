@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
@@ -41,9 +42,13 @@ const worlds = [
 
 export default function SplitHero() {
   const { copy } = useLandingLocale();
+  const [activeWorld, setActiveWorld] = useState(null);
 
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-[#050507] text-white">
+    <section
+      className="relative isolate min-h-screen overflow-hidden bg-[#050507] text-white"
+      onMouseLeave={() => setActiveWorld(null)}
+    >
       <div className="pointer-events-none absolute left-1/2 top-6 z-30 hidden -translate-x-1/2 items-center gap-3 md:flex">
         <span className="h-px w-10 bg-white/25" />
         <span className="text-[10px] font-bold uppercase tracking-[0.38em] text-white/55">
@@ -52,16 +57,21 @@ export default function SplitHero() {
         <span className="h-px w-10 bg-white/25" />
       </div>
 
-      <div className="grid min-h-screen md:grid-cols-2">
+      <div className="flex min-h-screen flex-col md:flex-row">
         {worlds.map((world, index) => {
           const localizedWorld = copy.worlds[world.id];
           return (
           <motion.article
             key={world.id}
             initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="group relative flex min-h-[70svh] items-end overflow-hidden border-white/10 md:min-h-0 md:border-r md:last:border-r-0"
+            animate={{
+              opacity: activeWorld && activeWorld !== world.id ? 0.78 : 1,
+              y: 0,
+              flexGrow: activeWorld ? (activeWorld === world.id ? 1.12 : 0.88) : 1,
+            }}
+            transition={{ duration: 0.55, delay: activeWorld ? 0 : index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            onHoverStart={() => setActiveWorld(world.id)}
+            className="group relative flex min-h-[70svh] w-full basis-0 items-end overflow-hidden border-white/10 md:min-h-0 md:border-r md:last:border-r-0"
           >
             <motion.div
               className="absolute inset-0"
@@ -80,7 +90,7 @@ export default function SplitHero() {
                 />
               </div>
             </motion.div>
-            <div className="absolute inset-0 bg-black/35 transition duration-700 group-hover:bg-black/20" />
+            <div className={`absolute inset-0 bg-black/35 transition duration-700 ${activeWorld === world.id ? "bg-black/15" : "group-hover:bg-black/20"}`} />
             <div className={`absolute inset-0 bg-gradient-to-t ${world.glow} to-transparent opacity-80`} />
             <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/35 to-[#050507]/15" />
 
@@ -99,6 +109,8 @@ export default function SplitHero() {
               </p>
               <Link
                 href={world.href}
+                onFocus={() => setActiveWorld(world.id)}
+                onBlur={() => setActiveWorld(null)}
                 className={`mt-8 inline-flex items-center gap-3 rounded-full px-6 py-3 text-xs font-extrabold uppercase tracking-[0.18em] transition duration-300 hover:-translate-y-0.5 ${world.button}`}
               >
                 {localizedWorld.cta}
