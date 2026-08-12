@@ -17,14 +17,13 @@ const montserrat = Montserrat({
 
 const siteUrl = "https://dokimachine.net";
 const siteTitle = "DOKIMACHINE";
-const siteDescription =
-  "The Split Reality Portfolio of a Digital Engineer, Vocaloid-P, and Trance Producer.";
+const siteDescription = "DOKIMACHINE is currently rebuilding. The next transmission will arrive soon.";
 const ogImage = "/doki_iconrima_square.jpg";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: siteTitle,
+    default: `${siteTitle} — Under Construction`,
     template: `%s | ${siteTitle}`,
   },
   description: siteDescription,

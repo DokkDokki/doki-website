@@ -1,77 +1,73 @@
-"use client";
-import { useEffect, useState } from "react";
-import SplitHero from "@/components/SplitHero";
-import TerminalBootIntro from "@/components/TerminalBootIntro";
-import { FaGithub, FaYoutube, FaTwitter, FaDiscord } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { FaDiscord, FaEnvelope, FaGithub, FaYoutube } from "react-icons/fa";
 
-const INTRO_SEEN_KEY = "dokimachine-intro-seen";
+const links = [
+  { label: "GitHub", href: "https://github.com/DokkDokki", Icon: FaGithub },
+  { label: "YouTube", href: "https://www.youtube.com/@dokimachine", Icon: FaYoutube },
+  { label: "Discord", href: "https://discord.gg/R8JB5JHvaZ", Icon: FaDiscord },
+  { label: "Email", href: "mailto:dokkdokki@dokimachine.net", Icon: FaEnvelope },
+];
 
 export default function Home() {
-  const [introDone, setIntroDone] = useState(false);
-  const [skipAnim, setSkipAnim] = useState(false);
-
-  // Skip the intro entirely for returning visitors (within the same
-  // session) and for users who prefer reduced motion.
-  useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const alreadySeen = sessionStorage.getItem(INTRO_SEEN_KEY) === "1";
-
-    if (reducedMotion || alreadySeen) {
-      setSkipAnim(true);
-      setIntroDone(true);
-    }
-  }, []);
-
-  const handleIntroComplete = () => {
-    sessionStorage.setItem(INTRO_SEEN_KEY, "1");
-    setIntroDone(true);
-  };
-
   return (
-    <div className="min-h-screen w-full bg-[#050505] text-slate-200 selection:bg-teal-500/30">
+    <main className="relative isolate flex min-h-screen items-center overflow-hidden bg-[#050507] px-6 py-16 text-white selection:bg-teal-300/30">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(45,212,191,0.11),transparent_30%),radial-gradient(circle_at_80%_75%,rgba(217,70,239,0.1),transparent_32%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:52px_52px]" />
 
-      {/* INITIAL BOOT SEQUENCE */}
-      <AnimatePresence>
-        {!introDone && <TerminalBootIntro onComplete={handleIntroComplete} />}
-      </AnimatePresence>
+      <section className="relative mx-auto w-full max-w-5xl">
+        <header className="flex items-center justify-between border-b border-white/10 pb-5">
+          <p className="text-sm font-bold uppercase tracking-[0.24em] text-white">DOKIMACHINE</p>
+          <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.22em] text-amber-200/80">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-300" />
+            Maintenance mode
+          </div>
+        </header>
 
-      {/* CORE CONTENT */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: introDone ? 1 : 0 }}
-        transition={skipAnim ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }}
-      >
-        {/* NAVBAR — matches the style used on every other page */}
-        <nav className="w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
-          <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-            <span className="font-light tracking-[0.2em] text-white text-lg uppercase">Dokimachine</span>
+        <div className="grid gap-14 py-16 md:grid-cols-[1.5fr_0.7fr] md:items-end md:py-24">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-teal-300">
+              Signal temporarily interrupted
+            </p>
+            <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[0.98] tracking-[-0.04em] sm:text-7xl lg:text-8xl">
+              A new world is being assembled.
+            </h1>
+            <p className="mt-8 max-w-xl text-base leading-7 text-slate-400 sm:text-lg">
+              Doki and DOKIMACHINE are rebuilding this space from the ground up. The next transmission will arrive soon.
+            </p>
+          </div>
 
-            <div className="flex items-center gap-4 sm:gap-5">
-              <div className="hidden sm:flex items-center gap-4">
-                <a href="https://github.com/DokkDokki" target="_blank" rel="noreferrer" aria-label="GitHub" className="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded-full"><FaGithub size={16} /></a>
-                <a href="https://x.com/dokimachine" target="_blank" rel="noreferrer" aria-label="Twitter / X" className="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded-full"><FaTwitter size={16} /></a>
-                <a href="https://www.youtube.com/@dokimachine" target="_blank" rel="noreferrer" aria-label="YouTube" className="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded-full"><FaYoutube size={16} /></a>
-                <a href="https://discord.gg/R8JB5JHvaZ" target="_blank" rel="noreferrer" aria-label="Discord" className="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded-full"><FaDiscord size={16} /></a>
-              </div>
-              <a href="mailto:dokkdokki@dokimachine.net" className="px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-[10px] font-bold tracking-[0.1em] text-white hover:bg-white hover:text-black transition-all uppercase whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
-                Contact
-              </a>
+          <div className="border-l border-white/10 pl-6 font-mono text-[10px] uppercase tracking-[0.16em] text-white/35">
+            <div className="space-y-4">
+              <p className="flex justify-between gap-4"><span>Interface</span><span className="text-amber-200/75">Rebuilding</span></p>
+              <p className="flex justify-between gap-4"><span>Archives</span><span className="text-emerald-300/75">Safe</span></p>
+              <p className="flex justify-between gap-4"><span>Next signal</span><span className="text-white/70">Soon</span></p>
+            </div>
+            <div className="mt-6 h-px overflow-hidden bg-white/10">
+              <div className="h-full w-2/3 bg-gradient-to-r from-teal-300 to-fuchsia-400" />
             </div>
           </div>
-        </nav>
+        </div>
 
-        {/* SPLIT HERO */}
-        <SplitHero />
-
-        {/* FOOTER */}
-        <footer className="border-t border-white/10 px-6 py-8">
-          <div className="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-white/30 tracking-wide">
-            <p>© {new Date().getFullYear()} Dokimachine. All rights reserved.</p>
-            <p className="uppercase tracking-[0.2em]">Engineering /// Music /// Photography</p>
-          </div>
+        <footer className="flex flex-col gap-5 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/25">
+            Engineering · Music · Photography
+          </p>
+          <nav aria-label="Stay connected" className="flex items-center gap-2">
+            {links.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noreferrer" : undefined}
+                aria-label={label}
+                title={label}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-400 transition hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </nav>
         </footer>
-      </motion.div>
-    </div>
+      </section>
+    </main>
   );
 }
