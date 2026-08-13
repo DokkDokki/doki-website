@@ -4,7 +4,7 @@ import MotionProvider from "@/components/motion/MotionProvider";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-ui",
   display: "swap",
 });
 

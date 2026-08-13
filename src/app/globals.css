@@ -22,6 +22,7 @@
   --text-muted: var(--claris-muted);
   --border: var(--claris-border);
   --surface: rgba(13, 13, 22, 0.88);
+  --font-body: var(--font-ui);
 }
 
 * {
@@ -105,6 +106,10 @@ h6 {
 @layer components {
   .signal-link {
     position: relative;
+  }
+
+  .landing-header-ui {
+    font-family: var(--font-ui), system-ui, sans-serif;
   }
 
   .signal-link::after {
@@ -278,4 +283,10 @@ h6 {
 .font-japanese h6 {
   --font-body: var(--font-japanese);
   font-family: var(--font-japanese), system-ui, sans-serif;
+}
+
+.font-thai .landing-header-ui,
+.font-japanese .landing-header-ui,
+.landing-header-ui {
+  font-family: var(--font-ui), system-ui, sans-serif;
 }

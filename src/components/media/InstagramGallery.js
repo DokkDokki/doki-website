@@ -3,12 +3,99 @@
 import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { instagramFeed } from "@/content/instagram-feed";
+import { interfaceTranslations } from "@/content/interface-translations";
 
-export default function InstagramGallery({ copy, limit }) {
+export default function InstagramGallery({ copy, limit, locale = "en" }) {
+  const ui = interfaceTranslations[locale] || interfaceTranslations.en;
   const items = instagramFeed.slice(0, limit);
   if (!items.length) {
-    return <section className="mt-24 rounded-[2rem] border border-fuchsia-300/15 bg-fuchsia-400/[0.035] p-8 sm:p-12" aria-labelledby="instagram-gallery-title"><div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-xs font-bold uppercase tracking-[0.28em] text-fuchsia-300">{copy.eyebrow}</p><h2 id="instagram-gallery-title" className="mt-4 text-3xl font-light tracking-tight sm:text-4xl">{copy.title}</h2><p className="mt-4 max-w-2xl leading-7 text-[var(--claris-muted)]">Instagram highlights are being prepared. Check back soon for selected personal and photography posts.</p></div><span className="inline-flex min-h-10 items-center gap-2 self-start rounded-full border border-fuchsia-300/20 px-4 text-[10px] font-bold uppercase tracking-[0.16em] text-fuchsia-200 sm:self-auto"><FaInstagram />Coming soon</span></div></section>;
+    return (
+      <section
+        className="mt-24 rounded-[2rem] border border-fuchsia-300/15 bg-fuchsia-400/[0.035] p-8 sm:p-12"
+        aria-labelledby="instagram-gallery-title"
+      >
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-fuchsia-300">
+              {copy.eyebrow}
+            </p>
+            <h2
+              id="instagram-gallery-title"
+              className="mt-4 text-3xl font-light tracking-tight sm:text-4xl"
+            >
+              {copy.title}
+            </h2>
+            <p className="mt-4 max-w-2xl leading-7 text-[var(--claris-muted)]">
+              {ui.instagram.pending}
+            </p>
+          </div>
+          <span className="inline-flex min-h-10 items-center gap-2 self-start rounded-full border border-fuchsia-300/20 px-4 text-[10px] font-bold uppercase tracking-[0.16em] text-fuchsia-200 sm:self-auto">
+            <FaInstagram />
+            {ui.instagram.soon}
+          </span>
+        </div>
+      </section>
+    );
   }
 
-  return <section className="mt-24" aria-labelledby="instagram-gallery-title"><div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="text-xs font-bold uppercase tracking-[0.28em] text-fuchsia-300">{copy.eyebrow}</p><h2 id="instagram-gallery-title" className="mt-4 text-4xl font-light tracking-tight sm:text-5xl">{copy.title}</h2><p className="mt-4 max-w-2xl text-[var(--claris-muted)]">{copy.description}</p></div><a href="https://instagram.com/doki_a6000" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 self-start rounded-full border border-white/15 px-5 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-fuchsia-300 hover:text-fuchsia-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300 sm:self-auto"><FaInstagram />{copy.follow}</a></div><div className={`mt-8 grid gap-4 ${limit <= 4 ? "grid-cols-2 lg:grid-cols-4" : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"}`}>{items.map((item) => <a key={item.id} href={item.permalink} target="_blank" rel="noreferrer" aria-label={`${copy.openPost}: ${item.alt}`} className="group relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300"><Image src={item.imagePath} alt={item.alt} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" /><span className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-80 transition group-hover:opacity-100" /><span className="absolute inset-x-0 bottom-0 p-4"><span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-fuchsia-200">@{item.source}</span><span className="mt-1 line-clamp-2 block text-xs leading-5 text-white/80">{item.caption || copy.noCaption}</span></span></a>)}</div></section>;
+  return (
+    <section className="mt-24" aria-labelledby="instagram-gallery-title">
+      <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-fuchsia-300">
+            {copy.eyebrow}
+          </p>
+          <h2
+            id="instagram-gallery-title"
+            className="mt-4 text-4xl font-light tracking-tight sm:text-5xl"
+          >
+            {copy.title}
+          </h2>
+          <p className="mt-4 max-w-2xl text-[var(--claris-muted)]">
+            {copy.description}
+          </p>
+        </div>
+        <a
+          href="https://instagram.com/doki_a6000"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex min-h-11 items-center gap-2 self-start rounded-full border border-white/15 px-5 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-fuchsia-300 hover:text-fuchsia-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300 sm:self-auto"
+        >
+          <FaInstagram />
+          {copy.follow}
+        </a>
+      </div>
+      <div
+        className={`mt-8 grid gap-4 ${limit <= 4 ? "grid-cols-2 lg:grid-cols-4" : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"}`}
+      >
+        {items.map((item) => (
+          <a
+            key={item.id}
+            href={item.permalink}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${copy.openPost}: ${item.alt}`}
+            className="group relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300"
+          >
+            <Image
+              src={item.imagePath}
+              alt={item.alt}
+              fill
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover transition duration-700 group-hover:scale-105"
+            />
+            <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-80 transition group-hover:opacity-100" />
+            <span className="absolute inset-x-0 bottom-0 p-4">
+              <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-fuchsia-200">
+                @{item.source}
+              </span>
+              <span className="mt-1 line-clamp-2 block text-xs leading-5 text-white/80">
+                {item.caption || copy.noCaption}
+              </span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
 }
