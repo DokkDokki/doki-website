@@ -6,11 +6,14 @@ const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const outDir = join(projectRoot, "out");
 const distDir = join(projectRoot, "dist");
 const serverDir = join(distDir, "server");
+const hostingDir = join(distDir, ".openai");
 
 rmSync(distDir, { recursive: true, force: true });
 mkdirSync(distDir, { recursive: true });
 cpSync(outDir, distDir, { recursive: true });
 mkdirSync(serverDir, { recursive: true });
+mkdirSync(hostingDir, { recursive: true });
+cpSync(join(projectRoot, ".openai", "hosting.json"), join(hostingDir, "hosting.json"));
 
 writeFileSync(
   join(serverDir, "index.js"),
