@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { useRouter } from "next/navigation";
 
 const supportedLocales = ["en", "jp", "th"];
@@ -22,16 +23,42 @@ function detectLocale() {
 
 export default function Home() {
   const router = useRouter();
+  const reducedMotion = useReducedMotion();
+  const [leaving, setLeaving] = useState(false);
 
   useEffect(() => {
-    router.replace(`/${detectLocale()}`);
-  }, [router]);
+    const destination = `/${detectLocale()}`;
+    if (reducedMotion) {
+      router.replace(destination);
+      return undefined;
+    }
+
+    const exitTimer = window.setTimeout(() => setLeaving(true), 240);
+    const navigationTimer = window.setTimeout(() => router.replace(destination), 520);
+    return () => {
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(navigationTimer);
+    };
+  }, [reducedMotion, router]);
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[var(--claris-ink)] text-white">
-      <p className="animate-pulse text-xs font-bold uppercase tracking-[0.3em] text-white/45">
-        Selecting language…
-      </p>
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--claris-ink)] text-white">
+      <motion.div
+        aria-hidden="true"
+        animate={leaving ? { opacity: 0, scale: 1.14 } : { opacity: [0.35, 0.68, 0.35], scale: [0.9, 1.06, 0.9] }}
+        transition={leaving ? { duration: 0.28, ease: "easeOut" } : { duration: 1.8, ease: "easeInOut" }}
+        className="pointer-events-none absolute h-[34rem] w-[34rem] rounded-full bg-teal-300/15 blur-3xl"
+      />
+      <motion.div
+        initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+        animate={leaving ? { opacity: 0, y: -8, filter: "blur(6px)" } : { opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+        className="relative text-center"
+      >
+        <p role="status" className="text-xs font-bold uppercase tracking-[0.3em] text-white/55">
+          Selecting language…
+        </p>
+      </motion.div>
     </main>
   );
 }
