@@ -5,12 +5,14 @@ import { fileURLToPath } from "node:url";
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const outDir = join(projectRoot, "out");
 const distDir = join(projectRoot, "dist");
+const clientDir = join(distDir, "client");
 const serverDir = join(distDir, "server");
 const hostingDir = join(distDir, ".openai");
 
 rmSync(distDir, { recursive: true, force: true });
 mkdirSync(distDir, { recursive: true });
-cpSync(outDir, distDir, { recursive: true });
+mkdirSync(clientDir, { recursive: true });
+cpSync(outDir, clientDir, { recursive: true });
 mkdirSync(serverDir, { recursive: true });
 mkdirSync(hostingDir, { recursive: true });
 cpSync(join(projectRoot, ".openai", "hosting.json"), join(hostingDir, "hosting.json"));
