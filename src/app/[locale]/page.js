@@ -33,7 +33,7 @@ export default async function LocalizedHome({ params }) {
 
   return (
     <LandingExperience locale={locale}>
-      <div className={`min-h-screen bg-[var(--claris-ink)] text-slate-100 selection:bg-teal-500/30 ${locale === "th" ? "font-thai" : ""}`}>
+      <div className={`min-h-screen bg-[var(--claris-ink)] text-slate-100 selection:bg-teal-500/30 ${locale === "th" ? "font-thai" : locale === "jp" ? "font-japanese" : ""}`}>
         <main>
           <SplitHero />
           <LandingShowcase />

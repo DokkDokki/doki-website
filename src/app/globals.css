@@ -103,13 +103,70 @@ h6 {
 }
 
 @layer components {
+  .signal-link {
+    position: relative;
+  }
+
+  .signal-link::after {
+    background: linear-gradient(90deg, var(--claris-mint), var(--claris-rose));
+    bottom: -0.45rem;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    width: 100%;
+  }
+
+  .signal-link:hover::after,
+  .signal-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
   .claris-page {
     background-color: var(--claris-ink);
     background-image:
       radial-gradient(circle at 8% 0%, rgba(103, 232, 209, 0.085), transparent 30rem),
       radial-gradient(circle at 92% 18%, rgba(192, 132, 252, 0.08), transparent 32rem),
       linear-gradient(180deg, var(--claris-ink), #040406 72%);
+    isolation: isolate;
     position: relative;
+  }
+
+  .claris-page::before,
+  .claris-page::after {
+    border-radius: 9999px;
+    content: "";
+    filter: blur(90px);
+    pointer-events: none;
+    position: absolute;
+    will-change: opacity, transform;
+    z-index: 0;
+  }
+
+  .claris-page > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .claris-page::before {
+    animation: claris-pulse-mint 18s ease-in-out infinite;
+    background: radial-gradient(circle, rgba(103, 232, 209, 0.18), rgba(125, 211, 252, 0.07) 46%, transparent 70%);
+    height: min(58vw, 52rem);
+    left: -22rem;
+    top: 18rem;
+    width: min(58vw, 52rem);
+  }
+
+  .claris-page::after {
+    animation: claris-pulse-violet 23s ease-in-out infinite;
+    background: radial-gradient(circle, rgba(232, 121, 249, 0.16), rgba(192, 132, 252, 0.08) 46%, transparent 70%);
+    height: min(64vw, 58rem);
+    right: -25rem;
+    top: 48rem;
+    width: min(64vw, 58rem);
   }
 
   .claris-nav {
@@ -142,6 +199,55 @@ h6 {
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38), inset 0 1px rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(18px);
   }
+
+  .claris-flow-button {
+    --button-glow-a: rgba(103, 232, 209, 0.2);
+    --button-glow-b: rgba(125, 211, 252, 0.14);
+    --button-glow-a-strong: rgba(103, 232, 209, 0.32);
+    --button-glow-b-strong: rgba(125, 211, 252, 0.26);
+    background: linear-gradient(transparent, transparent) padding-box, linear-gradient(110deg, var(--claris-mint), var(--claris-sky), #c4f5ee, var(--claris-sky), var(--claris-mint)) border-box;
+    background-position: 0 0, 0% 50%;
+    background-size: 100% 100%, 260% 100%;
+    border: 2px solid transparent;
+    box-shadow: 0 0 18px var(--button-glow-a), 0 0 20px var(--button-glow-b);
+    color: var(--claris-white);
+    transition: box-shadow 350ms cubic-bezier(0.22, 1, 0.36, 1), transform 350ms cubic-bezier(0.22, 1, 0.36, 1), color 350ms ease;
+    will-change: background-position, transform;
+  }
+
+  .claris-flow-button:hover,
+  .claris-flow-button:focus-visible {
+    animation: claris-button-flow 2.8s linear infinite;
+    box-shadow: 0 0 26px var(--button-glow-a-strong), 0 0 30px var(--button-glow-b-strong);
+    color: white;
+  }
+
+  .claris-flow-button--machine {
+    --button-glow-a: rgba(192, 132, 252, 0.22);
+    --button-glow-b: rgba(232, 121, 249, 0.17);
+    --button-glow-a-strong: rgba(192, 132, 252, 0.34);
+    --button-glow-b-strong: rgba(232, 121, 249, 0.28);
+    background: linear-gradient(transparent, transparent) padding-box, linear-gradient(110deg, var(--claris-violet), var(--claris-rose), #f7c9ff, var(--claris-rose), var(--claris-violet)) border-box;
+  }
+
+  .claris-flow-button:active {
+    transform: translateY(1px) scale(0.985);
+  }
+}
+
+@keyframes claris-pulse-mint {
+  0%, 100% { opacity: 0.38; transform: translate3d(0, 0, 0) scale(0.92); }
+  50% { opacity: 0.9; transform: translate3d(18vw, 14rem, 0) scale(1.12); }
+}
+
+@keyframes claris-pulse-violet {
+  0%, 100% { opacity: 0.32; transform: translate3d(0, 0, 0) scale(1.04); }
+  50% { opacity: 0.82; transform: translate3d(-18vw, 20rem, 0) scale(0.88); }
+}
+
+@keyframes claris-button-flow {
+  from { background-position: 0 0, 0% 50%; }
+  to { background-position: 0 0, 100% 50%; }
 }
 
 .font-thai,
@@ -157,4 +263,19 @@ h6 {
 .font-thai h6 {
   --font-body: var(--font-thai);
   font-family: var(--font-thai), system-ui, sans-serif;
+}
+
+.font-japanese,
+.font-japanese button,
+.font-japanese input,
+.font-japanese textarea,
+.font-japanese select,
+.font-japanese h1,
+.font-japanese h2,
+.font-japanese h3,
+.font-japanese h4,
+.font-japanese h5,
+.font-japanese h6 {
+  --font-body: var(--font-japanese);
+  font-family: var(--font-japanese), system-ui, sans-serif;
 }
