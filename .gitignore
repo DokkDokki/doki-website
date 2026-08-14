@@ -51,3 +51,13 @@ wrangler.toml
 open-next.config.ts
 .dev.vars
 .wrangler/
+
+# local AI assistant configuration and caches
+/.openai/*
+!/.openai/hosting.json
+/.aider/
+/.claude/
+/.codex/
+/.continue/
+/.cursor/
+/.roo/
