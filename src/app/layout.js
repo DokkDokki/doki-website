@@ -1,24 +1,32 @@
-import { Anuphan, Nunito_Sans } from "next/font/google";
+import { Kanit, Quicksand, Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/motion/MotionProvider";
 
-const nunitoSans = Nunito_Sans({
+const quicksand = Quicksand({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-ui",
   display: "swap",
 });
 
-const anuphan = Anuphan({
+const kanit = Kanit({
   subsets: ["thai"],
+  weight: "300",
   variable: "--font-thai",
   display: "swap",
 });
 
+const zenKakuGothicNew = Zen_Kaku_Gothic_New({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-japanese",
+  display: "swap",
+});
+
 const siteUrl = "https://dokimachine.net";
-const siteTitle = "DOKIMACHINE";
+const siteTitle = "Doki / DOKIMACHINE";
 const siteDescription =
-  "The Split Reality Portfolio of a Digital Engineer, Vocaloid-P, and Trance Producer.";
-const ogImage = "/images/brand/doki_iconrima_square.jpg";
+  "A personal portfolio of engineering, photography, and electronic music.";
+const ogImage = "/og.png";
 const siteIcon = "/images/brand/doki_iconrima_square_transparent.png";
 
 export const metadata = {
@@ -37,7 +45,7 @@ export const metadata = {
     description: siteDescription,
     url: siteUrl,
     siteName: siteTitle,
-    images: [{ url: ogImage, width: 800, height: 800, alt: siteTitle }],
+    images: [{ url: ogImage, width: 1731, height: 909, alt: "Doki / DOKIMACHINE — systems, moments, sound" }],
     type: "website",
   },
   twitter: {
@@ -61,7 +69,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${nunitoSans.variable} ${anuphan.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${quicksand.variable} ${kanit.variable} ${zenKakuGothicNew.variable}`}>
       <body>
         <MotionProvider>{children}</MotionProvider>
       </body>

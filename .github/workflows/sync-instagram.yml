@@ -1,0 +1,29 @@
+name: Sync Instagram photography
+
+on:
+  schedule:
+    - cron: "15 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/sync-instagram-feed.mjs
+        env:
+          INSTAGRAM_GRAPH_API_VERSION: ${{ vars.INSTAGRAM_GRAPH_API_VERSION }}
+          INSTAGRAM_DOKI_CHIBI_ACCOUNT_ID: ${{ secrets.INSTAGRAM_DOKI_CHIBI_ACCOUNT_ID }}
+          INSTAGRAM_DOKI_CHIBI_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_DOKI_CHIBI_ACCESS_TOKEN }}
+          INSTAGRAM_DOKI_A6000_ACCOUNT_ID: ${{ secrets.INSTAGRAM_DOKI_A6000_ACCOUNT_ID }}
+          INSTAGRAM_DOKI_A6000_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_DOKI_A6000_ACCESS_TOKEN }}
+      - run: |
+          git add public/images/instagram src/content/instagram-feed.js
+          git diff --cached --quiet || git commit -m "chore: sync Instagram photography"
+          git push

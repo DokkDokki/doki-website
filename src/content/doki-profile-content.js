@@ -1,0 +1,95 @@
+const english = {
+  personal: {
+    eyebrow: "The person behind the machine",
+    title: "A life shaped by curiosity.",
+    intro: "I am Doki — a Digital Engineering student, photographer, train enthusiast, and the person behind DOKIMACHINE.",
+    heroCaption: "Bangkok Metropolitan Area · Thailand",
+    portraitAlt: "Doki in their room",
+    portraitCaption: "Doki · present day",
+    journeyLabel: "A short journey so far",
+    journeyTitle: "Three places, one direction.",
+    biographyPlaceholder: "A longer version of this chapter is coming soon.",
+    chapters: [
+      { number: "01", place: "Rangsit", years: "Growing up", title: "Where the curiosity started.", text: "I grew up around Rangsit and spent my middle- and high-school years at Suankularb Wittayalai Rangsit." },
+      { number: "02", place: "Tokyo", years: "Two years", title: "A city that stayed with me.", text: "After school, I moved to Tokyo and spent two years there studying Japanese and learning what it feels like to build a life in another place." },
+      { number: "03", place: "Bangkok", years: "Now", title: "Learning to build what matters.", text: "I am now studying Digital Engineering at Thai-Nichi Institute of Technology, turning a long-running curiosity about systems into a direction." },
+    ],
+    professionalLink: "View my professional engineering profile",
+    interestsLabel: "The things I return to",
+    interestsTitle: "Different worlds. The same attention.",
+    interests: [
+      { id: "engineering", label: "Engineering", title: "Systems in motion.", text: "Learning how networks and infrastructure fit together, then making them easier to understand and use.", href: "/doki/engineering", cta: "Professional profile" },
+      { id: "photography", label: "Photography", title: "Keep the frame.", text: "Trains, streets, cosplay, and the small moments worth preserving.", href: "/photography", cta: "Open the archive" },
+      { id: "trains", label: "Rail", title: "Follow the line.", text: "A lasting fascination with Japanese railways, routes, stations, and the life around them.", href: "/photography", cta: "See the frames" },
+      { id: "machine", label: "DOKIMACHINE", title: "Give it a voice.", text: "Electronic music, late-night atmosphere, and a universe built from sound.", href: "/music", cta: "Enter the machine" },
+    ],
+    instagram: { eyebrow: "Follow the journey", title: "Two windows into my world.", personalLabel: "Personal Instagram", personalText: "Everyday moments, thoughts, and life beyond the portfolio.", photographyLabel: "Photography Instagram", photographyText: "Rail, streets, cosplay, and the frames I want to keep." },
+    closing: { eyebrow: "Open channel", title: "Say hello, or keep exploring.", note: "There is more of me in the systems, frames, and sounds around this site.", engineering: "Engineering profile", photography: "Photography", music: "DOKIMACHINE" },
+  },
+  engineering: {
+    eyebrow: "Professional profile",
+    title: "Digital Engineering, with a network-first mindset.",
+    intro: "An early-career Digital Engineering student seeking infrastructure, cloud, and related internship opportunities.",
+    availability: "Open to internship opportunities",
+    currentFocus: "Current focus",
+    comingNext: "Coming next",
+    resume: "Résumé coming soon",
+    resumeHint: "A downloadable résumé will be added here.",
+    summaryLabel: "Profile",
+    summaryTitle: "Building practical foundations.",
+    summary: "I am developing toward infrastructure and cloud engineering, starting with the systems that make every service possible: reliable networking, clear troubleshooting, and a willingness to learn in the open.",
+    educationLabel: "Education",
+    education: "Digital Engineering · Thai-Nichi Institute of Technology",
+    completionLabel: "Expected academic completion", completion: "March 2028",
+    graduationLabel: "Expected graduation ceremony", graduation: "November 2028",
+    skillsLabel: "Current technical focus", skillsTitle: "Networking, one layer at a time.",
+    skills: ["Network troubleshooting", "Routing and switching", "DNS", "VPN"],
+    evidenceLabel: "Evidence in progress", evidenceTitle: "The portfolio is being built honestly.",
+    placeholders: [
+      { title: "Selected projects", text: "Case studies will appear here as they are ready to explain clearly: the problem, my contribution, the tools, and the outcome." },
+      { title: "Experience & certifications", text: "Professional experience, internships, competitions, and certifications will be added here when earned." },
+      { title: "Working approach", text: "A longer account of how I learn, troubleshoot, and work with systems is being written." },
+    ],
+    contactLabel: "Connect", contactTitle: "Let’s talk about an opportunity.", contactText: "For internship opportunities in infrastructure, cloud, or related engineering work, email is the best first step.", contact: "Email Doki", back: "Back to personal profile",
+  },
+};
+
+export const dokiProfileContent = {
+  en: english,
+  jp: {
+    personal: {
+      ...english.personal,
+      eyebrow: "マシンの向こう側の人", title: "好奇心に形づくられた人生。", intro: "Dokiです。デジタルエンジニアリングを学び、写真を撮り、鉄道が好きで、DOKIMACHINEの中の人でもあります。", heroCaption: "バンコク首都圏 · タイ", journeyLabel: "これまでの短い旅", journeyTitle: "三つの場所、一つの方向。", biographyPlaceholder: "この章の長いストーリーは準備中です。",
+      chapters: [
+        { number: "01", place: "ランシット", years: "育った場所", title: "好奇心が始まった場所。", text: "ランシット周辺で育ち、中学・高校時代はスアンクラーブ・ウィタヤライ・ランシットで過ごしました。" },
+        { number: "02", place: "東京", years: "二年間", title: "心に残り続ける街。", text: "卒業後、東京に移り住み、日本語を学びながら二年間を過ごしました。別の場所で生活をつくる感覚を学んだ時間です。" },
+        { number: "03", place: "バンコク", years: "現在", title: "大切なものをつくるために学ぶ。", text: "現在は泰日工業大学でデジタルエンジニアリングを学び、システムへの長い好奇心を将来の方向へ変えています。" },
+      ],
+      professionalLink: "エンジニアリングのプロフィールを見る", interestsLabel: "何度でも戻るもの", interestsTitle: "異なる世界、同じまなざし。", portraitAlt: "部屋にいるDoki", portraitCaption: "Doki · 現在", interests: [
+        { id: "engineering", label: "エンジニアリング", title: "動くシステム。", text: "ネットワークとインフラがどうつながるかを学び、わかりやすく使える形を考えています。", href: "/doki/engineering", cta: "プロフェッショナルプロフィール" },
+        { id: "photography", label: "写真", title: "フレームを残す。", text: "鉄道、街、コスプレ、そして残しておきたい小さな瞬間。", href: "/photography", cta: "アーカイブを開く" },
+        { id: "trains", label: "鉄道", title: "線路をたどる。", text: "日本の鉄道、路線、駅、そしてそこにある日常への変わらない関心。", href: "/photography", cta: "写真を見る" },
+        { id: "machine", label: "DOKIMACHINE", title: "声を与える。", text: "電子音楽、深夜の空気、そして音でつくる宇宙。", href: "/music", cta: "マシンへ入る" },
+      ], instagram: { eyebrow: "旅をフォロー", title: "私の世界を映す二つの窓。", personalLabel: "個人Instagram", personalText: "日々の瞬間、考えていること、ポートフォリオの外にある生活。", photographyLabel: "写真Instagram", photographyText: "鉄道、街、コスプレ、そして残したいフレーム。" }, closing: { ...english.personal.closing, eyebrow: "オープンチャンネル", title: "話しかけるか、もっと探索する。", note: "このサイトのシステム、写真、音の中に、もっと私がいます。", engineering: "エンジニアリング", photography: "写真", music: "DOKIMACHINE" },
+    },
+    engineering: { ...english.engineering, eyebrow: "プロフェッショナルプロフィール", title: "ネットワークを起点に学ぶデジタルエンジニアリング。", intro: "インフラ、クラウド、または関連分野のインターンシップを目指すデジタルエンジニアリング学生です。", availability: "インターンシップの機会を募集しています", resume: "履歴書は準備中", resumeHint: "ダウンロード可能な履歴書をここに追加予定です。", currentFocus: "現在の学習領域", comingNext: "準備中", summaryLabel: "プロフィール", summaryTitle: "実用的な土台をつくる。", summary: "インフラ・クラウドエンジニアを目指し、サービスを支えるネットワーク、的確なトラブルシューティング、そして学び続ける姿勢を大切にしています。", educationLabel: "学歴", education: "デジタルエンジニアリング · 泰日工業大学", completionLabel: "学業修了予定", completion: "2028年3月", graduationLabel: "卒業式予定", graduation: "2028年11月", skillsLabel: "現在の技術領域", skillsTitle: "一層ずつ、ネットワークを学ぶ。", skills: ["ネットワークトラブルシューティング", "ルーティングとスイッチング", "DNS", "VPN"], evidenceLabel: "実績は準備中", evidenceTitle: "正直なポートフォリオをつくっています。", placeholders: [{ title: "選んだプロジェクト", text: "課題、自分の役割、使ったツール、成果を明確に説明できるケーススタディを掲載予定です。" }, { title: "経験と資格", text: "職務経験、インターン、コンテスト、資格は取得後にここへ追加します。" }, { title: "取り組み方", text: "どのように学び、トラブルシューティングを行い、システムと向き合うかの詳しい文章を準備中です。" }], contactLabel: "連絡", contactTitle: "機会について話しましょう。", contactText: "インフラ、クラウド、または関連エンジニアリング分野のインターンシップについては、メールでご連絡ください。", contact: "Dokiにメール", back: "パーソナルプロフィールに戻る" },
+  },
+  th: {
+    personal: {
+      ...english.personal,
+      eyebrow: "คนที่อยู่เบื้องหลังเครื่องจักร", title: "ชีวิตที่ขับเคลื่อนด้วยความอยากรู้", intro: "ผมคือ Doki นักศึกษา Digital Engineering ช่างภาพ คนชอบรถไฟ และคนที่อยู่เบื้องหลัง DOKIMACHINE", heroCaption: "กรุงเทพมหานครและปริมณฑล · ประเทศไทย", journeyLabel: "การเดินทางสั้น ๆ ที่ผ่านมา", journeyTitle: "สามสถานที่ หนึ่งทิศทาง", biographyPlaceholder: "เรื่องราวฉบับยาวของบทนี้กำลังเขียนอยู่",
+      chapters: [
+        { number: "01", place: "รังสิต", years: "จุดเริ่มต้น", title: "ที่ที่ความอยากรู้เริ่มต้น", text: "ผมโตแถวรังสิต และเรียนระดับมัธยมต้นและมัธยมปลายที่โรงเรียนสวนกุหลาบวิทยาลัย รังสิต" },
+        { number: "02", place: "โตเกียว", years: "สองปี", title: "เมืองที่ยังอยู่ในใจ", text: "หลังเรียนจบ ผมย้ายไปโตเกียวและใช้ชีวิตอยู่ที่นั่นสองปี เรียนภาษาญี่ปุ่นและได้รู้ว่าการสร้างชีวิตในอีกที่หนึ่งเป็นอย่างไร" },
+        { number: "03", place: "กรุงเทพฯ", years: "ปัจจุบัน", title: "เรียนรู้เพื่อสร้างสิ่งที่สำคัญ", text: "ตอนนี้ผมเรียน Digital Engineering ที่สถาบันเทคโนโลยีไทย-ญี่ปุ่น และกำลังเปลี่ยนความสนใจด้านระบบที่มีมานานให้เป็นเส้นทางในอนาคต" },
+      ],
+      professionalLink: "ดูโปรไฟล์วิศวกรรมสำหรับมืออาชีพ", interestsLabel: "สิ่งที่ผมกลับไปหาเสมอ", interestsTitle: "ต่างโลก แต่มองด้วยสายตาเดียวกัน", portraitAlt: "Doki ในห้อง", portraitCaption: "Doki · ปัจจุบัน", interests: [
+        { id: "engineering", label: "วิศวกรรม", title: "ระบบที่เคลื่อนไหว", text: "เรียนรู้ว่าเครือข่ายและโครงสร้างพื้นฐานทำงานร่วมกันอย่างไร แล้วทำให้เข้าใจและใช้งานได้ง่ายขึ้น", href: "/doki/engineering", cta: "โปรไฟล์สำหรับมืออาชีพ" },
+        { id: "photography", label: "ภาพถ่าย", title: "เก็บเฟรมไว้", text: "รถไฟ ถนน คอสเพลย์ และช่วงเวลาเล็ก ๆ ที่อยากเก็บไว้", href: "/photography", cta: "เปิดคลังภาพ" },
+        { id: "trains", label: "รถไฟ", title: "ตามเส้นทาง", text: "ความสนใจที่มีต่อรถไฟญี่ปุ่น เส้นทาง สถานี และชีวิตรอบ ๆ นั้น", href: "/photography", cta: "ดูภาพ" },
+        { id: "machine", label: "DOKIMACHINE", title: "มอบเสียงให้มัน", text: "ดนตรีอิเล็กทรอนิกส์ บรรยากาศยามดึก และจักรวาลที่สร้างจากเสียง", href: "/music", cta: "เข้าสู่เครื่องจักร" },
+      ], instagram: { eyebrow: "ติดตามการเดินทาง", title: "สองหน้าต่างสู่โลกของผม", personalLabel: "Instagram ส่วนตัว", personalText: "ช่วงเวลาในชีวิตประจำวัน ความคิด และชีวิตนอกเหนือจากพอร์ตโฟลิโอ", photographyLabel: "Instagram ภาพถ่าย", photographyText: "รถไฟ ถนน คอสเพลย์ และเฟรมที่ผมอยากเก็บไว้" }, closing: { ...english.personal.closing, eyebrow: "ช่องทางเปิด", title: "ทักทาย หรือออกสำรวจต่อ", note: "ตัวตนของผมยังอยู่ในระบบ ภาพ และเสียงรอบ ๆ เว็บไซต์นี้", engineering: "โปรไฟล์วิศวกรรม", photography: "ภาพถ่าย", music: "DOKIMACHINE" },
+    },
+    engineering: { ...english.engineering, eyebrow: "โปรไฟล์สำหรับมืออาชีพ", title: "Digital Engineering ที่เริ่มจากแนวคิดแบบเครือข่าย", intro: "นักศึกษา Digital Engineering ระดับเริ่มต้นที่กำลังมองหาโอกาสฝึกงานด้าน Infrastructure, Cloud และสาขาที่เกี่ยวข้อง", availability: "เปิดรับโอกาสฝึกงาน", resume: "เรซูเม่กำลังจัดทำ", resumeHint: "จะเพิ่มเรซูเม่ที่ดาวน์โหลดได้ไว้ที่นี่", currentFocus: "จุดเน้นปัจจุบัน", comingNext: "กำลังจัดทำ", summaryLabel: "โปรไฟล์", summaryTitle: "สร้างรากฐานที่ใช้ได้จริง", summary: "ผมกำลังพัฒนาตัวเองสู่สาย Infrastructure และ Cloud Engineering โดยเริ่มจากระบบที่ทำให้ทุกบริการเกิดขึ้นได้จริง: เครือข่ายที่เชื่อถือได้ การแก้ปัญหาที่ชัดเจน และความตั้งใจเรียนรู้อย่างเปิดกว้าง", educationLabel: "การศึกษา", education: "Digital Engineering · สถาบันเทคโนโลยีไทย-ญี่ปุ่น", completionLabel: "คาดว่าจะจบข้อกำหนดทางการศึกษา", completion: "มีนาคม 2028", graduationLabel: "คาดว่าจะเข้าพิธีรับปริญญา", graduation: "พฤศจิกายน 2028", skillsLabel: "จุดเน้นทางเทคนิคปัจจุบัน", skillsTitle: "เรียนรู้เครือข่ายทีละเลเยอร์", skills: ["การแก้ปัญหาเครือข่าย", "Routing และ Switching", "DNS", "VPN"], evidenceLabel: "ผลงานกำลังจัดทำ", evidenceTitle: "กำลังสร้างพอร์ตโฟลิโออย่างตรงไปตรงมา", placeholders: [{ title: "โปรเจกต์ที่คัดเลือก", text: "จะเพิ่มกรณีศึกษาที่อธิบายปัญหา บทบาทของผม เครื่องมือ และผลลัพธ์ได้อย่างชัดเจน" }, { title: "ประสบการณ์และใบรับรอง", text: "ประสบการณ์ทำงาน การฝึกงาน การแข่งขัน และใบรับรองจะเพิ่มที่นี่เมื่อได้รับ" }, { title: "วิธีการทำงาน", text: "กำลังเขียนรายละเอียดเกี่ยวกับวิธีที่ผมเรียนรู้ แก้ปัญหา และทำงานกับระบบ" }], contactLabel: "ติดต่อ", contactTitle: "มาคุยกันเรื่องโอกาส", contactText: "สำหรับโอกาสฝึกงานด้าน Infrastructure, Cloud หรือวิศวกรรมที่เกี่ยวข้อง อีเมลคือช่องทางที่เหมาะที่สุด", contact: "อีเมลหา Doki", back: "กลับสู่โปรไฟล์ส่วนตัว" },
+  },
+};

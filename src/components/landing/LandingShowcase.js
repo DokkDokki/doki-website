@@ -3,166 +3,373 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
-import { FaArrowRight, FaCamera, FaCode, FaHeadphones, FaMapMarkerAlt } from "react-icons/fa";
+import { motion, useInView, useReducedMotion, useSpring } from "motion/react";
+import {
+  FaArrowRight,
+  FaCamera,
+  FaCode,
+  FaHeadphones,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
+import InstagramGallery from "@/components/media/InstagramGallery";
 
-const showcaseCopy = {
-  en: {
-    featuredEyebrow: "Doki and DOKIMACHINE",
-    featuredTitle: "Nice to meet you, I'm Doki.",
-    featuredIntro: "There are three things that define me: engineering, photography, and music.",
-    cards: [
-      ["Engineering", "Technology defines me, powered by curiosity.", "Experimenting with server infrastructure is my passion, and curiosity drives my exploration.", "Explore Doki", "/doki"],
-      ["DOKIMACHINE", "Cosmic exploration through sound.", "A project that transforms the cosmos into sound—mostly through trance, house, and ambient music, with vocal synthesis for emotional expression.", "Hear the sound of DOKIMACHINE", "/music"],
-      ["Photography", "Small things in life, captured behind the lens.", "Cosplay, trains, and everyday moments worth capturing.", "Open the archive", "/photography"],
-    ],
-    visualEyebrow: "Visual memory",
-    visualTitle: "Frames from the journey.",
-    manifesto: ["Engineering builds the machine.", "Photography captures its world.", "Music gives it a voice."],
-    manifestoNote: "Doki and DOKIMACHINE are both interfaces of the same curiosity, not separate lives.",
-    closing: "Let's connect.",
-    closingNote: "Follow the person, enter the machine, or simply say hello.",
-    person: "Meet Doki",
-    machine: "Enter DOKIMACHINE",
+const cinematicEase = [0.22, 1, 0.36, 1];
+const cardMedia = [
+  {
+    image: "/images/personal/doki-hikari.jpg",
+    Icon: FaCode,
+    tone: "from-teal-400/35",
   },
-  jp: {
-    featuredEyebrow: "DokiとDOKIMACHINE",
-    featuredTitle: "はじめまして、Dokiです。",
-    featuredIntro: "僕を形づくるものは、エンジニアリング、写真、そして音楽です。",
-    cards: [
-      ["エンジニアリング", "テクノロジーが僕を形づくり、好奇心が原動力になる。", "サーバーインフラを試行錯誤することが好きで、好奇心のままに探究を続けています。", "Dokiを知る", "/doki"],
-      ["DOKIMACHINE", "音で宇宙を探究する。", "宇宙を音へと変換するプロジェクト。主にトランス、ハウス、アンビエントを通して、歌声合成で感情を表現します。", "DOKIMACHINEの音を聴く", "/music"],
-      ["写真", "暮らしの中の小さなものを、レンズ越しに。", "コスプレ、鉄道、そして残しておきたい日常の瞬間。", "アーカイブを見る", "/photography"],
-    ],
-    visualEyebrow: "視覚の記憶",
-    visualTitle: "旅の途中で切り取った景色。",
-    manifesto: ["エンジニアリングがマシンをつくる。", "写真がその世界を写す。", "音楽がそこに声を与える。"],
-    manifestoNote: "DokiとDOKIMACHINEは別々の人生ではない。同じ好奇心につながる、二つのインターフェース。",
-    closing: "シグナルを受け取ろう。",
-    closingNote: "Dokiを知る、マシンの世界へ入る、あるいは気軽に声をかける。",
-    person: "Dokiを知る",
-    machine: "DOKIMACHINEへ",
+  {
+    image: "/images/events/otaqlab_2025.jpg",
+    Icon: FaHeadphones,
+    tone: "from-fuchsia-500/40",
   },
-  th: {
-    featuredEyebrow: "Doki และ DOKIMACHINE",
-    featuredTitle: "ยินดีที่ได้รู้จัก ผม Doki",
-    featuredIntro: "มีสามสิ่งที่หล่อหลอมตัวผม: วิศวกรรม การถ่ายภาพ และดนตรี",
-    cards: [
-      ["วิศวกรรม", "เทคโนโลยีหล่อหลอมตัวผม โดยมีความอยากรู้อยากเห็นเป็นพลังขับเคลื่อน", "ผมหลงใหลในการทดลองกับโครงสร้างพื้นฐานของเซิร์ฟเวอร์ และความอยากรู้อยากเห็นก็ผลักดันให้ผมออกสำรวจอยู่เสมอ", "รู้จัก Doki", "/doki"],
-      ["DOKIMACHINE", "สำรวจจักรวาลผ่านเสียง", "โปรเจกต์ที่ถ่ายทอดจักรวาลออกมาเป็นเสียง ส่วนใหญ่อยู่ในรูปแบบแทรนซ์ เฮาส์ และแอมเบียนต์ พร้อมใช้เสียงสังเคราะห์เพื่อถ่ายทอดอารมณ์", "ฟังเสียงของ DOKIMACHINE", "/music"],
-      ["การถ่ายภาพ", "เก็บรายละเอียดเล็ก ๆ ของชีวิตผ่านเลนส์", "คอสเพลย์ รถไฟ และช่วงเวลาในชีวิตประจำวันที่ควรค่าแก่การบันทึก", "เปิดคลังภาพ", "/photography"],
-    ],
-    visualEyebrow: "ความทรงจำผ่านภาพ",
-    visualTitle: "เฟรมจากการเดินทาง",
-    manifesto: ["วิศวกรรมสร้างเครื่องจักร", "ภาพถ่ายบันทึกโลกของมัน", "ดนตรีมอบเสียงให้กับมัน"],
-    manifestoNote: "Doki และ DOKIMACHINE ไม่ใช่สองชีวิตที่แยกจากกัน แต่คือสองอินเทอร์เฟซของความอยากรู้อยากเห็นเดียวกัน",
-    closing: "รับสัญญาณต่อไป",
-    closingNote: "ทำความรู้จัก Doki เข้าสู่โลกของเครื่องจักร หรือแค่ทักทายกัน",
-    person: "รู้จัก Doki",
-    machine: "เข้าสู่ DOKIMACHINE",
+  {
+    image: "/images/photography/sakura-chidorigafuchi-park.jpg",
+    Icon: FaCamera,
+    tone: "from-sky-400/35",
   },
-};
-
-const cardStyles = [
-  { Icon: FaCode, image: "/images/personal/doki-hikari.jpg", gradient: "from-teal-400/35" },
-  { Icon: FaHeadphones, image: "/images/events/otaqlab_2025.jpg", gradient: "from-fuchsia-500/40" },
-  { Icon: FaCamera, image: "/images/photography/sakura-chidorigafuchi-park.jpg", gradient: "from-sky-400/35" },
 ];
-
 const photos = [
-  ["/images/photography/tokaido-line-e231-nippori.jpg", "Nippori · Tokyo"],
-  ["/images/photography/sakura-chidorigafuchi-park.jpg", "Chidorigafuchi · Tokyo"],
-  ["/images/photography/niigata-2025-street.jpg", "Niigata · 2025"],
-  ["/images/events/singapore_2025.jpg", "Singapore · 2025"],
+  {
+    src: "/images/photography/tokaido-line-e231-nippori.jpg",
+    label: "Nippori · Tokyo",
+    className: "md:col-span-5 md:row-span-2",
+    drift: ["-1%", "1%", "-1%"],
+  },
+  {
+    src: "/images/photography/sakura-chidorigafuchi-park.jpg",
+    label: "Chidorigafuchi · Tokyo",
+    className: "md:col-span-4",
+    drift: ["1%", "-1%", "1%"],
+  },
+  {
+    src: "/images/photography/niigata-2025-street.jpg",
+    label: "Niigata · 2025",
+    className: "md:col-span-3",
+    drift: ["0%", "1.5%", "0%"],
+  },
+  {
+    src: "/images/events/singapore_2025.jpg",
+    label: "Singapore · 2025",
+    className: "md:col-span-7",
+    drift: ["-1%", "1%", "-1%"],
+  },
 ];
 
-function Reveal({ children, className = "" }) {
-  const prefersReducedMotion = useReducedMotion();
-
-  return <motion.div initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.965, y: 28, filter: "blur(10px)" }} whileInView={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }} className={className}>{children}</motion.div>;
-}
-
-function PhotoJourney({ text }) {
-  const sectionRef = useRef(null);
-  const prefersReducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 85, damping: 24, mass: 0.35 });
-  const galleryX = useTransform(smoothProgress, [0, 1], ["0%", "-48%"]);
-  const titleX = useTransform(smoothProgress, [0, 1], [0, -36]);
-
-  if (prefersReducedMotion) {
-    return (
-      <section className="border-y border-white/10 bg-[var(--claris-ink-soft)] py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6"><p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-300">{text.visualEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.visualTitle}</h2></div>
-        <div className="mt-12 flex snap-x gap-4 overflow-x-auto px-6 pb-3 sm:px-[max(1.5rem,calc((100vw-80rem)/2))]">
-          {photos.map(([src, label], index) => <PhotoFrame key={src} src={src} label={label} index={index} />)}
-        </div>
-      </section>
-    );
-  }
-
+function Reveal({ children, className = "", delay = 0, scale = 1 }) {
+  const reducedMotion = useReducedMotion();
   return (
-    <section ref={sectionRef} className="relative h-[200vh] border-y border-white/10 bg-[var(--claris-ink-soft)] sm:h-[240vh]">
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-16">
-        <motion.div style={{ x: titleX }} className="mx-auto w-full max-w-7xl px-6">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-300">{text.visualEyebrow}</p>
-          <h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.visualTitle}</h2>
-        </motion.div>
-        <motion.div style={{ x: galleryX }} className="mt-10 flex w-max gap-4 pl-6 sm:pl-[max(1.5rem,calc((100vw-80rem)/2))]">
-          {photos.map(([src, label], index) => <PhotoFrame key={src} src={src} label={label} index={index} />)}
-        </motion.div>
-        <div className="mx-auto mt-8 h-px w-[min(80rem,calc(100%-3rem))] overflow-hidden bg-white/10">
-          <motion.div style={{ scaleX: smoothProgress, transformOrigin: "left" }} className="h-full bg-gradient-to-r from-sky-300 via-teal-300 to-fuchsia-300" />
-        </div>
-      </div>
-    </section>
+    <motion.div
+      initial={reducedMotion ? false : { opacity: 0, y: 24, scale }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-72px" }}
+      transition={{ duration: 0.8, delay, ease: cinematicEase }}
+      className={className}
+    >
+      {children}
+    </motion.div>
   );
 }
 
-function PhotoFrame({ src, label, index }) {
+function DisciplineCard({ discipline, media, index, locale }) {
+  const reducedMotion = useReducedMotion();
+  const rotateX = useSpring(0, { stiffness: 180, damping: 20 });
+  const rotateY = useSpring(0, { stiffness: 180, damping: 20 });
+  const reset = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+  const tilt = (event) => {
+    if (reducedMotion || event.pointerType !== "mouse") return;
+    const box = event.currentTarget.getBoundingClientRect();
+    rotateX.set((event.clientY - box.top - box.height / 2) / -28);
+    rotateY.set((event.clientX - box.left - box.width / 2) / 28);
+  };
   return (
-    <motion.figure
-      initial={{ opacity: 0, scale: 0.94, rotate: index % 2 ? 1.25 : -1.25 }}
-      whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.8, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      className={`group relative h-[46vh] min-h-[330px] max-h-[520px] shrink-0 snap-center overflow-hidden rounded-3xl border border-white/10 ${index % 2 ? "w-[280px] sm:w-[340px]" : "w-[360px] sm:w-[500px]"}`}
+    <motion.div
+      style={{ rotateX, rotateY, transformPerspective: 900 }}
+      whileTap={reducedMotion ? undefined : { scale: 0.98 }}
+      onPointerMove={tilt}
+      onPointerLeave={reset}
+      onFocus={reset}
+      className={index === 1 ? "lg:mt-12" : index === 2 ? "lg:mt-24" : ""}
     >
-      <Image src={src} alt={label} fill sizes="500px" className="object-cover transition duration-1000 group-hover:scale-105" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-      <figcaption className="absolute bottom-5 left-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/75"><FaMapMarkerAlt className="mr-2 inline h-3 w-3" />{label}</figcaption>
-    </motion.figure>
+      <Link
+        href={`/${locale}${discipline.href}`}
+        className="claris-glass group relative flex min-h-[440px] overflow-hidden rounded-[2rem] border p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 sm:p-9"
+      >
+        <motion.div
+          animate={
+            reducedMotion
+              ? undefined
+              : { scale: [1.04, 1.1, 1.04], x: ["-1%", "1%", "-1%"] }
+          }
+          transition={{
+            duration: 14 + index * 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute -inset-5"
+        >
+          <Image
+            src={media.image}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 33vw, 100vw"
+            className="object-cover"
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--claris-ink)] via-[#050507]/35 to-transparent" />
+        <motion.div
+          animate={
+            reducedMotion
+              ? undefined
+              : { opacity: [0.45, 0.85, 0.45], y: ["8%", "-5%", "8%"] }
+          }
+          transition={{
+            duration: 9 + index,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className={`absolute inset-0 bg-gradient-to-t ${media.tone} via-transparent to-transparent`}
+        />
+        <motion.div
+          animate={reducedMotion ? undefined : { x: ["-125%", "125%"] }}
+          transition={{
+            duration: 4.5,
+            repeat: Infinity,
+            repeatDelay: 4 + index,
+            ease: "easeInOut",
+          }}
+          className="pointer-events-none absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/15 to-transparent blur-xl"
+        />
+        <div className="relative mt-auto">
+          <media.Icon className="mb-6 h-5 w-5 text-white/75" />
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/60">
+            {discipline.label}
+          </p>
+          <h3 className="mt-3 text-2xl font-semibold leading-tight">
+            {discipline.title}
+          </h3>
+          <p className="mt-4 text-sm leading-6 text-slate-200/80">
+            {discipline.description}
+          </p>
+          <span className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-white">
+            {discipline.cta}
+            <FaArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+function PhotoFrame({ photo, index }) {
+  const reducedMotion = useReducedMotion();
+  const ref = useRef(null);
+  const inView = useInView(ref, { amount: 0.18, once: false });
+  return (
+    <Reveal
+      delay={index * 0.07}
+      scale={0.97}
+      className={`relative overflow-hidden rounded-3xl border border-white/10 ${photo.className}`}
+    >
+      <figure ref={ref} className="group relative h-full">
+        <motion.div
+          animate={
+            !reducedMotion && inView
+              ? { x: photo.drift, scale: [1.05, 1.1, 1.05] }
+              : { x: "0%", scale: 1.05 }
+          }
+          transition={{
+            duration: 16 + index * 2,
+            repeat: inView ? Infinity : 0,
+            ease: "easeInOut",
+          }}
+          className="absolute -inset-5"
+        >
+          <Image
+            src={photo.src}
+            alt={photo.label}
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+        <figcaption className="absolute bottom-5 left-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/75">
+          <FaMapMarkerAlt className="mr-2 inline h-3 w-3" />
+          {photo.label}
+        </figcaption>
+      </figure>
+    </Reveal>
   );
 }
 
 export default function LandingShowcase() {
-  const { locale } = useLandingLocale();
-  const text = showcaseCopy[locale];
-  const contentLocale = locale;
-
+  const { copy, locale } = useLandingLocale();
+  const { showcase } = copy;
+  const reducedMotion = useReducedMotion();
   return (
     <div className="claris-page overflow-x-clip text-white">
-      <section className="px-6 py-24 sm:py-32">
+      <section
+        id="identity"
+        className="scroll-mt-8 px-6 py-24 sm:px-10 sm:py-32"
+      >
+        <div className="mx-auto grid max-w-7xl gap-10 border-b border-white/10 pb-20 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <Reveal>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-teal-300">
+              {showcase.identity.eyebrow}
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="max-w-3xl text-4xl font-light leading-tight tracking-[-0.035em] sm:text-6xl">
+              {showcase.identity.title}
+            </h2>
+            <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--claris-muted)] sm:text-lg">
+              {showcase.identity.intro}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+      <section
+        id="disciplines"
+        className="scroll-mt-8 px-6 pb-28 sm:px-10 sm:pb-36"
+      >
         <div className="mx-auto max-w-7xl">
-          <Reveal className="mb-12 max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.3em] text-teal-300">{text.featuredEyebrow}</p><h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">{text.featuredTitle}</h2><p className="mt-5 text-lg text-[var(--claris-muted)]">{text.featuredIntro}</p></Reveal>
           <div className="grid gap-5 lg:grid-cols-3 lg:items-start">
-            {text.cards.map(([title, subtitle, description, cta, href], index) => {
-              const style = cardStyles[index];
-              return <Reveal key={title} className={`h-full ${index === 1 ? "lg:mt-14" : index === 2 ? "lg:mt-28" : ""}`}><motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 240, damping: 20 }} className="h-full"><Link href={`/${contentLocale}${href}`} className="claris-glass group relative flex min-h-[520px] h-full flex-col justify-end overflow-hidden rounded-[2rem] border p-7 transition hover:border-white/25 sm:p-9"><Image src={style.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition duration-1000 group-hover:scale-105" /><div className="absolute inset-0 bg-black/20" /><div className="absolute inset-0 bg-gradient-to-t from-[var(--claris-ink)] via-[rgba(5,5,7,0.34)] to-transparent" /><div className={`absolute inset-0 bg-gradient-to-t ${style.gradient} via-transparent to-transparent opacity-70`} /><div className="absolute inset-x-0 top-0 h-px -translate-x-full bg-gradient-to-r from-transparent via-white/70 to-transparent transition-transform duration-1000 group-hover:translate-x-full" /><div className="relative"><style.Icon className="mb-5 h-5 w-5 text-white/70" /><p className="text-xs font-bold uppercase tracking-[0.25em] text-white/55">{title}</p><h3 className="mt-3 text-2xl font-semibold leading-tight">{subtitle}</h3><p className="mt-4 text-sm leading-6 text-slate-300/75">{description}</p><span className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em]">{cta}<FaArrowRight className="h-3 w-3 transition group-hover:translate-x-1" /></span></div></Link></motion.div></Reveal>;
-            })}
+            {showcase.disciplines.map((discipline, index) => (
+              <Reveal key={discipline.id} delay={index * 0.08}>
+                <DisciplineCard
+                  discipline={discipline}
+                  media={cardMedia[index]}
+                  index={index}
+                  locale={locale}
+                />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
-
-      <PhotoJourney text={text} />
-
-      <section className="relative px-6 py-28 sm:py-40"><div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,.08),transparent_35%),radial-gradient(circle_at_60%_55%,rgba(217,70,239,.06),transparent_30%)]" /><div className="relative mx-auto max-w-5xl text-center"><div className="space-y-2 text-3xl font-light tracking-tight sm:text-5xl">{text.manifesto.map((line, index) => <motion.p key={line} initial={{ opacity: 0, y: 24, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }} className={index === 0 ? "text-teal-200" : index === 2 ? "text-fuchsia-200" : "text-white"}>{line}</motion.p>)}</div><motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.45 }} className="mx-auto mt-10 max-w-2xl text-base leading-7 text-[var(--claris-muted)]">{text.manifestoNote}</motion.p></div></section>
-
-      <section className="px-6 pb-28"><Reveal className="claris-glass mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border bg-gradient-to-br from-teal-400/10 via-white/[0.03] to-fuchsia-500/10 p-8 text-center sm:p-16"><h2 className="text-4xl font-light tracking-tight sm:text-6xl">{text.closing}</h2><p className="mx-auto mt-5 max-w-xl text-[var(--claris-muted)]">{text.closingNote}</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href={`/${contentLocale}/doki`} className="rounded-full bg-teal-300 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.person}</Link><Link href={`/${contentLocale}/music`} className="rounded-full bg-fuchsia-400 px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white">{text.machine}</Link></div></Reveal></section>
+      <section
+        id="frames"
+        className="scroll-mt-8 border-y border-white/10 bg-[var(--claris-ink-soft)] px-6 py-24 sm:px-10 sm:py-32"
+      >
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-300">
+              {showcase.gallery.eyebrow}
+            </p>
+            <h2 className="mt-4 text-4xl font-light tracking-tight sm:text-6xl">
+              {showcase.gallery.title}
+            </h2>
+          </Reveal>
+          <div className="mt-12 grid auto-rows-[180px] gap-4 sm:auto-rows-[230px] md:grid-cols-12">
+            {photos.map((photo, index) => (
+              <PhotoFrame key={photo.src} photo={photo} index={index} />
+            ))}
+          </div>
+          <InstagramGallery copy={showcase.instagram} limit={4} locale={locale} />
+        </div>
+      </section>
+      <section className="relative overflow-hidden px-6 py-28 sm:px-10 sm:py-40">
+        <motion.div
+          animate={
+            reducedMotion
+              ? undefined
+              : {
+                  x: ["-8%", "10%", "-8%"],
+                  y: ["-10%", "8%", "-10%"],
+                  opacity: [0.35, 0.75, 0.35],
+                }
+          }
+          transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,.15),transparent_30%),radial-gradient(circle_at_65%_55%,rgba(217,70,239,.12),transparent_25%)]"
+        />
+        <div className="relative mx-auto max-w-5xl text-center">
+          <div className="space-y-2 text-3xl font-light tracking-tight sm:text-5xl">
+            {showcase.manifesto.lines.map((line, index) => (
+              <Reveal key={line} delay={index * 0.14}>
+                <motion.p
+                  whileInView={
+                    reducedMotion
+                      ? undefined
+                      : {
+                          textShadow: [
+                            "0 0 0 rgba(255,255,255,0)",
+                            "0 0 28px rgba(125,211,252,.42)",
+                            "0 0 0 rgba(255,255,255,0)",
+                          ],
+                        }
+                  }
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 1.1,
+                    delay: index * 0.14,
+                    ease: cinematicEase,
+                  }}
+                  className={
+                    index === 0
+                      ? "text-teal-200"
+                      : index === 2
+                        ? "text-fuchsia-200"
+                        : "text-white"
+                  }
+                >
+                  {line}
+                </motion.p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.4}>
+            <p className="mx-auto mt-10 max-w-2xl text-base leading-7 text-[var(--claris-muted)]">
+              {showcase.manifesto.note}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+      <section id="connect" className="scroll-mt-8 px-6 pb-28 sm:px-10">
+        <Reveal className="claris-glass relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border bg-gradient-to-br from-teal-400/10 via-white/[0.03] to-fuchsia-500/10 p-8 text-center sm:p-16">
+          <motion.div
+            animate={reducedMotion ? undefined : { x: ["-45%", "55%", "-45%"] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            className="pointer-events-none absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent blur-2xl"
+          />
+          <div className="relative">
+            <h2 className="text-4xl font-light tracking-tight sm:text-6xl">
+              {showcase.closing.title}
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-[var(--claris-muted)]">
+              {showcase.closing.note}
+            </p>
+            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+              <motion.div
+                whileTap={reducedMotion ? undefined : { scale: 0.97 }}
+              >
+                <Link
+                  href={`/${locale}/doki`}
+                  className="claris-flow-button inline-block rounded-full px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  {showcase.closing.person}
+                </Link>
+              </motion.div>
+              <motion.div
+                whileTap={reducedMotion ? undefined : { scale: 0.97 }}
+              >
+                <Link
+                  href={`/${locale}/music`}
+                  className="claris-flow-button claris-flow-button--machine inline-block rounded-full px-7 py-3 text-xs font-extrabold uppercase tracking-[0.16em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  {showcase.closing.machine}
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
     </div>
   );
 }

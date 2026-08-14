@@ -1,134 +1,91 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
+import { motion, useReducedMotion, useSpring } from "motion/react";
+import { FaArrowDown, FaArrowRight } from "react-icons/fa";
 import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
-const worlds = [
-  {
-    id: "doki",
-    title: "Doki",
-    href: "/doki",
-    image: "/images/personal/doki-hikari.jpg",
-    imagePosition: "object-center",
-    glow: "from-teal-400/30 via-sky-400/10",
-    accent: "text-teal-200",
-    button: "bg-teal-300 text-slate-950 shadow-[0_0_28px_rgba(94,234,212,.2)] hover:bg-white",
-  },
-  {
-    id: "dokimachine",
-    title: "DOKIMACHINE",
-    href: "/music",
-    image: "/images/brand/doki_iconrima_square.jpg",
-    imagePosition: "object-center",
-    glow: "from-fuchsia-500/30 via-purple-500/10",
-    accent: "text-fuchsia-200",
-    button: "bg-fuchsia-400 text-slate-950 shadow-[0_0_28px_rgba(232,121,249,.18)] hover:bg-white",
-  },
-];
+const cinematicEase = [0.22, 1, 0.36, 1];
+
+function MagneticLink({ href, className, children }) {
+  const reducedMotion = useReducedMotion();
+  const x = useSpring(0, { stiffness: 260, damping: 18 });
+  const y = useSpring(0, { stiffness: 260, damping: 18 });
+  const reset = () => { x.set(0); y.set(0); };
+  const move = (event) => {
+    if (reducedMotion || event.pointerType !== "mouse") return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    x.set((event.clientX - rect.left - rect.width / 2) * 0.12);
+    y.set((event.clientY - rect.top - rect.height / 2) * 0.12);
+  };
+  return <motion.div style={{ x, y }} whileTap={reducedMotion ? undefined : { scale: 0.97 }} onPointerMove={move} onPointerLeave={reset} onFocus={reset}><Link href={href} className={className}>{children}</Link></motion.div>;
+}
 
 export default function SplitHero() {
   const { copy, locale } = useLandingLocale();
-  const contentLocale = locale;
-  const [activeWorld, setActiveWorld] = useState(null);
-  const heroRef = useRef(null);
-  const prefersReducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.965]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.72, 1], [1, 0.82, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  const reducedMotion = useReducedMotion();
+  const [pointerReady, setPointerReady] = useState(false);
+  const pointerX = useSpring(0, { stiffness: 45, damping: 22 });
+  const pointerY = useSpring(0, { stiffness: 45, damping: 22 });
+
+  useEffect(() => {
+    const media = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sync = () => setPointerReady(media.matches);
+    sync(); media.addEventListener("change", sync); return () => media.removeEventListener("change", sync);
+  }, []);
+
+  const handlePointerMove = (event) => {
+    if (reducedMotion || !pointerReady) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - rect.left - rect.width / 2) / rect.width);
+    pointerY.set((event.clientY - rect.top - rect.height / 2) / rect.height);
+  };
+  const rise = reducedMotion ? false : { opacity: 0, y: 28, filter: "blur(8px)" };
 
   return (
-    <motion.section
-      ref={heroRef}
-      style={prefersReducedMotion ? undefined : { scale: heroScale, opacity: heroOpacity, y: heroY }}
-      className="relative isolate min-h-[100svh] overflow-hidden bg-[var(--claris-ink)] text-white"
-      onMouseLeave={() => setActiveWorld(null)}
-    >
-      <div className="pointer-events-none absolute left-1/2 top-6 z-30 hidden -translate-x-1/2 items-center gap-3 md:flex">
-        <span className="h-px w-10 bg-white/25" />
-        <span className="text-[10px] font-bold uppercase tracking-[0.38em] text-white/55">
-          {copy.chooseWorld}
-        </span>
-        <span className="h-px w-10 bg-white/25" />
+    <section onPointerMove={handlePointerMove} className="relative isolate min-h-[100svh] overflow-hidden bg-[var(--claris-ink)] text-white">
+      <motion.div animate={reducedMotion ? undefined : { opacity: [0.35, 0.62, 0.35], scale: [1, 1.12, 1], x: ["-8%", "8%", "-8%"], y: ["-4%", "7%", "-4%"] }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }} className="pointer-events-none absolute -left-[18%] -top-[28%] z-10 h-[70vw] w-[70vw] rounded-full bg-teal-300/15 blur-3xl" />
+      <motion.div animate={reducedMotion ? undefined : { opacity: [0.2, 0.48, 0.2], scale: [1.05, 0.94, 1.05], x: ["10%", "-8%", "10%"] }} transition={{ duration: 21, repeat: Infinity, ease: "easeInOut", delay: 1.5 }} className="pointer-events-none absolute -bottom-[35%] -right-[20%] z-10 h-[70vw] w-[70vw] rounded-full bg-fuchsia-500/15 blur-3xl" />
+      <div className="absolute inset-0 grid min-h-[100svh] md:grid-cols-[1.3fr_0.7fr]">
+        <HeroPanel image="/images/personal/doki-hikari.jpg" x={pointerX} y={pointerY} className="md:border-r md:border-white/10" />
+        <HeroPanel image="/images/brand/doki_iconrima_square.jpg" x={pointerX} y={pointerY} className="hidden md:block" machine />
       </div>
-
-      <div className="flex min-h-[100svh] flex-col md:flex-row">
-        {worlds.map((world, index) => {
-          const localizedWorld = copy.worlds[world.id];
-          return (
-          <motion.article
-            key={world.id}
-            initial={{ opacity: 0, scale: 0.98, y: 18 }}
-            animate={{
-              opacity: activeWorld && activeWorld !== world.id ? 0.78 : 1,
-              scale: 1,
-              y: 0,
-              flexGrow: activeWorld ? (activeWorld === world.id ? 1.12 : 0.88) : 1,
-            }}
-            transition={{ duration: 0.55, delay: activeWorld ? 0 : index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            onHoverStart={() => setActiveWorld(world.id)}
-            className="group relative flex min-h-[70svh] w-full basis-0 items-end overflow-hidden border-white/10 md:min-h-0 md:border-r md:last:border-r-0"
-          >
-            <motion.div
-              className="absolute inset-0"
-              initial={{ scale: 1.12 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1.4, delay: 0.2 + index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(5,5,7,.2),rgba(5,5,7,.6)_48%,rgba(5,5,7,.3))]" />
+      <nav aria-label={copy.footer.navigationLabel} className="landing-header-ui absolute inset-x-0 top-0 z-20 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-10">
+        <a href="#top" className="signal-link text-xs font-medium uppercase tracking-[0.16em] text-white transition hover:text-teal-200 sm:text-sm">DOKIMACHINE</a>
+        <div role="group" aria-label={copy.footer.languageLabel} className="flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.12em] sm:gap-4">
+          {[["en", "EN"], ["jp", "日本語"], ["th", "ไทย"]].map(([language, label]) => (
+            <Link
+              key={language}
+              href={`/${language}`}
+              hrefLang={language === "jp" ? "ja" : language}
+              onClick={() => window.localStorage.setItem("dokimachine-locale", language)}
+              aria-current={locale === language ? "page" : undefined}
+              className={`signal-link transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${locale === language ? "text-white" : "text-white/45 hover:text-white"}`}
             >
-              <div className="absolute inset-0 transition duration-[1400ms] ease-out group-hover:scale-[1.045]">
-                <Image
-                  src={world.image}
-                  alt=""
-                  fill
-                  loading="eager"
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className={`object-cover ${world.imagePosition}`}
-                />
-              </div>
-            </motion.div>
-            <div className={`absolute inset-0 bg-black/35 transition duration-700 ${activeWorld === world.id ? "bg-black/15" : "group-hover:bg-black/20"}`} />
-            <div className={`absolute inset-0 bg-gradient-to-t ${world.glow} to-transparent opacity-80`} />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/35 to-[#050507]/15" />
-
-            <div className="relative z-10 w-full px-7 pb-10 pt-24 sm:px-10 sm:pb-14 lg:px-14 lg:pb-16 xl:px-20">
-              <p className={`text-xs font-bold uppercase tracking-[0.32em] ${world.accent}`}>
-                {localizedWorld.eyebrow}
-              </p>
-              <h1 className={`mt-4 font-light tracking-[-0.025em] ${world.id === "dokimachine" ? "text-4xl sm:text-5xl lg:text-6xl xl:text-7xl" : "text-5xl sm:text-6xl lg:text-7xl xl:text-8xl"}`}>
-                {world.title}
-              </h1>
-              <p className="mt-5 max-w-lg text-base leading-7 text-slate-200/85 sm:text-lg">
-                {localizedWorld.description}
-              </p>
-              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 sm:text-xs">
-                {localizedWorld.meta}
-              </p>
-              <Link
-                href={`/${contentLocale}${world.href}`}
-                onFocus={() => setActiveWorld(world.id)}
-                onBlur={() => setActiveWorld(null)}
-                className={`mt-8 inline-flex min-h-11 items-center gap-3 rounded-full px-6 py-3 text-xs font-extrabold uppercase tracking-[0.18em] transition duration-300 hover:-translate-y-0.5 ${world.button}`}
-              >
-                {localizedWorld.cta}
-                <FaArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </motion.article>
-          );
-        })}
-      </div>
-
-      <div className="pointer-events-none absolute bottom-3 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
-        <span className="hidden text-[9px] uppercase tracking-[0.3em] text-white/40 xl:block">{copy.discoverMore}</span>
-        <span className="h-7 w-px bg-gradient-to-b from-white/40 to-transparent" />
-      </div>
-    </motion.section>
+              {label}
+            </Link>
+          ))}
+        </div>
+      </nav>
+      <div id="top" className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-end px-6 pb-12 pt-32 sm:px-10 sm:pb-16"><div className="grid w-full gap-12 md:grid-cols-[1.3fr_0.7fr] md:items-end">
+        <motion.div initial={rise} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1, ease: cinematicEase }}>
+          <motion.p initial={rise} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.8, delay: 0.1, ease: cinematicEase }} className="text-xs font-bold uppercase tracking-[0.3em] text-teal-200">{copy.hero.eyebrow}</motion.p>
+          <h1 className="mt-5 max-w-4xl text-5xl font-light leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl xl:text-8xl">{copy.hero.title.split(" ").map((word, index) => <motion.span key={`${word}-${index}`} initial={rise} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.72, delay: 0.18 + index * 0.045, ease: cinematicEase }} className="mr-[0.22em] inline-block">{word}</motion.span>)}</h1>
+          <motion.p initial={rise} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.8, delay: 0.55, ease: cinematicEase }} className="mt-7 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg">{copy.hero.description}</motion.p>
+          <motion.p initial={rise} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.75, delay: 0.66, ease: cinematicEase }} className="mt-5 text-sm font-light tracking-[0.08em] text-fuchsia-100/85">— {copy.signature || copy.hero.signature}</motion.p>
+          <motion.div initial={rise} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.8, delay: 0.76, ease: cinematicEase }} className="mt-9 flex flex-col gap-3 sm:flex-row"><MagneticLink href={`/${locale}/doki`} className="claris-flow-button group inline-flex min-h-11 items-center justify-center gap-3 rounded-full px-6 py-3 text-xs font-extrabold uppercase tracking-[0.16em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">{copy.hero.primaryCta}<FaArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" /></MagneticLink><MagneticLink href={`/${locale}/music`} className="claris-flow-button claris-flow-button--machine group inline-flex min-h-11 items-center justify-center gap-3 rounded-full px-6 py-3 text-xs font-extrabold uppercase tracking-[0.16em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">{copy.hero.secondaryCta}<FaArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" /></MagneticLink></motion.div>
+        </motion.div>
+        <motion.aside initial={rise} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.9, delay: 0.45, ease: cinematicEase }} className="hidden border-l border-white/15 pl-7 md:block"><p className="text-xs font-bold uppercase tracking-[0.26em] text-fuchsia-200">{copy.hero.machineLabel}</p><p className="mt-3 max-w-xs text-sm leading-6 text-white/75">{copy.hero.machineDescription}</p></motion.aside>
+      </div></div>
+      <a href="#identity" className="group absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 items-center gap-3 text-[9px] font-bold uppercase tracking-[0.24em] text-white/60 transition hover:text-white md:flex">{copy.hero.scroll}<motion.span animate={reducedMotion ? undefined : { y: [0, 5, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}><FaArrowDown className="h-3 w-3" /></motion.span></a>
+    </section>
   );
+}
+
+function HeroPanel({ image, className, machine = false, x, y }) {
+  const reducedMotion = useReducedMotion();
+  return <div className={`relative overflow-hidden ${className}`}><motion.div style={reducedMotion ? undefined : { x, y }} animate={reducedMotion ? undefined : { scale: [1.05, 1.1, 1.05] }} transition={{ duration: machine ? 19 : 23, repeat: Infinity, ease: "easeInOut" }} className="absolute -inset-8"><Image src={image} alt="" fill priority sizes="(min-width: 768px) 70vw, 100vw" className={`object-cover ${machine ? "object-center opacity-75" : "object-center"}`} /></motion.div><div className={`absolute inset-0 ${machine ? "bg-fuchsia-950/35" : "bg-teal-950/15"}`} /></div>;
 }
