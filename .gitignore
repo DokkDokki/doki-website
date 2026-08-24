@@ -24,6 +24,9 @@
 /sites-build.tar.gz
 /sites-package-stage/
 
+# local high-resolution media masters
+/source-assets/
+
 # misc
 .DS_Store
 *.pem

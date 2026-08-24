@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
-const AUTO_COMPLETE_TIME = 1550;
-const SIGNATURE_SRC = "/images/brand/doki-signature-hand.svg";
+const AUTO_COMPLETE_TIME = 4000;
+const SIGNATURE_SRC = "/images/brand/doki-signature-new.svg";
+const SIGNATURE_ANIMATION_SRC = "/images/brand/doki-logo-animation-new-alpha.webm";
 const EASE_OUT = [0.22, 1, 0.36, 1];
 const WARP_EASE = [0.7, 0, 0.84, 0];
 const WARP_RAYS = Array.from({ length: 12 }, (_, index) => index * 30);
@@ -14,6 +15,7 @@ const WARP_RAYS = Array.from({ length: 12 }, (_, index) => index * 30);
 export default function TerminalBootIntro({ onComplete }) {
   const { copy } = useLandingLocale();
   const skipButtonRef = useRef(null);
+  const [videoFailed, setVideoFailed] = useState(false);
 
   useEffect(() => {
     skipButtonRef.current?.focus();
@@ -88,7 +90,7 @@ export default function TerminalBootIntro({ onComplete }) {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 5.5, filter: "blur(9px)", transition: { duration: 0.65, ease: WARP_EASE } }}
           transition={{ duration: 0.3, ease: EASE_OUT }}
-          className="relative aspect-[659/337] w-full"
+          className="relative aspect-video w-full"
         >
           <Image
             src={SIGNATURE_SRC}
@@ -97,7 +99,18 @@ export default function TerminalBootIntro({ onComplete }) {
             preload
             sizes="(max-width: 768px) 100vw, 736px"
             unoptimized
-            className="object-contain brightness-0 invert [filter:brightness(0)_invert(1)_drop-shadow(0_0_7px_rgba(255,255,255,0.3))_drop-shadow(0_0_18px_rgba(103,232,209,0.42))]"
+            className={`object-contain brightness-0 invert transition-opacity duration-300 [filter:brightness(0)_invert(1)_drop-shadow(0_0_7px_rgba(255,255,255,0.3))_drop-shadow(0_0_18px_rgba(103,232,209,0.42))] ${videoFailed ? "opacity-100" : "opacity-0"}`}
+          />
+          <video
+            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${videoFailed ? "opacity-0" : "opacity-100"}`}
+            src={SIGNATURE_ANIMATION_SRC}
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+            onEnded={onComplete}
+            onError={() => setVideoFailed(true)}
           />
         </motion.div>
       </div>
