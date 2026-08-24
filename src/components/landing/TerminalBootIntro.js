@@ -5,9 +5,10 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
-const AUTO_COMPLETE_TIME = 4000;
+const ANIMATION_COMPLETE_TIME = 2350;
+const AUTO_COMPLETE_TIME = 5000;
 const SIGNATURE_SRC = "/images/brand/doki-signature-new.svg";
-const SIGNATURE_ANIMATION_SRC = "/images/brand/doki-logo-animation-new-alpha.webm";
+const SIGNATURE_ANIMATION_SRC = "/images/brand/doki-logo-animation-new-alpha.webp";
 const EASE_OUT = [0.22, 1, 0.36, 1];
 const WARP_EASE = [0.7, 0, 0.84, 0];
 const WARP_RAYS = Array.from({ length: 12 }, (_, index) => index * 30);
@@ -15,7 +16,8 @@ const WARP_RAYS = Array.from({ length: 12 }, (_, index) => index * 30);
 export default function TerminalBootIntro({ onComplete }) {
   const { copy } = useLandingLocale();
   const skipButtonRef = useRef(null);
-  const [videoFailed, setVideoFailed] = useState(false);
+  const animationTimerRef = useRef(null);
+  const [animationFailed, setAnimationFailed] = useState(false);
 
   useEffect(() => {
     skipButtonRef.current?.focus();
@@ -30,6 +32,7 @@ export default function TerminalBootIntro({ onComplete }) {
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.clearTimeout(finishTimer);
+      window.clearTimeout(animationTimerRef.current);
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onComplete]);
@@ -99,18 +102,22 @@ export default function TerminalBootIntro({ onComplete }) {
             preload
             sizes="(max-width: 768px) 100vw, 736px"
             unoptimized
-            className={`object-contain brightness-0 invert transition-opacity duration-300 [filter:brightness(0)_invert(1)_drop-shadow(0_0_7px_rgba(255,255,255,0.3))_drop-shadow(0_0_18px_rgba(103,232,209,0.42))] ${videoFailed ? "opacity-100" : "opacity-0"}`}
+            className={`object-contain brightness-0 invert transition-opacity duration-300 [filter:brightness(0)_invert(1)_drop-shadow(0_0_7px_rgba(255,255,255,0.3))_drop-shadow(0_0_18px_rgba(103,232,209,0.42))] ${animationFailed ? "opacity-100" : "opacity-0"}`}
           />
-          <video
-            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${videoFailed ? "opacity-0" : "opacity-100"}`}
+          <Image
+            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${animationFailed ? "opacity-0" : "opacity-100"}`}
             src={SIGNATURE_ANIMATION_SRC}
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
+            alt=""
+            fill
+            preload
+            sizes="(max-width: 768px) 100vw, 736px"
+            unoptimized
             aria-hidden="true"
-            onEnded={onComplete}
-            onError={() => setVideoFailed(true)}
+            onLoad={() => {
+              window.clearTimeout(animationTimerRef.current);
+              animationTimerRef.current = window.setTimeout(onComplete, ANIMATION_COMPLETE_TIME);
+            }}
+            onError={() => setAnimationFailed(true)}
           />
         </motion.div>
       </div>
