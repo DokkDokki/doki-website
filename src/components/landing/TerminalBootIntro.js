@@ -6,14 +6,8 @@ import { motion } from "motion/react";
 import { useLandingLocale } from "@/components/landing/LandingLocaleProvider";
 
 const AUTO_COMPLETE_TIME = 1650;
-const SIGNATURE_SRC = "/images/brand/doki-signature-vector.svg";
+const SIGNATURE_SRC = "/images/brand/doki-signature-hand.svg";
 const EASE_OUT = [0.22, 1, 0.36, 1];
-
-const SPARKLES = [
-  { className: "left-[9%] top-[37%]", delay: 0.45, size: "h-1.5 w-1.5" },
-  { className: "right-[13%] top-[29%]", delay: 0.72, size: "h-2 w-2" },
-  { className: "bottom-[31%] right-[7%]", delay: 0.95, size: "h-1 w-1" },
-];
 
 export default function TerminalBootIntro({ onComplete }) {
   const { copy } = useLandingLocale();
@@ -64,33 +58,12 @@ export default function TerminalBootIntro({ onComplete }) {
       />
 
       <div className="relative w-full max-w-[46rem]">
-        {SPARKLES.map((sparkle) => (
-          <motion.span
-            key={sparkle.className}
-            aria-hidden="true"
-            className={`absolute z-10 rounded-full bg-white shadow-[0_0_12px_rgba(125,211,252,0.95)] ${sparkle.className} ${sparkle.size}`}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: [0, 1.45, 0.85], opacity: [0, 1, 0.45] }}
-            transition={{ duration: 0.7, delay: sparkle.delay, ease: EASE_OUT }}
-          />
-        ))}
-
         <motion.div
-          initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0.35 }}
-          animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1 }}
-          transition={{ duration: 1.25, delay: 0.08, ease: EASE_OUT }}
-          className="relative aspect-[707/382] w-full"
+          initial={{ opacity: 0, scale: 0.975 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3, ease: EASE_OUT }}
+          className="relative aspect-[659/337] w-full"
         >
-          <Image
-            src={SIGNATURE_SRC}
-            alt=""
-            aria-hidden="true"
-            fill
-            loading="eager"
-            sizes="(max-width: 768px) 100vw, 736px"
-            unoptimized
-            className="object-contain brightness-0 invert blur-md opacity-50 [filter:brightness(0)_invert(1)_blur(14px)_drop-shadow(0_0_24px_rgba(103,232,209,0.55))]"
-          />
           <Image
             src={SIGNATURE_SRC}
             alt="Doki handwritten signature"
@@ -98,7 +71,7 @@ export default function TerminalBootIntro({ onComplete }) {
             preload
             sizes="(max-width: 768px) 100vw, 736px"
             unoptimized
-            className="object-contain brightness-0 invert drop-shadow-[0_0_16px_rgba(125,211,252,0.34)]"
+            className="object-contain brightness-0 invert [filter:brightness(0)_invert(1)_drop-shadow(0_0_7px_rgba(255,255,255,0.3))_drop-shadow(0_0_18px_rgba(103,232,209,0.42))]"
           />
         </motion.div>
       </div>
