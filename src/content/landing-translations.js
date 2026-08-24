@@ -20,6 +20,7 @@ const englishShowcase = {
 
 const english = {
   languageName: "English",
+  intro: { label: "Doki signature intro", skip: "Skip", skipLabel: "Skip intro" },
   navigation: { brand: "DOKIMACHINE", about: "Identity", work: "Disciplines", frames: "Frames", contact: "Connect" },
   hero: {
     eyebrow: "Doki / DOKIMACHINE",
@@ -40,6 +41,7 @@ export const landingTranslations = {
   en: english,
   jp: {
     ...english,
+    intro: { label: "Dokiのシグネチャーイントロ", skip: "スキップ", skipLabel: "イントロをスキップ" },
     signature: "次の夢で、また会おう。",
     showcase: { identity: { eyebrow: "ひとり、ふたつの名前、みっつの表現。", title: "DokiとDOKIMACHINE。", intro: "Dokiはマシンの向こう側にいる人。DOKIMACHINEは、そこから広がる音楽の宇宙です。エンジニアリング、写真、音は別々の人生ではなく、同じ好奇心を映す異なるインターフェースです。" }, disciplines: [{ id: "engineering", label: "エンジニアリング", title: "好奇心を動力に、技術で自分を形づくる。", description: "システムとテクノロジーを試しながら、アイデアを形にします。", cta: "Dokiを知る", href: "/doki" }, { id: "music", label: "DOKIMACHINE", title: "音で宇宙を探検する。", description: "トランス、ハウス、アンビエント、そして感情を表現する音声合成で、宇宙を音へ変えるプロジェクトです。", cta: "DOKIMACHINEの音を聴く", href: "/music" }, { id: "photography", label: "写真", title: "日常の小さなものを、レンズの向こうに残す。", description: "電車、コスプレ、街、そして覚えておきたい小さなディテール。", cta: "アーカイブを開く", href: "/photography" }], gallery: { eyebrow: "視覚の記憶", title: "旅の途中のフレーム。" }, instagram: { eyebrow: "Instagramから", title: "その瞬間の、最近のフレーム。", description: "個人と写真の記録から選んだ投稿です。", follow: "アーカイブをフォロー", openPost: "Instagramの投稿を開く", noCaption: "Instagramで見る" }, manifesto: { lines: ["エンジニアリングがマシンをつくる。", "写真が瞬間をとどめる。", "音楽が声を与える。"], note: "DokiとDOKIMACHINEは別々の人生ではなく、同じ好奇心のふたつの表現です。" }, closing: { title: "つながりましょう。", note: "人をフォローする。マシンに入る。あるいは、ただ声をかける。", person: "Dokiを知る", machine: "DOKIMACHINEへ" } },
     languageName: "日本語",
@@ -49,6 +51,7 @@ export const landingTranslations = {
   },
   th: {
     ...english,
+    intro: { label: "อินโทรลายเซ็น Doki", skip: "ข้าม", skipLabel: "ข้ามอินโทร" },
     signature: "แล้วพบกันในความฝันครั้งต่อไป",
     showcase: { identity: { eyebrow: "หนึ่งคน สองชื่อ สามรูปแบบของการแสดงออก", title: "พบกับ Doki และ DOKIMACHINE", intro: "Doki คือคนที่อยู่เบื้องหลังเครื่องจักร ส่วน DOKIMACHINE คือจักรวาลดนตรีที่ต่อยอดออกมา วิศวกรรม ภาพถ่าย และเสียงไม่ใช่ชีวิตที่แยกจากกัน แต่เป็นอินเทอร์เฟซต่างกันของความอยากรู้อยากเห็นเดียวกัน" }, disciplines: [{ id: "engineering", label: "วิศวกรรม", title: "เทคโนโลยีหล่อหลอมตัวตน ด้วยพลังของความอยากรู้อยากเห็น", description: "ทดลองกับระบบและเทคโนโลยีเพื่อทำให้ไอเดียเกิดขึ้นจริง", cta: "สำรวจ Doki", href: "/doki" }, { id: "music", label: "DOKIMACHINE", title: "สำรวจจักรวาลผ่านเสียง", description: "โปรเจกต์ที่เปลี่ยนจักรวาลให้เป็นเสียง ผ่าน trance, house, ambient และการสังเคราะห์เสียงเพื่อถ่ายทอดอารมณ์", cta: "ฟังเสียงของ DOKIMACHINE", href: "/music" }, { id: "photography", label: "ภาพถ่าย", title: "เก็บสิ่งเล็ก ๆ ในชีวิตไว้หลังเลนส์", description: "รถไฟ คอสเพลย์ ถนน และรายละเอียดเล็ก ๆ ที่ควรจดจำ", cta: "เปิดคลังภาพ", href: "/photography" }], gallery: { eyebrow: "ความทรงจำผ่านภาพ", title: "เฟรมระหว่างการเดินทาง" }, instagram: { eyebrow: "จาก Instagram", title: "เฟรมล่าสุดในขณะนั้น", description: "โพสต์ที่คัดสรรมาจากบันทึกชีวิตและภาพถ่าย", follow: "ติดตามคลังภาพ", openPost: "เปิดโพสต์ Instagram", noCaption: "ดูบน Instagram" }, manifesto: { lines: ["วิศวกรรมสร้างเครื่องจักร", "ภาพถ่ายเก็บช่วงเวลา", "ดนตรีมอบเสียงให้มัน"], note: "Doki และ DOKIMACHINE ไม่ใช่ชีวิตที่แยกกัน แต่เป็นสองอินเทอร์เฟซของความอยากรู้อยากเห็นเดียวกัน" }, closing: { title: "มาสร้างการเชื่อมต่อกัน", note: "ติดตามคน เข้าสู่เครื่องจักร หรือเพียงแค่ทักทาย", person: "รู้จัก Doki", machine: "เข้าสู่ DOKIMACHINE" } },
     languageName: "ไทย",
