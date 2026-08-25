@@ -1,16 +1,16 @@
-"use client";
-import Link from "next/link";
+﻿"use client";
 import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SoundCloudEmbed from "@/components/media/SoundCloudEmbed";
 import YouTubeEmbed from "@/components/media/YouTubeEmbed";
+import WorldNav from "@/components/site/WorldNav";
+import SiteFooter from "@/components/site/SiteFooter";
+import { discographyContent, discographyDescriptions } from "@/content/legacy-page-content";
 import {
-  FaArrowLeft,
   FaSoundcloud,
   FaExternalLinkAlt,
   FaMusic,
   FaSearch,
-  FaCompactDisc,
   FaMicrophoneAlt,
   FaTimes,
   FaYoutube,
@@ -18,7 +18,7 @@ import {
   FaTags
 } from "react-icons/fa";
 
-// Cover art renderer — fallback to styled placeholder tile
+// Cover art renderer â€” fallback to styled placeholder tile
 function AlbumArt({ src, alt, className = "" }) {
   if (src) {
     // eslint-disable-next-line @next/next/no-img-element
@@ -96,7 +96,7 @@ const CLARIS_TRACKLIST = [
   { title: "Cosmic Transmission", format: "ALBUM", feat: "GUMI", year: "2024", desc: "Driving 138 BPM Vocal Trance with celestial synths." },
   { title: "Connection", format: "ALBUM", year: "2024", desc: "Melodic instrumental interlude bridging digital boundaries." },
   { title: "Void", format: "ALBUM", feat: "GUMI", year: "2024", desc: "The flagship anthem of the debut album." },
-  { title: "Claris", format: "ALBUM", year: "2024", desc: "Title track — deep progressive euphoric soundscapes." },
+  { title: "Claris", format: "ALBUM", year: "2024", desc: "Title track â€” deep progressive euphoric soundscapes." },
   { title: "Twinkle", format: "ALBUM", feat: "Kagamine Rin", year: "2024", desc: "High-energy J-Trance featuring Rin's bright vocals." },
   { title: "Troposphere (DOKIMACHINE Remix)", format: "REMIX", originalBy: "AQUA", year: "2024", desc: "Official remix for AQUA's classic Troposphere." },
   { title: "Light Trail", format: "ALBUM", feat: "Hatsune Miku", year: "2024", desc: "Emotional closing track with delicate Miku tuning." },
@@ -111,7 +111,7 @@ const SINGLES = [
   { title: "Cosmic Express", format: "SINGLE", feat: "Megurine Luka", youtubeId: "viIYF-Q-b5o", year: "2024", desc: "High-speed 138 BPM Vocal Trance journey through space." },
   { title: "Void (2025 Retake)", format: "SINGLE", feat: "GUMI", year: "2025", desc: "Re-recorded and updated production version of the classic Claris anthem." },
   { title: "Void (2025 Rework)", format: "SINGLE", feat: "GUMI", year: "2025", desc: "Club-ready extended dance mix tailored for DJ sets." },
-  { title: "Void II", format: "SINGLE", feat: "GUMI", youtubeId: "JYncxOM0wOs", year: "2025", desc: "The direct sequel to Void — bigger synths, higher energy, and raw emotion." },
+  { title: "Void II", format: "SINGLE", feat: "GUMI", youtubeId: "JYncxOM0wOs", year: "2025", desc: "The direct sequel to Void â€” bigger synths, higher energy, and raw emotion." },
 ];
 
 const NON_VOCALOID = [
@@ -125,16 +125,16 @@ const NON_VOCALOID = [
 ];
 
 const SPHERE_TRACKS = [
-  { title: "Lineman", format: "WIP", feat: "GUMI", youtubeId: "cpZ9-0SkaHY", year: "2026", desc: "Lead single for Sphere — high-altitude VOCALOID Trance." },
+  { title: "Lineman", format: "WIP", feat: "GUMI", youtubeId: "cpZ9-0SkaHY", year: "2026", desc: "Lead single for Sphere â€” high-altitude VOCALOID Trance." },
   { title: "Reflection (Instrumental Mix)", format: "WIP", year: "2026", desc: "Ambient Trance prelude to Sphere." },
   { title: "Reflection (Vocal Mix)", format: "WIP", year: "2026", desc: "Vocal version slated for the 2nd studio album." },
 ];
 
 const REMIXES = [
-  { title: "Troposphere (DOKIMACHINE Remix)", format: "REMIX", originalBy: "AQUA", year: "2024", desc: "Official remix for AQUA — released on HISAQUA's Troposphere Remixes EP." },
+  { title: "Troposphere (DOKIMACHINE Remix)", format: "REMIX", originalBy: "AQUA", year: "2024", desc: "Official remix for AQUA â€” released on HISAQUA's Troposphere Remixes EP." },
   { title: "NEXTLIGHTER (DOKIMACHINE Remix)", format: "REMIX", originalBy: "Reno", year: "2024", desc: "Full-on Uplifting Trance remix for Reno's NEXTLIGHTER." },
-  { title: "シリウスの歌姫 (DOKIMACHINE Remix)", format: "REMIX", originalBy: "hachiya", year: "2024", desc: "J-Trance makeover for hachiya's classic VOCALOID track." },
-  { title: "スペクトル (DOKIMACHINE Remix)", format: "REMIX", originalBy: "keisei", year: "2024", desc: "High-energy remix prepared for keisei's Spectre." },
+  { title: "ã‚·ãƒªã‚¦ã‚¹ã®æ­Œå§« (DOKIMACHINE Remix)", format: "REMIX", originalBy: "hachiya", year: "2024", desc: "J-Trance makeover for hachiya's classic VOCALOID track." },
+  { title: "ã‚¹ãƒšã‚¯ãƒˆãƒ« (DOKIMACHINE Remix)", format: "REMIX", originalBy: "keisei", year: "2024", desc: "High-energy remix prepared for keisei's Spectre." },
 ];
 
 const MK1_TRACKS = [
@@ -149,7 +149,7 @@ const MK1_TRACKS = [
 ];
 
 // Section wrapper component
-function Section({ title, badge, count, children }) {
+function Section({ title, badge, count, children, copy }) {
   if (count === 0) return null;
 
   return (
@@ -163,7 +163,7 @@ function Section({ title, badge, count, children }) {
         )}
         {typeof count === "number" && (
           <span className="px-3 py-0.5 bg-white/5 border border-white/10 rounded-full text-[11px] font-mono text-slate-400">
-            {count} {count === 1 ? "release" : "releases"}
+            {count} {copy?.releases || (count === 1 ? "release" : "releases")}
           </span>
         )}
         <div className="hidden h-[1px] min-w-8 flex-1 bg-gradient-to-r from-white/10 to-transparent sm:block"></div>
@@ -176,11 +176,13 @@ function Section({ title, badge, count, children }) {
 }
 
 // Enhanced Big Release Card Component
-function ReleaseCard({ title, format, feat, originalBy, youtubeId, cover, year, desc, onSelect }) {
+function ReleaseCard({ title, format, feat, originalBy, youtubeId, cover, year, desc, onSelect, copy }) {
   const artwork = getReleaseArtwork({ cover, youtubeId });
 
   return (
-    <motion.div
+    <motion.button
+      type="button"
+      aria-label={`${title} — ${copy?.expand || "View details"}`}
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -188,7 +190,7 @@ function ReleaseCard({ title, format, feat, originalBy, youtubeId, cover, year, 
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
       onClick={() => onSelect({ title, format, feat, originalBy, youtubeId, cover, artwork, year, desc })}
-      className="group relative bg-[var(--claris-surface)] border border-white/10 rounded-[32px] overflow-hidden cursor-pointer flex flex-col justify-between transition-all duration-300 hover:border-purple-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.18)]"
+      className="group relative w-full min-w-0 appearance-none border border-white/10 bg-[var(--claris-surface)] rounded-[32px] overflow-hidden text-left cursor-pointer flex flex-col justify-between transition-all duration-300 hover:border-purple-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300"
     >
       <div>
         {/* BIG ALBUM COVER JACKET */}
@@ -208,7 +210,7 @@ function ReleaseCard({ title, format, feat, originalBy, youtubeId, cover, year, 
           {/* HOVER EXPAND INDICATOR OVERLAY */}
           <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <span className="px-5 py-2.5 bg-white text-black font-bold text-xs uppercase tracking-widest rounded-full shadow-2xl transform scale-90 group-hover:scale-100 transition-transform flex items-center gap-2">
-              <FaPlay size={10} /> View & Listen
+              <FaPlay size={10} /> {copy?.expand || "View & Listen"}
             </span>
           </div>
         </div>
@@ -224,7 +226,7 @@ function ReleaseCard({ title, format, feat, originalBy, youtubeId, cover, year, 
               {feat && <VocalistBadge name={`feat. ${feat}`} />}
               {originalBy && (
                 <span className="text-slate-400 text-xs italic">
-                  Original by {originalBy}
+                  {copy?.original || "Original by"} {originalBy}
                 </span>
               )}
             </div>
@@ -243,28 +245,46 @@ function ReleaseCard({ title, format, feat, originalBy, youtubeId, cover, year, 
         <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
           {youtubeId ? (
             <>
-              <FaYoutube className="text-red-500" size={13} /> MV Available
+              <FaYoutube className="text-red-500" size={13} /> {copy?.mv || "MV Available"}
             </>
           ) : (
             <>
-              <FaSoundcloud className="text-orange-400" size={13} /> SoundCloud
+              <FaSoundcloud className="text-orange-400" size={13} /> {copy?.soundcloud || "SoundCloud"}
             </>
           )}
         </span>
         <span className="text-[10px] font-bold text-purple-400 uppercase tracking-widest group-hover:translate-x-1 transition-transform">
-          Expand →
+          {copy?.expand || "Expand"}
         </span>
       </div>
-    </motion.div>
+    </motion.button>
   );
 }
 
-export default function DiscographyPage() {
+export default function DiscographyPage({ locale = "en" }) {
+  const copy = discographyContent[locale] || discographyContent.en;
+  const descriptionMap = discographyDescriptions[locale] || {};
+  const localizeTracks = (tracks) => tracks.map((track) => ({ ...track, desc: descriptionMap[track.title] || track.desc }));
+  const clarisTracks = localizeTracks(CLARIS_TRACKLIST);
+  const singles = localizeTracks(SINGLES);
+  const nonVocaloid = localizeTracks(NON_VOCALOID);
+  const sphereTracks = localizeTracks(SPHERE_TRACKS);
+  const remixes = localizeTracks(REMIXES);
+  const mk1Tracks = localizeTracks(MK1_TRACKS);
   const [era, setEra] = useState("mk2");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFormat, setSelectedFormat] = useState("ALL");
   const [selectedVocalist, setSelectedVocalist] = useState("ALL");
   const [selectedRelease, setSelectedRelease] = useState(null);
+
+  useEffect(() => {
+    if (!selectedRelease) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setSelectedRelease(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [selectedRelease]);
 
   const formats = ["ALL", "ALBUM", "SINGLE", "REMIX", "WIP"];
   const vocalists = ["ALL", "GUMI", "Hatsune Miku", "Kagamine Rin", "Megurine Luka", "Hanakuma Chifuyu", "Instrumental"];
@@ -296,12 +316,12 @@ export default function DiscographyPage() {
     });
   };
 
-  const filteredClaris = filterTracks(CLARIS_TRACKLIST);
-  const filteredSingles = filterTracks(SINGLES);
-  const filteredNonVocaloid = filterTracks(NON_VOCALOID);
-  const filteredSphere = filterTracks(SPHERE_TRACKS);
-  const filteredRemixes = filterTracks(REMIXES);
-  const filteredMk1 = filterTracks(MK1_TRACKS);
+  const filteredClaris = filterTracks(clarisTracks);
+  const filteredSingles = filterTracks(singles);
+  const filteredNonVocaloid = filterTracks(nonVocaloid);
+  const filteredSphere = filterTracks(sphereTracks);
+  const filteredRemixes = filterTracks(remixes);
+  const filteredMk1 = filterTracks(mk1Tracks);
 
   const totalMk2Matches =
     filteredClaris.length +
@@ -315,18 +335,9 @@ export default function DiscographyPage() {
   return (
     <div className="claris-page min-h-screen overflow-x-clip text-slate-200 selection:bg-fuchsia-400/30 font-[family-name:var(--font-nunito)]">
 
-      {/* NAVBAR */}
-      <nav className="claris-nav w-full backdrop-blur-md border-b sticky top-0 z-50">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/en/music" className="flex min-h-11 items-center gap-2 group text-slate-400 hover:text-white transition-colors">
-            <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Dokimachine</span>
-          </Link>
-          <div className="flex items-center gap-4"><Link href="/en/doki" className="min-h-11 pt-3 text-[10px] font-bold uppercase tracking-widest text-teal-200 hover:text-white">Doki</Link><div className="hidden font-light tracking-[0.2em] text-white/40 text-sm uppercase items-center gap-2 sm:flex"><FaCompactDisc className="text-purple-400 animate-spin-slow" /><span>Releases // Discography</span></div></div>
-        </div>
-      </nav>
+      <WorldNav locale={locale} world="music" />
 
-      <main className="max-w-[1100px] mx-auto min-w-0 px-4 py-14 sm:px-6 sm:py-16 md:py-24">
+        <main className="mx-auto min-w-0 max-w-[1100px] px-5 py-16 sm:px-8 sm:py-20 md:py-24">
 
         {/* HEADER */}
         <motion.header
@@ -336,31 +347,31 @@ export default function DiscographyPage() {
           className="mb-12"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-500/10 border border-purple-500/20 rounded-full text-[10px] font-bold text-purple-400 tracking-[0.2em] uppercase mb-6">
-            <FaTags size={10} /> Official Release Catalog
+            <FaTags size={10} /> {copy.catalog}
           </div>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-6">
-            Releases.
+          <h1 className="mb-6 text-5xl font-black leading-none tracking-tighter text-white sm:text-7xl">
+            {copy.title}
           </h1>
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed">
-            Every album, EP, single, and remix produced under the Dokimachine system.
+            {copy.intro}
           </p>
 
           {/* QUICK STATS */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/5">
+          <div className="mt-8 grid grid-cols-1 gap-3 border-t border-white/5 pt-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="bg-white/5 border border-white/5 p-4 rounded-2xl">
-              <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">Debut Album</p>
+              <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">{copy.debut}</p>
               <p className="text-white font-bold text-lg">Claris (2024)</p>
             </div>
             <div className="bg-white/5 border border-white/5 p-4 rounded-2xl">
-              <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">2nd Album</p>
+              <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">{copy.second}</p>
               <p className="text-white font-bold text-lg">Sphere (In Prep)</p>
             </div>
             <div className="bg-white/5 border border-white/5 p-4 rounded-2xl">
-              <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">Catalog Size</p>
+              <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">{copy.size}</p>
               <p className="text-white font-bold text-lg">35+ Releases</p>
             </div>
             <div className="bg-white/5 border border-white/5 p-4 rounded-2xl">
-              <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">Main Genre</p>
+              <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">{copy.genre}</p>
               <p className="text-white font-bold text-lg">Trance & Vocaloid</p>
             </div>
           </div>
@@ -377,14 +388,14 @@ export default function DiscographyPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search releases, vocalists, or original artists..."
+                placeholder={copy.search}
                 className="w-full bg-white/5 border border-white/10 rounded-full pl-11 pr-10 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors"
-                  aria-label="Clear search"
+                  aria-label={copy.clear}
                 >
                   <FaTimes size={12} />
                 </button>
@@ -399,7 +410,7 @@ export default function DiscographyPage() {
                   era === "mk2" ? "bg-purple-500 text-black shadow-md" : "text-slate-400 hover:text-white"
                 }`}
               >
-                Mk2 · Present
+                Mk2 · {copy.present}
               </button>
               <button
                 onClick={() => setEra("mk1")}
@@ -407,7 +418,7 @@ export default function DiscographyPage() {
                   era === "mk1" ? "bg-purple-500 text-black shadow-md" : "text-slate-400 hover:text-white"
                 }`}
               >
-                Mk1 · Legacy
+                Mk1 · {copy.legacy}
               </button>
             </div>
           </div>
@@ -417,7 +428,7 @@ export default function DiscographyPage() {
             {/* Format Filter */}
             <div className="flex w-full min-w-0 items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
               <span className="text-[10px] font-bold uppercase tracking-widest text-purple-400 shrink-0 w-16">
-                Format:
+                {copy.format}:
               </span>
               {formats.map((fmt) => (
                 <button
@@ -437,7 +448,7 @@ export default function DiscographyPage() {
             {/* Vocalist Filter */}
             <div className="flex w-full min-w-0 items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 shrink-0 w-16">
-                Vocalist:
+                {copy.vocalist}:
               </span>
               {vocalists.map((v) => (
                 <button
@@ -473,7 +484,7 @@ export default function DiscographyPage() {
                     <div>
                       <div className="flex items-center gap-3 mb-6">
                         <span className="px-3 py-1 bg-purple-500 text-black rounded-full text-[9px] font-black tracking-widest uppercase">
-                          ピックアップ作品 // FEATURED RELEASE
+                          {copy.featured}
                         </span>
                         <FormatBadge format="ALBUM" />
                       </div>
@@ -488,7 +499,7 @@ export default function DiscographyPage() {
                           rel="noreferrer"
                           className="inline-flex px-8 py-3 bg-white text-black rounded-full font-bold hover:scale-105 transition-all items-center gap-2 text-sm shadow-lg"
                         >
-                          Listen on SoundCloud <FaSoundcloud />
+                          {copy.listen} <FaSoundcloud />
                         </a>
                       </div>
                     </div>
@@ -500,10 +511,10 @@ export default function DiscographyPage() {
                   {/* TRACKLIST */}
                   <div className="relative z-10 mt-10 pt-8 border-t border-white/10">
                     <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] mb-4">
-                      Album Tracklist ({CLARIS_TRACKLIST.length} Tracks)
+                      {copy.tracklist} ({clarisTracks.length} {copy.tracks})
                     </p>
                     <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
-                      {CLARIS_TRACKLIST.map((t, i) => (
+                      {clarisTracks.map((t, i) => (
                         <li key={t.title} className="flex items-start gap-3 text-sm">
                           <span className="text-purple-400 font-mono text-xs w-5 shrink-0 mt-0.5">{String(i + 1).padStart(2, "0")}</span>
                           <div className="min-w-0">
@@ -522,40 +533,40 @@ export default function DiscographyPage() {
 
             {/* ALBUM TRACKS (When filtering) */}
             {(searchQuery || selectedFormat !== "ALL" || selectedVocalist !== "ALL") && (
-              <Section title="Claris (Album Tracks)" badge="1st Studio Album" count={filteredClaris.length}>
+              <Section copy={copy} title="Claris (Album Tracks)" badge="1st Studio Album" count={filteredClaris.length}>
                 {filteredClaris.map((t) => (
-                  <ReleaseCard key={t.title} cover={CLARIS_COVER} {...t} onSelect={setSelectedRelease} />
+                  <ReleaseCard key={t.title} cover={CLARIS_COVER} {...t} onSelect={setSelectedRelease} copy={copy} />
                 ))}
               </Section>
             )}
 
-            <Section title="Singles" badge="Claris Era & Next Releases" count={filteredSingles.length}>
+            <Section copy={copy} title="Singles" badge="Claris Era & Next Releases" count={filteredSingles.length}>
               {filteredSingles.map((t) => (
-                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} />
+                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} copy={copy} />
               ))}
             </Section>
 
-            <Section title="Non-VOCALOID Releases" badge="Instrumentals & Vocal Mixes" count={filteredNonVocaloid.length}>
+            <Section copy={copy} title="Non-VOCALOID Releases" badge="Instrumentals & Vocal Mixes" count={filteredNonVocaloid.length}>
               {filteredNonVocaloid.map((t) => (
-                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} />
+                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} copy={copy} />
               ))}
             </Section>
 
-            <Section title="Sphere" badge="2nd Studio Album · In Development" count={filteredSphere.length}>
+            <Section copy={copy} title="Sphere" badge="2nd Studio Album · In Development" count={filteredSphere.length}>
               {filteredSphere.map((t) => (
-                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} />
+                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} copy={copy} />
               ))}
             </Section>
 
-            <Section title="Remixes" badge="Official Remixes & Bootlegs" count={filteredRemixes.length}>
+            <Section copy={copy} title="Remixes" badge="Official Remixes & Bootlegs" count={filteredRemixes.length}>
               {filteredRemixes.map((t) => (
-                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} />
+                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} copy={copy} />
               ))}
             </Section>
 
             {totalMk2Matches === 0 && (
               <div className="py-20 text-center bg-[var(--claris-ink-soft)] border border-white/5 rounded-3xl">
-                <p className="text-slate-400 text-lg mb-2">No releases match your filter criteria.</p>
+                <p className="text-slate-400 text-lg mb-2">{copy.noMatches}</p>
                 <button
                   onClick={() => {
                     setSearchQuery("");
@@ -564,7 +575,7 @@ export default function DiscographyPage() {
                   }}
                   className="mt-4 px-6 py-2 bg-purple-500 text-black font-bold text-xs uppercase tracking-widest rounded-full hover:bg-white transition-all"
                 >
-                  Reset All Filters
+                  {copy.reset}
                 </button>
               </div>
             )}
@@ -573,15 +584,15 @@ export default function DiscographyPage() {
 
         {era === "mk1" && (
           <>
-            <Section title="Mk1 Era" badge="2019–2022 · Legacy Catalog" count={filteredMk1.length}>
+            <Section copy={copy} title="Mk1 Era" badge="2019–2022 · Legacy Catalog" count={filteredMk1.length}>
               {filteredMk1.map((t) => (
-                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} />
+                <ReleaseCard key={t.title} {...t} onSelect={setSelectedRelease} copy={copy} />
               ))}
             </Section>
 
             {totalMk1Matches === 0 && (
               <div className="py-20 text-center bg-[var(--claris-ink-soft)] border border-white/5 rounded-3xl">
-                <p className="text-slate-400 text-lg mb-2">No legacy tracks match your filter criteria.</p>
+                <p className="text-slate-400 text-lg mb-2">{copy.noLegacy}</p>
                 <button
                   onClick={() => {
                     setSearchQuery("");
@@ -590,7 +601,7 @@ export default function DiscographyPage() {
                   }}
                   className="mt-4 px-6 py-2 bg-purple-500 text-black font-bold text-xs uppercase tracking-widest rounded-full hover:bg-white transition-all"
                 >
-                  Reset All Filters
+                  {copy.reset}
                 </button>
               </div>
             )}
@@ -600,7 +611,7 @@ export default function DiscographyPage() {
         {/* MORE LINKS */}
         <div className="mt-8 text-center">
           <a href="https://soundcloud.com/doki_chibi" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
-            View full catalog on SoundCloud <FaExternalLinkAlt size={12} />
+            {copy.fullCatalog} <FaExternalLinkAlt size={12} />
           </a>
         </div>
 
@@ -609,7 +620,7 @@ export default function DiscographyPage() {
       {/* EXPANDABLE RELEASE LIGHTBOX MODAL */}
       <AnimatePresence>
         {selectedRelease && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-10 overflow-hidden">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden p-3 sm:p-6 md:p-10" role="dialog" aria-modal="true" aria-label={selectedRelease.title}>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -629,7 +640,7 @@ export default function DiscographyPage() {
               <button
                 onClick={() => setSelectedRelease(null)}
                 className="absolute top-5 right-5 w-10 h-10 bg-white/10 hover:bg-white text-white hover:text-black rounded-full flex items-center justify-center transition-all z-30 backdrop-blur-md border border-white/10"
-                aria-label="Close modal"
+                aria-label={copy.clear}
               >
                 <FaTimes size={16} />
               </button>
@@ -657,7 +668,7 @@ export default function DiscographyPage() {
               </div>
 
               {/* RIGHT: DETAILS, DESCRIPTION & MEDIA PLAYER */}
-              <div className="flex-1 p-6 md:p-10 flex flex-col justify-between overflow-y-auto custom-scrollbar">
+              <div className="min-w-0 flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
                 <div>
                   <div className="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-[0.3em] mb-2">
                     Dokimachine Catalog // {selectedRelease.format || "RELEASE"}
@@ -669,7 +680,7 @@ export default function DiscographyPage() {
 
                   {selectedRelease.originalBy && (
                     <p className="text-slate-400 text-sm italic mb-4">
-                      Original composition by <strong className="text-white">{selectedRelease.originalBy}</strong>
+                      {copy.original} <strong className="text-white">{selectedRelease.originalBy}</strong>
                     </p>
                   )}
 
@@ -685,7 +696,7 @@ export default function DiscographyPage() {
                   {selectedRelease.youtubeId && (
                     <div className="my-6">
                       <p className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                        <FaYoutube className="text-red-500" size={14} /> Official Music Video / Audio
+                        <FaYoutube className="text-red-500" size={14} /> {copy.video}
                       </p>
                       <div className="rounded-2xl overflow-hidden border border-white/10 shadow-lg">
                         <YouTubeEmbed videoId={selectedRelease.youtubeId} />
@@ -695,14 +706,14 @@ export default function DiscographyPage() {
                 </div>
 
                 {/* PLATFORM STREAMING LINKS */}
-                <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 mt-6">
+                <div className="mt-6 flex flex-wrap items-stretch gap-3 border-t border-white/10 pt-6">
                   <a
                     href="https://soundcloud.com/doki_chibi"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500/10 border border-orange-500/30 text-orange-400 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-orange-500 hover:text-black transition-all"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-5 py-3 text-center text-xs font-bold uppercase tracking-widest text-orange-400 transition-all hover:bg-orange-500 hover:text-black"
                   >
-                    Listen on SoundCloud <FaSoundcloud size={14} />
+                    {copy.listen} <FaSoundcloud size={14} />
                   </a>
 
                   {selectedRelease.youtubeId && (
@@ -712,7 +723,7 @@ export default function DiscographyPage() {
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 px-6 py-3 bg-red-500/10 border border-red-500/30 text-red-400 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all"
                     >
-                      Watch on YouTube <FaYoutube size={14} />
+                      {copy.video} <FaYoutube size={14} />
                     </a>
                   )}
                 </div>
@@ -722,12 +733,9 @@ export default function DiscographyPage() {
         )}
       </AnimatePresence>
 
-      {/* FOOTER */}
-      <footer className="border-t border-white/5 py-12 text-center text-slate-500 text-sm">
-        <p className="tracking-widest uppercase text-[10px] font-bold mb-4">Sonic Integrity Guaranteed</p>
-        <p>© {new Date().getFullYear()} DOKIMACHINE</p>
-      </footer>
+      <SiteFooter locale={locale} />
 
     </div>
   );
 }
+

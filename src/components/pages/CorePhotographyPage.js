@@ -27,12 +27,12 @@ export default function CorePhotographyPage({ locale }) {
   return (
     <div className="claris-page min-h-screen overflow-x-clip text-slate-100">
       <WorldNav locale={locale} world="doki" />
-      <main className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
+      <main className="mx-auto min-w-0 max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
         <FadeZoom as="header">
           <p className="text-xs font-bold uppercase tracking-[.28em] text-teal-300">
             {c.eyebrow}
           </p>
-          <h1 className="mt-5 text-6xl font-light tracking-tight sm:text-8xl">
+          <h1 className="mt-5 text-5xl font-light leading-none tracking-tight sm:text-7xl lg:text-8xl">
             {c.title}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
@@ -40,7 +40,7 @@ export default function CorePhotographyPage({ locale }) {
           </p>
         </FadeZoom>
         <div
-          className="mt-12 flex flex-wrap gap-2"
+          className="mt-10 flex flex-wrap gap-2 sm:mt-12"
           role="group"
           aria-label={ui.photo.filtersLabel}
         >
@@ -48,7 +48,7 @@ export default function CorePhotographyPage({ locale }) {
             <button
               key={x}
               onClick={() => setFilter(x)}
-              className={`min-h-11 rounded-full border px-5 text-xs font-bold uppercase tracking-widest ${filter === x ? "border-teal-300 bg-teal-300 text-slate-950" : "border-white/10 bg-white/5 text-white/70 hover:border-teal-300/40"}`}
+              className={`min-h-11 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-widest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 sm:px-5 ${filter === x ? "border-teal-300 bg-teal-300 text-slate-950" : "border-white/10 bg-white/5 text-white/70 hover:border-teal-300/40"}`}
             >
               {ui.photo.filters[x]}
             </button>
@@ -59,7 +59,7 @@ export default function CorePhotographyPage({ locale }) {
             <StaggerItem key={p[0]}>
               <button
                 onClick={() => setSelected(p)}
-                className="group relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/10 text-left"
+                className="group relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/10 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
               >
                 <Image
                   src={p[2]}
@@ -104,7 +104,7 @@ export default function CorePhotographyPage({ locale }) {
         >
           <button
             onClick={close}
-            className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white"
+            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 sm:right-5 sm:top-5"
             aria-label={ui.photo.closeDetails}
           >
             <FaTimes />

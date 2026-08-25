@@ -32,7 +32,7 @@ export default function ContactPanel({
   const labels = { email: copy.contact.email, personalInstagram: copy.contact.personalInstagram, photographyInstagram: copy.contact.photographyInstagram, github: "GitHub", discord: "Discord", soundcloud: "SoundCloud", youtube: "YouTube", instagram: "Instagram" };
   return (
     <section
-      className={`rounded-[2rem] border p-8 text-center sm:p-12 ${world === "doki" ? "border-teal-300/20 bg-teal-300/5" : "border-fuchsia-300/20 bg-fuchsia-300/5"}`}
+      className={`min-w-0 rounded-[2rem] border p-6 text-center sm:p-12 ${world === "doki" ? "border-teal-300/20 bg-teal-300/5" : "border-fuchsia-300/20 bg-fuchsia-300/5"}`}
     >
       <p className="text-[10px] font-bold uppercase tracking-[.28em] text-white/45">
         {copy.contact.eyebrow}
@@ -47,7 +47,7 @@ export default function ContactPanel({
             href={href}
             target={href.startsWith("http") ? "_blank" : undefined}
             rel="noreferrer"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 text-xs font-bold uppercase tracking-[.12em] text-white transition hover:bg-white hover:text-slate-950"
+            className="inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-center text-xs font-bold uppercase tracking-[.12em] text-white transition hover:bg-white hover:text-slate-950 sm:px-5"
           >
             <Icon /> {labels[key]}
           </a>

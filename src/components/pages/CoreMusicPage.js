@@ -25,7 +25,7 @@ export default function CoreMusicPage({ locale }) {
   return (
     <div className="machine-page min-h-screen overflow-x-clip text-slate-100">
       <WorldNav locale={locale} world="music" />
-      <main className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
+      <main className="mx-auto min-w-0 max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
         <FadeZoom
           as="header"
           className="grid gap-10 lg:grid-cols-[1.15fr_.85fr] lg:items-end"
@@ -34,14 +34,14 @@ export default function CoreMusicPage({ locale }) {
             <p className="text-xs font-bold uppercase tracking-[.28em] text-fuchsia-300">
               {c.eyebrow}
             </p>
-            <h1 className="mt-5 text-6xl font-black tracking-tighter sm:text-8xl">
+            <h1 className="mt-5 text-5xl font-black leading-none tracking-tighter sm:text-7xl lg:text-8xl">
               {c.title}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
               {c.intro}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {c.facts.map(([label, value]) => (
               <div key={label} className="machine-glass rounded-2xl border p-4">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-fuchsia-300">
@@ -60,7 +60,7 @@ export default function CoreMusicPage({ locale }) {
                   <p className="text-xs font-bold uppercase tracking-[.28em] text-fuchsia-300">
                     {ui.music.featuredEyebrow}
                   </p>
-                  <h2 className="mt-4 text-6xl font-black tracking-tighter">
+                  <h2 className="mt-4 text-5xl font-black tracking-tighter sm:text-6xl">
                     CLARIS
                   </h2>
                   <p className="mt-5 max-w-lg text-lg leading-8 text-slate-300">
@@ -70,7 +70,7 @@ export default function CoreMusicPage({ locale }) {
                     href="https://soundcloud.com/doki_chibi/sets/claris"
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-xs font-bold uppercase tracking-widest text-slate-950"
+                    className="mt-7 inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-center text-xs font-bold uppercase tracking-widest text-slate-950 sm:px-6"
                   >
                     {ui.music.listen} <FaSoundcloud />
                   </a>
@@ -100,8 +100,8 @@ export default function CoreMusicPage({ locale }) {
             ))}
           </Stagger>
           <Link
-            href="/en/music/discography"
-            className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full border border-fuchsia-300/25 px-5 text-xs font-bold uppercase tracking-widest text-fuchsia-200"
+            href={`/${locale}/music/discography`}
+            className="mt-7 inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-full border border-fuchsia-300/25 px-5 py-3 text-center text-xs font-bold uppercase tracking-widest text-fuchsia-200"
           >
             {ui.music.discography} <FaArrowRight />
           </Link>

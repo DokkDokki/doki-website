@@ -83,6 +83,13 @@ export default function DokiProfilePage({ locale }) {
               <h2 className="mt-4 max-w-3xl text-4xl font-light tracking-tight sm:text-6xl">
                 {c.journeyTitle}
               </h2>
+              <Link
+                href={`/${locale}/doki/biography`}
+                className="claris-flow-button mt-7 inline-flex min-h-11 items-center gap-3 rounded-full px-5 py-3 text-[10px] font-bold uppercase tracking-[.15em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                {c.biographyLink}
+                <FaArrowRight />
+              </Link>
             </FadeZoom>
             <div className="mt-14 space-y-5">
               {c.chapters.map((chapter, index) => (
@@ -110,18 +117,24 @@ export default function DokiProfilePage({ locale }) {
                       <p className="max-w-2xl text-base leading-8 text-slate-300">
                         {chapter.text}
                       </p>
-                      <p className="mt-5 border-l border-white/15 pl-4 text-sm italic leading-6 text-white/50">
-                        {c.biographyPlaceholder}
-                      </p>
-                      {index === 2 && (
+                      <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                         <Link
-                          href={`/${locale}/doki/engineering`}
-                          className="claris-flow-button mt-7 inline-flex min-h-11 items-center gap-3 rounded-full px-5 py-3 text-[10px] font-bold uppercase tracking-[.15em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                          href={`/${locale}/doki/biography#${chapter.biographyId}`}
+                          className="inline-flex min-h-11 items-center gap-3 text-[10px] font-bold uppercase tracking-[.15em] text-teal-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
                         >
-                          {c.professionalLink}
+                          {c.biographyChapterLink}
                           <FaArrowRight />
                         </Link>
-                      )}
+                        {index === 2 && (
+                          <Link
+                            href={`/${locale}/doki/engineering`}
+                            className="claris-flow-button inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-full px-5 py-3 text-[10px] font-bold uppercase tracking-[.15em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto"
+                          >
+                            {c.professionalLink}
+                            <FaArrowRight />
+                          </Link>
+                        )}
+                      </div>
                     </div>
                   </article>
                 </FadeZoom>

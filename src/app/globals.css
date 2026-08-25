@@ -218,6 +218,8 @@ h6 {
     color: var(--claris-white);
     transition: box-shadow 350ms cubic-bezier(0.22, 1, 0.36, 1), transform 350ms cubic-bezier(0.22, 1, 0.36, 1), color 350ms ease;
     will-change: background-position, transform;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .claris-flow-button:hover,
@@ -237,6 +239,14 @@ h6 {
 
   .claris-flow-button:active {
     transform: translateY(1px) scale(0.985);
+  }
+
+  .claris-page button:focus-visible,
+  .claris-page a:focus-visible,
+  .machine-page button:focus-visible,
+  .machine-page a:focus-visible {
+    outline: 2px solid var(--claris-mint);
+    outline-offset: 3px;
   }
 }
 

@@ -99,7 +99,7 @@ function DisciplineCard({ discipline, media, index, locale }) {
     >
       <Link
         href={`/${locale}${discipline.href}`}
-        className="claris-glass group relative flex min-h-[440px] overflow-hidden rounded-[2rem] border p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 sm:p-9"
+        className="claris-glass group relative flex min-h-[360px] min-w-0 overflow-hidden rounded-[2rem] border p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 sm:min-h-[440px] sm:p-9"
       >
         <motion.div
           animate={

@@ -1,241 +1,63 @@
 "use client";
+
 import Link from "next/link";
-import { motion } from "motion/react";
-import { FaServer, FaLaptop, FaMicrochip, FaArrowLeft, FaMouse } from "react-icons/fa";
+import { motion, useReducedMotion } from "motion/react";
+import { FaLaptop, FaMicrochip, FaMouse, FaServer } from "react-icons/fa";
+import WorldNav from "@/components/site/WorldNav";
+import SiteFooter from "@/components/site/SiteFooter";
+import { gearContent } from "@/content/legacy-page-content";
 
-export default function GearPage() {
+const gearData = {
+  desktop: [["cpu", "Intel Core i7-12700K"], ["ram", "32GB DDR5-6000 (G.Skill Trident Z5 Neo)"], ["gpu", "RTX 3080 Ti (Gigabyte Vision OC)"], ["chassis", "Corsair iCUE 7000X"], ["cooling", "Corsair iCUE H150i Elite LCD XT 360mm"], ["psu", "Corsair RM1000x Shift"]],
+  storage: [["boot", "Samsung 990 Pro 2TB"], ["secondary", "Samsung 980 Pro 1TB"], ["gaming", "HP EX950 2TB"]],
+  portables: [
+    { title: "MacBook Pro (2021)", tone: "teal", unit: "musicUnit", specs: [["silicon", "Apple M1 Pro"], ["memory", "32GB Unified (CTO)"], ["primaryUse", "Ableton Live, Logic Pro, DJing"]] },
+    { title: "ThinkPad P1 Gen 7", tone: "emerald", unit: "engineeringUnit", specs: [["cpu", "Core Ultra 9 185H"], ["gpu", "RTX 4070 Laptop"], ["primaryUse", "College & Engineering Work"]] },
+  ],
+  interfaces: [
+    { title: "gaming", tone: "teal", specs: [["keyboard", "Razer DeathStalker V2 Pro"], ["mouse", "Razer Basilisk V3 Pro"], ["display", "MSI MPG 274URF QD"]] },
+    { title: "productivity", tone: "emerald", specs: [["keyboard", "NuPhy Air75 V3"], ["mouse", "Logitech MX Master 3S"], ["display", "LG 27UP850N-W"]] },
+  ],
+};
+
+export default function GearPage({ locale = "en" }) {
+  const c = gearContent[locale] || gearContent.en;
+  const reduced = useReducedMotion();
+  const reveal = reduced ? undefined : { opacity: 0, y: 24 };
+  const revealAnimate = reduced ? undefined : { opacity: 1, y: 0 };
+
   return (
-    <div className="claris-page min-h-screen overflow-x-clip text-slate-200 selection:bg-teal-500/30 font-[family-name:var(--font-nunito)]">
-      
-      {/* NAVBAR */}
-      <nav className="claris-nav w-full backdrop-blur-md border-b sticky top-0 z-50">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/en/doki" className="flex min-h-11 items-center gap-2 group text-slate-400 hover:text-white transition-colors">
-            <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Doki</span>
-          </Link>
-          <div className="flex items-center gap-4"><Link href="/en/music" className="min-h-11 pt-3 text-[10px] font-bold uppercase tracking-widest text-fuchsia-200 hover:text-white">Music</Link><div className="hidden font-light tracking-[0.2em] text-white/40 text-sm uppercase sm:block">Spec Sheet V4.0</div></div>
-        </div>
-      </nav>
-
-      <main className="max-w-[1000px] mx-auto px-4 py-14 sm:px-6 sm:py-20">
-        
-        {/* HEADER */}
-        <motion.header 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-24"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
-            Technical <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-500">Inventory.</span>
-          </h1>
-          <p className="text-xl text-slate-400 max-w-2xl leading-relaxed">
-            The specialized hardware and creative tools powering my engineering projects and music production. 
-          </p>
+    <div className="claris-page min-h-screen overflow-x-clip text-slate-200">
+      <WorldNav locale={locale} world="doki" />
+      <main className="mx-auto min-w-0 max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <motion.header initial={reveal} animate={revealAnimate} transition={{ duration: 0.7 }} className="mb-20 max-w-3xl sm:mb-28">
+          <p className="text-xs font-bold uppercase tracking-[.28em] text-teal-300">{c.eyebrow}</p>
+          <h1 className="mt-5 text-5xl font-light leading-[.98] tracking-tight text-white sm:text-7xl">{c.title}</h1>
+          <p className="mt-7 text-lg leading-8 text-slate-300">{c.intro}</p>
         </motion.header>
 
-        {/* 1. THE MAIN ENGINE (CUSTOM PC) */}
-        <motion.section 
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-32"
-        >
-           <div className="flex items-center gap-4 mb-10">
-              <FaMicrochip className="text-teal-400 text-2xl" />
-              <h2 className="text-2xl font-bold text-white tracking-widest uppercase">The Main Engine</h2>
-              <div className="h-[1px] flex-1 bg-white/5"></div>
-           </div>
+        <GearSection icon={FaMicrochip} title={c.sections.main}>
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[.045] p-7 shadow-2xl sm:p-10">
+            <div className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-teal-500/10 blur-3xl" />
+            <div className="relative z-10 grid min-w-0 gap-10 lg:grid-cols-2 lg:gap-14">
+              <div className="min-w-0"><h3 className="text-3xl font-bold uppercase text-white">DESKTOP-DOKI</h3><p className="mt-2 text-xs font-bold uppercase tracking-[.2em] text-teal-300">{c.established}</p><div className="mt-8 space-y-4">{gearData.desktop.map(([label, value]) => <SpecItem key={label} label={c.labels[label]} value={value} />)}</div></div>
+              <div className="min-w-0"><h4 className="flex items-center gap-2 text-sm font-bold text-white"><FaServer className="text-teal-300" />{c.storage}</h4><div className="mt-6 space-y-4">{gearData.storage.map(([label, value]) => <SpecItem key={label} label={c.labels[label]} value={value} />)}</div><h4 className="mt-10 flex items-center gap-2 text-sm font-bold text-white"><FaLaptop className="text-teal-300" />{c.monitor}</h4><p className="mt-5 text-sm font-medium text-white">MSI MPG 274URF QD</p></div>
+            </div>
+          </div>
+        </GearSection>
 
-           <div className="bg-white/5 border border-white/10 rounded-[40px] p-8 md:p-12 relative overflow-hidden group shadow-2xl">
-              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
-                 <div>
-                    <h3 className="text-3xl font-bold text-white mb-2 uppercase">DESKTOP-DOKI</h3>
-                    <p className="text-teal-400 font-bold tracking-widest uppercase text-xs mb-8">Established 2021</p>
-                    
-                    <div className="space-y-4">
-                       <SpecItem label="CPU" value="Intel Core i7-12700K" />
-                       <SpecItem label="RAM" value="32GB DDR5-6000 (G.Skill Trident Z5 Neo)" />
-                       <SpecItem label="GPU" value="RTX 3080 Ti (Gigabyte Vision OC)" />
-                       <SpecItem label="Chassis" value="Corsair iCUE 7000X" />
-                       <SpecItem label="Cooling" value="Corsair iCUE H150i Elite LCD XT 360mm" />
-                       <SpecItem label="PSU" value="Corsair RM1000x Shift" />
-                    </div>
-                 </div>
+        <GearSection icon={FaLaptop} title={c.sections.portables}><div className="grid gap-5 md:grid-cols-2">{gearData.portables.map((item) => <article key={item.title} className="min-w-0 rounded-3xl border border-white/10 bg-white/[.045] p-7 transition hover:-translate-y-1 hover:border-teal-300/30 sm:p-8"><h3 className="text-xl font-bold text-white">{item.title}</h3><p className={`mt-2 text-[10px] font-bold uppercase tracking-[.2em] ${item.tone === "emerald" ? "text-emerald-300" : "text-teal-300"}`}>{c[item.unit]}</p><div className="mt-7 space-y-4">{item.specs.map(([label, value]) => <SpecItem key={label} label={c.labels[label]} value={value} />)}</div></article>)}</div></GearSection>
 
-                 <div>
-                    <h4 className="text-white font-bold mb-6 text-sm flex items-center gap-2">
-                       <FaServer className="text-teal-400" /> Storage & I/O
-                    </h4>
-                    <div className="space-y-4 mb-10">
-                       <SpecItem label="Boot" value="Samsung 990 Pro 2TB" />
-                       <SpecItem label="Secondary" value="Samsung 980 Pro 1TB" />
-                       <SpecItem label="Gaming" value="HP EX950 2TB" />
-                    </div>
+        <GearSection icon={FaMouse} title={c.sections.interfaces}><div className="grid gap-5 md:grid-cols-2">{gearData.interfaces.map((item) => <article key={item.title} className="min-w-0 rounded-3xl border border-white/10 bg-white/[.045] p-7 sm:p-8"><h3 className="flex items-center gap-3 text-lg font-bold text-white"><span className={`h-2 w-2 rounded-full ${item.tone === "emerald" ? "bg-emerald-400" : "bg-teal-400"}`} />{c[item.title]}</h3><div className="mt-7 space-y-4">{item.specs.map(([label, value]) => <SpecItem key={label} label={c.labels[label]} value={value} />)}</div></article>)}</div></GearSection>
 
-                    <h4 className="text-white font-bold mb-6 text-sm flex items-center gap-2">
-                       <FaLaptop className="text-teal-400" /> Primary Monitor
-                    </h4>
-                    <div className="space-y-2">
-                       <p className="text-white text-sm font-medium">MSI MPG 274URF QD</p>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </motion.section>
+        <GearSection icon={FaServer} title={c.sections.lab}><div className="grid gap-5 lg:grid-cols-[1.35fr_.65fr]"><article className="relative min-w-0 overflow-hidden rounded-3xl border border-white/10 bg-white/[.045] p-7 sm:p-8"><FaMicrochip className="relative z-10 mb-6 text-xl text-teal-300" /><h3 className="relative z-10 font-bold text-white">Dell PowerEdge T40</h3><p className="relative z-10 mt-2 text-[10px] font-bold uppercase tracking-[.2em] text-teal-300">{c.homeLab.nas}</p><div className="relative z-10 mt-6 flex flex-wrap gap-2">{["UBUNTU SERVER", "ZFS/EXT4", "DOCKER"].map((tag) => <span key={tag} className="rounded-full border border-white/10 bg-white/[.04] px-3 py-1 text-[9px] font-bold text-teal-300">{tag}</span>)}</div><p className="relative z-10 mt-7 text-sm leading-7 text-slate-400">{c.homeLab.nasText}</p></article><article className="min-w-0 rounded-3xl border border-purple-400/20 bg-gradient-to-br from-purple-500/10 to-transparent p-7 sm:p-8"><FaServer className="mb-6 text-xl text-purple-300" /><h3 className="font-bold text-white">Dell PowerEdge R430</h3><p className="mt-2 text-[10px] font-bold uppercase tracking-[.2em] text-purple-300">{c.homeLab.enterprise}</p><p className="mt-6 text-sm leading-7 text-slate-400">{c.homeLab.enterpriseText}</p></article></div></GearSection>
 
-        {/* 2. THE PORTABLES */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-32"
-        >
-           <div className="flex items-center gap-4 mb-10">
-              <FaLaptop className="text-teal-400 text-2xl" />
-              <h2 className="text-2xl font-bold text-white tracking-widest uppercase">The Portables</h2>
-              <div className="h-[1px] flex-1 bg-white/5"></div>
-           </div>
-
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-teal-500/30 transition-all"
-              >
-                 <h3 className="text-xl font-bold text-white mb-1">MacBook Pro (2021)</h3>
-                 <p className="text-teal-400 text-[10px] font-bold tracking-widest uppercase mb-6">Music & Performance Unit</p>
-                 <ul className="space-y-3 text-sm">
-                    <SpecItem label="Silicon" value="Apple M1 Pro" />
-                    <SpecItem label="Memory" value="32GB Unified (CTO)" />
-                    <SpecItem label="Primary Use" value="Ableton Live, Logic Pro, DJing" />
-                 </ul>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-emerald-500/30 transition-all"
-              >
-                 <h3 className="text-xl font-bold text-white mb-1">ThinkPad P1 Gen 7</h3>
-                 <p className="text-emerald-400 text-[10px] font-bold tracking-widest uppercase mb-6">Engineering Powerhouse</p>
-                 <ul className="space-y-3 text-sm">
-                    <SpecItem label="CPU" value="Core Ultra 9 185H" />
-                    <SpecItem label="GPU" value="RTX 4070 Laptop" />
-                    <SpecItem label="Primary Use" value="College & Engineering Work" />
-                 </ul>
-              </motion.div>
-           </div>
-        </motion.section>
-
-        {/* 3. HUMAN INTERFACES */}
-        <section className="mb-32">
-           <div className="flex items-center gap-4 mb-10">
-              <FaMouse className="text-teal-400 text-2xl" />
-              <h2 className="text-2xl font-bold text-white tracking-widest uppercase">Human Interfaces</h2>
-              <div className="h-[1px] flex-1 bg-white/5"></div>
-           </div>
-
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-8 bg-white/5 border border-white/10 rounded-3xl relative">
-                 <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-3">
-                    <span className="w-2 h-2 bg-teal-500 rounded-full"></span>
-                    Battle Station (Gaming)
-                 </h3>
-                 <div className="space-y-4">
-                    <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                       <span className="text-slate-500">Keyboard</span> <span className="text-white">Razer DeathStalker V2 Pro</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                       <span className="text-slate-500">Mouse</span> <span className="text-white">Razer Basilisk V3 Pro</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm">
-                       <span className="text-slate-500">Display</span> <span className="text-white">MSI MPG 274URF QD</span>
-                    </div>
-                 </div>
-              </div>
-
-              <div className="p-8 bg-white/5 border border-white/10 rounded-3xl relative">
-                 <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-3">
-                    <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
-                    Work Desk (Productivity)
-                 </h3>
-                 <div className="space-y-4">
-                    <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                       <span className="text-slate-500">Keyboard</span> <span className="text-white">NuPhy Air75 V3</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                       <span className="text-slate-500">Mouse</span> <span className="text-white">Logitech MX Master 3S</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm">
-                       <span className="text-slate-500">Display</span> <span className="text-white">LG 27UP850N-W</span>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </section>
-
-        {/* 4. HOME LAB & INFRASTRUCTURE */}
-        <motion.section 
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-32"
-        >
-           <div className="flex items-center gap-4 mb-12">
-              <FaServer className="text-teal-400 text-2xl" />
-              <h2 className="text-2xl font-bold text-white tracking-widest uppercase">The Home Lab</h2>
-              <div className="h-[1px] flex-1 bg-white/10"></div>
-           </div>
-
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-2 p-8 bg-white/5 rounded-3xl border border-white/5 relative overflow-hidden group">
-                 <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-teal-500/5 blur-[80px] rounded-full translate-x-1/4 -translate-y-1/4"></div>
-                 <FaMicrochip className="text-teal-400 mb-6 text-xl relative z-10" />
-                 <h4 className="text-white font-bold mb-2 relative z-10">Dell PowerEdge T40</h4>
-                 <p className="text-teal-400 text-[10px] tracking-widest uppercase font-bold mb-6 relative z-10">Primary NAS & Services</p>
-                 <div className="flex flex-wrap gap-3 mb-8 relative z-10">
-                    <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[9px] font-bold text-teal-400">UBUNTU SERVER</span>
-                    <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[9px] font-bold text-teal-400">ZFS/EXT4</span>
-                    <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[9px] font-bold text-teal-400">DOCKER</span>
-                 </div>
-                 <p className="text-slate-400 text-sm leading-relaxed relative z-10">
-                    The heart of my local data. Acts as the primary NAS for backups, media streaming, and master track archives. Also handles containerized services for the local network.
-                 </p>
-              </div>
-
-              <div className="p-8 bg-gradient-to-br from-purple-500/10 to-transparent rounded-3xl border border-purple-500/20 relative overflow-hidden group">
-                 <FaServer className="text-purple-400 mb-6 text-xl" />
-                 <h4 className="text-white font-bold mb-2">Dell PowerEdge R430</h4>
-                 <p className="text-purple-400 text-[10px] tracking-widest uppercase font-bold mb-4">Enterprise (Japan Node)</p>
-                 <p className="text-slate-400 text-sm leading-relaxed">
-                    1U Rack Server. Currently hosted off-site in Japan. Proof of concept for remote enterprise management.
-                 </p>
-              </div>
-           </div>
-        </motion.section>
-
+        <footer className="mt-10 border-t border-white/10 pt-12 text-center sm:mt-20 sm:pt-16"><p className="text-[10px] font-bold uppercase tracking-[.25em] text-slate-500">{c.footer}</p><Link href={`/${locale}/doki`} className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-[.15em] text-white/75 transition hover:border-teal-300 hover:text-teal-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300">{c.return}</Link></footer>
       </main>
-
-      {/* FOOTER */}
-      <footer className="max-w-[1000px] mx-auto px-6 py-20 border-t border-white/10 text-center">
-         <p className="text-slate-500 text-sm mb-4 tracking-widest font-light uppercase">Engineered for Perfection</p>
-         <Link href="/en/doki" className="text-white font-bold hover:text-teal-400 transition-colors">Return to Doki's Reality</Link>
-      </footer>
+      <SiteFooter locale={locale} />
     </div>
   );
 }
 
-function SpecItem({ label, value }) {
-  return (
-    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline border-b border-white/5 pb-2">
-      <span className="text-slate-500 text-[10px] uppercase tracking-tighter sm:tracking-widest font-bold">{label}</span>
-      <span className="text-white text-sm font-medium">{value}</span>
-    </div>
-  );
-}
+function GearSection({ icon: Icon, title, children }) { return <section className="mb-20 min-w-0 sm:mb-28"><div className="mb-8 flex min-w-0 items-center gap-3 sm:mb-10 sm:gap-4"><Icon className="shrink-0 text-2xl text-teal-300" /><h2 className="min-w-0 text-xl font-bold uppercase tracking-[.12em] text-white sm:text-2xl sm:tracking-[.2em]">{title}</h2><div className="h-px min-w-6 flex-1 bg-white/10" /></div>{children}</section>; }
+function SpecItem({ label, value }) { return <div className="flex min-w-0 flex-col gap-1 border-b border-white/5 pb-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"><span className="shrink-0 text-[10px] font-bold uppercase tracking-[.12em] text-slate-500">{label}</span><span className="min-w-0 break-words text-sm font-medium text-white sm:text-right">{value}</span></div>; }
