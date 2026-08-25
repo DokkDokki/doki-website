@@ -2,7 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaChevronLeft,
+  FaChevronRight,
+  FaTimes,
+} from "react-icons/fa";
 import { dokiBiographyContent } from "@/content/doki-biography-content";
 import WorldNav from "@/components/site/WorldNav";
 import ContactPanel from "@/components/site/ContactPanel";
@@ -11,6 +18,46 @@ import { FadeZoom } from "@/components/motion/FadeZoom";
 
 export default function DokiBiographyPage({ locale }) {
   const c = dokiBiographyContent[locale] || dokiBiographyContent.en;
+  const [selectedArchiveIndex, setSelectedArchiveIndex] = useState(null);
+  const archiveTriggerRef = useRef(null);
+  const lightboxRef = useRef(null);
+  const selectedArchive =
+    selectedArchiveIndex === null ? null : c.archive.items[selectedArchiveIndex];
+
+  const closeArchive = () => {
+    setSelectedArchiveIndex(null);
+    requestAnimationFrame(() => archiveTriggerRef.current?.focus());
+  };
+
+  useEffect(() => {
+    if (selectedArchiveIndex === null) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeArchive();
+      } else if (event.key === "ArrowLeft") {
+        setSelectedArchiveIndex(
+          (index) =>
+            (index - 1 + c.archive.items.length) % c.archive.items.length,
+        );
+      } else if (event.key === "ArrowRight") {
+        setSelectedArchiveIndex(
+          (index) => (index + 1) % c.archive.items.length,
+        );
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    requestAnimationFrame(() => lightboxRef.current?.focus());
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [selectedArchiveIndex, c.archive.items.length]);
 
   return (
     <div className="claris-page min-h-screen overflow-x-clip text-slate-100">
@@ -124,6 +171,64 @@ export default function DokiBiographyPage({ locale }) {
           ))}
         </div>
 
+        <section
+          aria-labelledby="personal-archive-title"
+          className="border-b border-white/10 px-5 py-20 sm:px-8 sm:py-28"
+        >
+          <div className="mx-auto max-w-7xl">
+            <FadeZoom>
+              <p className="text-xs font-bold uppercase tracking-[.3em] text-teal-300">
+                {c.archive.eyebrow}
+              </p>
+              <h2
+                id="personal-archive-title"
+                className="mt-4 max-w-3xl text-4xl font-light tracking-tight text-white sm:text-6xl"
+              >
+                {c.archive.title}
+              </h2>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg sm:leading-9">
+                {c.archive.intro}
+              </p>
+            </FadeZoom>
+
+            <div
+              className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              aria-label={c.archive.ariaLabel}
+            >
+              {c.archive.items.map((item, index) => (
+                <button
+                  key={item.key}
+                  type="button"
+                  onClick={(event) => {
+                    archiveTriggerRef.current = event.currentTarget;
+                    setSelectedArchiveIndex(index);
+                  }}
+                  className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  aria-label={`${item.caption} — ${item.alt}`}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                  />
+                  <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-black/90 via-black/45 to-transparent px-5 pb-4 pt-12">
+                    <span className="min-w-0">
+                      <span className="block text-[10px] font-bold uppercase tracking-[.2em] text-teal-200">
+                        {item.year}
+                      </span>
+                      <span className="mt-1 block truncate text-sm font-medium text-white">
+                        {item.caption}
+                      </span>
+                    </span>
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="px-5 py-20 sm:px-8 sm:py-28">
           <div className="mx-auto max-w-5xl text-center">
             <FadeZoom>
@@ -140,6 +245,78 @@ export default function DokiBiographyPage({ locale }) {
             <ContactPanel world="doki" locale={locale} />
           </div>
         </section>
+
+        {selectedArchive && (
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-3 backdrop-blur-xl sm:p-6"
+            role="dialog"
+            aria-modal="true"
+            aria-label={c.archive.dialogLabel}
+            onClick={closeArchive}
+          >
+            <div
+              ref={lightboxRef}
+              tabIndex={-1}
+              className="relative flex max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-[var(--claris-ink-soft)] shadow-2xl focus-visible:outline-none"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="relative min-h-[50vh] flex-1 bg-black/70">
+                <Image
+                  src={selectedArchive.src}
+                  alt={selectedArchive.alt}
+                  fill
+                  sizes="95vw"
+                  className="object-contain"
+                />
+                <button
+                  type="button"
+                  className="absolute left-3 top-1/2 z-10 flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white transition hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  aria-label={c.archive.previous}
+                  onClick={() =>
+                    setSelectedArchiveIndex(
+                      (index) =>
+                        (index - 1 + c.archive.items.length) %
+                        c.archive.items.length,
+                    )
+                  }
+                >
+                  <FaChevronLeft />
+                </button>
+                <button
+                  type="button"
+                  className="absolute right-3 top-1/2 z-10 flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white transition hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  aria-label={c.archive.next}
+                  onClick={() =>
+                    setSelectedArchiveIndex(
+                      (index) => (index + 1) % c.archive.items.length,
+                    )
+                  }
+                >
+                  <FaChevronRight />
+                </button>
+                <button
+                  type="button"
+                  className="absolute right-3 top-3 z-10 flex min-h-11 min-w-11 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white transition hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  aria-label={c.archive.close}
+                  onClick={closeArchive}
+                >
+                  <FaTimes />
+                </button>
+              </div>
+              <div className="shrink-0 border-t border-white/10 px-5 py-4 sm:px-7 sm:py-5">
+                <p className="text-[10px] font-bold uppercase tracking-[.2em] text-teal-200">
+                  {selectedArchive.year}
+                </p>
+                <h2 className="mt-1 text-lg font-medium text-white">
+                  {selectedArchive.caption}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-white/55">
+                  {selectedArchive.alt}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
       <SiteFooter locale={locale} />
     </div>
@@ -149,15 +326,26 @@ export default function DokiBiographyPage({ locale }) {
 function BiographyMedia({ media, copy }) {
   return (
     <figure className="claris-glass mt-10 min-w-0 overflow-hidden rounded-[2rem] border sm:mt-12">
-      <div className="relative aspect-[4/3] sm:aspect-[16/8]">
+      <div className="relative aspect-[4/3] bg-black/40">
         {media.src ? (
-          <Image
-            src={media.src}
-            alt={media.alt}
-            fill
-            sizes="(min-width: 1024px) 65vw, 100vw"
-            className="object-cover"
-          />
+          <>
+            <Image
+              src={media.src}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(min-width: 1024px) 65vw, 100vw"
+              className="scale-110 object-cover opacity-35 blur-2xl"
+            />
+            <div className="absolute inset-0 bg-black/25" />
+            <Image
+              src={media.src}
+              alt={media.alt}
+              fill
+              sizes="(min-width: 1024px) 65vw, 100vw"
+              className="object-contain"
+            />
+          </>
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-[radial-gradient(circle_at_30%_30%,rgba(94,234,212,.12),transparent_45%),linear-gradient(135deg,rgba(255,255,255,.045),transparent)] px-6 text-center">
             <span className="text-[10px] font-bold uppercase tracking-[.25em] text-teal-200">

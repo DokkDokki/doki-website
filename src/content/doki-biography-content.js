@@ -376,4 +376,147 @@ const thai = {
   ],
 };
 
-export const dokiBiographyContent = { en: english, jp: japanese, th: thai };
+const personalArchiveSources = [
+  { key: "baby-2004", src: "/images/personal/2004-doki-baby-1.JPG", year: "2004" },
+  { key: "grandpa-2004", src: "/images/personal/2004-doki-and-grandpa.JPG", year: "2004" },
+  { key: "grandma-2004", src: "/images/personal/2004-doki-and-grandma.JPG", year: "2004" },
+  { key: "baby-2005-swing", src: "/images/personal/2005-doki-baby-2.JPG", year: "2005" },
+  { key: "baby-2005-outdoors", src: "/images/personal/2005-doki-baby-1.JPG", year: "2005" },
+  { key: "baby-2006", src: "/images/personal/2006-doki-baby-1.JPG", year: "2006" },
+  { key: "sunflower-2007", src: "/images/personal/2007-doki-sunflower.JPG", year: "2007" },
+  { key: "shinkansen-2007", src: "/images/personal/2007-doki-and-shinkansen.JPG", year: "2007" },
+  { key: "train-ride-2007", src: "/images/personal/2007-doki-ride-train.JPG", year: "2007" },
+  { key: "laptop-2007", src: "/images/personal/2007-doki-laptop.JPG", year: "2007" },
+  { key: "airport-link-2010", src: "/images/personal/2010-doki-airport-link.JPG", year: "2010" },
+  { key: "disneyland-2024", src: "/images/personal/2024-doki-disneyland-2.jpg", year: "2024" },
+  { key: "vocaunity-2026", src: "/images/personal/2026-doki-vocaunity.JPG", year: "2026" },
+];
+
+const personalArchiveCopy = {
+  en: {
+    eyebrow: "Personal archive",
+    title: "Frames across the years.",
+    intro: "Family, trains, technology, and the moments that kept curiosity moving.",
+    ariaLabel: "Personal photo archive",
+    close: "Close photo",
+    previous: "Previous photo",
+    next: "Next photo",
+    dialogLabel: "Photo details",
+    items: {
+      "baby-2004": { caption: "First days · 2004", alt: "Baby Doki in January 2004" },
+      "grandpa-2004": { caption: "With Grandpa · 2004", alt: "Baby Doki being held by his grandfather in 2004" },
+      "grandma-2004": { caption: "With Grandma · 2004", alt: "Baby Doki being held by his grandmother in 2004" },
+      "baby-2005-swing": { caption: "Growing up · 2005", alt: "Young Doki on a swing in 2005" },
+      "baby-2005-outdoors": { caption: "At home · 2005", alt: "Young Doki outdoors in 2005" },
+      "baby-2006": { caption: "New Year's Eve · 2006", alt: "Young Doki making a peace sign at the end of 2006" },
+      "sunflower-2007": { caption: "Sunflower fields · Lop Buri · 2007", alt: "Child Doki standing in a sunflower field in Lop Buri in 2007" },
+      "shinkansen-2007": { caption: "A Shinkansen poster · 2007", alt: "Child Doki and his mother beside a Shinkansen display in 2007" },
+      "train-ride-2007": { caption: "Riding the train · 2007", alt: "Child Doki riding a train in 2007" },
+      "laptop-2007": { caption: "First laptop · 2007", alt: "Child Doki using a laptop in 2007" },
+      "airport-link-2010": { caption: "Airport Rail Link · 2010", alt: "Child Doki beside an Airport Rail Link sign in 2010" },
+      "disneyland-2024": { caption: "Tokyo Disneyland · 2024", alt: "Doki at Tokyo Disneyland in 2024" },
+      "vocaunity-2026": { caption: "VocaUnity · 2026", alt: "Doki performing at a VocaUnity event in 2026" },
+    },
+  },
+  jp: {
+    eyebrow: "個人アーカイブ",
+    title: "好奇心の記録。",
+    intro: "2004年から現在まで。家族、列車、テクノロジー、そして音楽の記録。",
+    ariaLabel: "個人写真アーカイブ",
+    close: "写真を閉じる",
+    previous: "前の写真",
+    next: "次の写真",
+    dialogLabel: "写真の詳細",
+    items: {
+      "baby-2004": { caption: "はじまりの日々 · 2004", alt: "2004年1月の赤ちゃんの頃のDoki" },
+      "grandpa-2004": { caption: "祖父と · 2004", alt: "2004年、祖父に抱かれる赤ちゃんのDoki" },
+      "grandma-2004": { caption: "祖母と · 2004", alt: "2004年、祖母に抱かれる赤ちゃんのDoki" },
+      "baby-2005-swing": { caption: "成長の途中 · 2005", alt: "2005年、ブランコに乗る幼いDoki" },
+      "baby-2005-outdoors": { caption: "家で過ごす · 2005", alt: "2005年、屋外で過ごす幼いDoki" },
+      "baby-2006": { caption: "大晦日 · 2006", alt: "2006年の終わりにピースサインをする幼いDoki" },
+      "sunflower-2007": { caption: "ひまわり畑 · ロッブリー · 2007", alt: "2007年、ロッブリーのひまわり畑に立つ子どものDoki" },
+      "shinkansen-2007": { caption: "新幹線のポスター · 2007", alt: "2007年、新幹線の展示のそばに立つDokiと母" },
+      "train-ride-2007": { caption: "列車に乗って · 2007", alt: "2007年、列車に乗る子どものDoki" },
+      "laptop-2007": { caption: "最初のノートパソコン · 2007", alt: "2007年、ノートパソコンを使う子どものDoki" },
+      "airport-link-2010": { caption: "エアポート・レール・リンク · 2010", alt: "2010年、エアポート・レール・リンクの案内板のそばに立つDoki" },
+      "disneyland-2024": { caption: "東京ディズニーランド · 2024", alt: "2024年、東京ディズニーランドにいるDoki" },
+      "vocaunity-2026": { caption: "VocaUnity · 2026", alt: "2026年、VocaUnityのイベントでパフォーマンスするDoki" },
+    },
+  },
+  th: {
+    eyebrow: "คลังภาพส่วนตัว",
+    title: "บันทึกของความอยากรู้อยากเห็น",
+    intro: "จากปี 2004 จนถึงวันนี้ ครอบครัว รถไฟ เทคโนโลยี และช่วงเวลาที่ทำให้ความอยากรู้อยากเห็นเดินหน้าต่อไป",
+    ariaLabel: "คลังภาพส่วนตัว",
+    close: "ปิดภาพ",
+    previous: "ภาพก่อนหน้า",
+    next: "ภาพถัดไป",
+    dialogLabel: "รายละเอียดภาพ",
+    items: {
+      "baby-2004": { caption: "วันแรก ๆ · 2004", alt: "Doki ในวัยทารกเมื่อเดือนมกราคม 2004" },
+      "grandpa-2004": { caption: "กับคุณปู่ · 2004", alt: "Doki ในวัยทารกอยู่ในอ้อมแขนของคุณปู่ในปี 2004" },
+      "grandma-2004": { caption: "กับคุณย่า · 2004", alt: "Doki ในวัยทารกอยู่ในอ้อมแขนของคุณย่าในปี 2004" },
+      "baby-2005-swing": { caption: "เติบโตขึ้น · 2005", alt: "Doki ในวัยเด็กบนชิงช้าในปี 2005" },
+      "baby-2005-outdoors": { caption: "ที่บ้าน · 2005", alt: "Doki ในวัยเด็กกลางแจ้งในปี 2005" },
+      "baby-2006": { caption: "คืนส่งท้ายปี · 2006", alt: "Doki ในวัยเด็กชูสัญลักษณ์สันติภาพในช่วงปลายปี 2006" },
+      "sunflower-2007": { caption: "ทุ่งทานตะวัน · ลพบุรี · 2007", alt: "Doki ในวัยเด็กยืนอยู่ในทุ่งทานตะวันที่ลพบุรีในปี 2007" },
+      "shinkansen-2007": { caption: "โปสเตอร์ชินคันเซ็น · 2007", alt: "Doki และคุณแม่ยืนข้างนิทรรศการชินคันเซ็นในปี 2007" },
+      "train-ride-2007": { caption: "นั่งรถไฟ · 2007", alt: "Doki ในวัยเด็กนั่งรถไฟในปี 2007" },
+      "laptop-2007": { caption: "แล็ปท็อปเครื่องแรก · 2007", alt: "Doki ในวัยเด็กกำลังใช้แล็ปท็อปในปี 2007" },
+      "airport-link-2010": { caption: "แอร์พอร์ต เรล ลิงก์ · 2010", alt: "Doki ในวัยเด็กยืนข้างป้ายแอร์พอร์ต เรล ลิงก์ในปี 2010" },
+      "disneyland-2024": { caption: "โตเกียวดิสนีย์แลนด์ · 2024", alt: "Doki ที่โตเกียวดิสนีย์แลนด์ในปี 2024" },
+      "vocaunity-2026": { caption: "VocaUnity · 2026", alt: "Doki แสดงดนตรีในงาน VocaUnity ปี 2026" },
+    },
+  },
+};
+
+const chapterMediaCopy = {
+  en: {
+    origins: { src: "/images/personal/2004-doki-and-grandma.JPG", label: "With Grandma · 2004", alt: "Baby Doki being held by his grandmother in 2004", note: "Family archive · 2004" },
+    lines: { src: "/images/personal/2007-doki-and-shinkansen.JPG", label: "A Shinkansen poster · 2007", alt: "Child Doki and his mother beside a Shinkansen display in 2007", note: "Lop Buri · 2007" },
+    machines: { src: "/images/personal/2007-doki-laptop.JPG", label: "First laptop · 2007", alt: "Child Doki using a laptop in 2007", note: "Early curiosity · 2007" },
+    tokyo: { src: "/images/personal/2024-doki-disneyland-2.jpg", label: "Tokyo Disneyland · 2024", alt: "Doki at Tokyo Disneyland in 2024", note: "Tokyo · 2024" },
+    direction: { src: "/images/personal/2026-doki-vocaunity.JPG", label: "VocaUnity · 2026", alt: "Doki performing at a VocaUnity event in 2026", note: "Creative work · 2026" },
+  },
+  jp: {
+    origins: { src: "/images/personal/2004-doki-and-grandma.JPG", label: "祖母と · 2004", alt: "2004年、祖母に抱かれる赤ちゃんのDoki", note: "家族の記録 · 2004" },
+    lines: { src: "/images/personal/2007-doki-and-shinkansen.JPG", label: "新幹線のポスター · 2007", alt: "2007年、新幹線の展示のそばに立つDokiと母", note: "ロッブリー · 2007" },
+    machines: { src: "/images/personal/2007-doki-laptop.JPG", label: "最初のノートパソコン · 2007", alt: "2007年、ノートパソコンを使う子どものDoki", note: "はじまりの好奇心 · 2007" },
+    tokyo: { src: "/images/personal/2024-doki-disneyland-2.jpg", label: "東京ディズニーランド · 2024", alt: "2024年、東京ディズニーランドにいるDoki", note: "東京 · 2024" },
+    direction: { src: "/images/personal/2026-doki-vocaunity.JPG", label: "VocaUnity · 2026", alt: "2026年、VocaUnityのイベントでパフォーマンスするDoki", note: "創作活動 · 2026" },
+  },
+  th: {
+    origins: { src: "/images/personal/2004-doki-and-grandma.JPG", label: "กับคุณย่า · 2004", alt: "Doki ในวัยทารกอยู่ในอ้อมแขนของคุณย่าในปี 2004", note: "บันทึกครอบครัว · 2004" },
+    lines: { src: "/images/personal/2007-doki-and-shinkansen.JPG", label: "โปสเตอร์ชินคันเซ็น · 2007", alt: "Doki และคุณแม่ยืนข้างนิทรรศการชินคันเซ็นในปี 2007", note: "ลพบุรี · 2007" },
+    machines: { src: "/images/personal/2007-doki-laptop.JPG", label: "แล็ปท็อปเครื่องแรก · 2007", alt: "Doki ในวัยเด็กกำลังใช้แล็ปท็อปในปี 2007", note: "ความอยากรู้อยากเห็นแรกเริ่ม · 2007" },
+    tokyo: { src: "/images/personal/2024-doki-disneyland-2.jpg", label: "โตเกียวดิสนีย์แลนด์ · 2024", alt: "Doki ที่โตเกียวดิสนีย์แลนด์ในปี 2024", note: "โตเกียว · 2024" },
+    direction: { src: "/images/personal/2026-doki-vocaunity.JPG", label: "VocaUnity · 2026", alt: "Doki แสดงดนตรีในงาน VocaUnity ปี 2026", note: "งานสร้างสรรค์ · 2026" },
+  },
+};
+
+function withBiographyAssets(content, locale) {
+  const archiveCopy = personalArchiveCopy[locale] || personalArchiveCopy.en;
+  const mediaCopy = chapterMediaCopy[locale] || chapterMediaCopy.en;
+
+  return {
+    ...content,
+    archive: {
+      ...archiveCopy,
+      items: personalArchiveSources.map((item) => ({
+        ...item,
+        ...archiveCopy.items[item.key],
+      })),
+    },
+    chapters: content.chapters.map((chapter) =>
+      mediaCopy[chapter.id]
+        ? { ...chapter, media: mediaCopy[chapter.id] }
+        : chapter,
+    ),
+  };
+}
+
+export const dokiBiographyContent = {
+  en: withBiographyAssets(english, "en"),
+  jp: withBiographyAssets(japanese, "jp"),
+  th: withBiographyAssets(thai, "th"),
+};

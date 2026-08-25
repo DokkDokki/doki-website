@@ -82,16 +82,27 @@ export default function CorePhotographyPage({ locale }) {
           ))}
         </Stagger>
         <InstagramGallery copy={instagram} limit={12} locale={locale} />
-        <FadeZoom className="mt-24 rounded-[2rem] border border-teal-300/15 bg-teal-300/5 p-8 sm:p-12">
-          <p className="text-xs font-bold uppercase tracking-[.28em] text-teal-300">
-            {ui.photo.kariEyebrow}
-          </p>
-          <h2 className="mt-4 text-3xl font-light">
-            {ui.photo.kariTitle}
-          </h2>
-          <p className="mt-5 max-w-3xl leading-8 text-slate-300">
-            {ui.photo.kariText}
-          </p>
+        <FadeZoom className="mt-24 grid items-center gap-8 overflow-hidden rounded-[2rem] border border-teal-300/15 bg-teal-300/5 p-8 sm:p-12 md:grid-cols-[minmax(0,1fr)_minmax(14rem,20rem)] md:gap-12">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[.28em] text-teal-300">
+              {ui.photo.kariEyebrow}
+            </p>
+            <h2 className="mt-4 text-3xl font-light">
+              {ui.photo.kariTitle}
+            </h2>
+            <p className="mt-5 max-w-3xl leading-8 text-slate-300">
+              {ui.photo.kariText}
+            </p>
+          </div>
+          <div className="relative mx-auto h-48 w-full max-w-80 md:h-56">
+            <Image
+              src="/images/photography/hikari-signature.svg"
+              alt=""
+              fill
+              sizes="(min-width: 768px) 20rem, 100vw"
+              className="object-contain brightness-0 invert opacity-70"
+            />
+          </div>
         </FadeZoom>
       </main>
       {selected && (
