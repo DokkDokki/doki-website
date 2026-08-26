@@ -17,42 +17,42 @@ import InstagramGallery from "@/components/media/InstagramGallery";
 const cinematicEase = [0.22, 1, 0.36, 1];
 const cardMedia = [
   {
-    image: "/images/personal/doki-hikari.jpg",
+    image: "/images/display/personal/doki-hikari.webp",
     Icon: FaCode,
     tone: "from-teal-400/35",
   },
   {
-    image: "/images/events/otaqlab_2025.jpg",
+    image: "/images/display/events/otaqlab_2025.webp",
     Icon: FaHeadphones,
     tone: "from-fuchsia-500/40",
   },
   {
-    image: "/images/photography/sakura-chidorigafuchi-park.jpg",
+    image: "/images/display/photography/sakura-chidorigafuchi-park.webp",
     Icon: FaCamera,
     tone: "from-sky-400/35",
   },
 ];
 const photos = [
   {
-    src: "/images/photography/tokaido-line-e231-nippori.jpg",
+    src: "/images/display/photography/tokaido-line-e231-nippori.webp",
     label: "Nippori · Tokyo",
     className: "md:col-span-5 md:row-span-2",
     drift: ["-1%", "1%", "-1%"],
   },
   {
-    src: "/images/photography/sakura-chidorigafuchi-park.jpg",
+    src: "/images/display/photography/sakura-chidorigafuchi-park.webp",
     label: "Chidorigafuchi · Tokyo",
     className: "md:col-span-4",
     drift: ["1%", "-1%", "1%"],
   },
   {
-    src: "/images/photography/niigata-2025-street.jpg",
+    src: "/images/display/photography/niigata-2025-street.webp",
     label: "Niigata · 2025",
     className: "md:col-span-3",
     drift: ["0%", "1.5%", "0%"],
   },
   {
-    src: "/images/events/singapore_2025.jpg",
+    src: "/images/display/events/singapore_2025.webp",
     label: "Singapore · 2025",
     className: "md:col-span-7",
     drift: ["-1%", "1%", "-1%"],

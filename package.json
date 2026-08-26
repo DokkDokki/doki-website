@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build && node scripts/prepare-sites-static.mjs",
     "build:sites": "npm run build",
+    "images:optimize": "node scripts/generate-display-images.mjs",
     "start": "next start",
     "lint": "eslint"
   },

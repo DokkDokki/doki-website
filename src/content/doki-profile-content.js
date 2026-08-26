@@ -11,7 +11,7 @@ const english = {
     biographyLink: "Read my full story",
     biographyChapterLink: "Read this chapter",
     chapters: [
-      { number: "01", place: "Rangsit", years: "Growing up", title: "Where the curiosity started.", text: "I grew up around Rangsit and spent my middle- and high-school years at Suankularb Wittayalai Rangsit.", biographyId: "origins" },
+      { number: "01", place: "Rangsit", years: "Growing up", title: "Where the curiosity started.", text: "I grew up around Rangsit, spent my middle-school years in Chanthaburi, and my high-school years at Suankularb Wittayalai Rangsit.", biographyId: "origins" },
       { number: "02", place: "Tokyo", years: "Two years", title: "A city that stayed with me.", text: "After school, I moved to Tokyo and spent two years there studying Japanese and learning what it feels like to build a life in another place.", biographyId: "tokyo" },
       { number: "03", place: "Bangkok", years: "Now", title: "Learning to build what matters.", text: "I am now studying Digital Engineering at Thai-Nichi Institute of Technology, turning a long-running curiosity about systems into a direction.", biographyId: "returning" },
     ],
@@ -62,7 +62,7 @@ export const dokiProfileContent = {
       ...english.personal,
       eyebrow: "マシンの向こう側の人", title: "好奇心に形づくられた人生。", intro: "Dokiです。デジタルエンジニアリングを学び、写真を撮り、鉄道が好きで、DOKIMACHINEの中の人でもあります。", heroCaption: "バンコク首都圏 · タイ", journeyLabel: "これまでの短い旅", journeyTitle: "三つの場所、一つの方向。", biographyLink: "私のストーリーを読む", biographyChapterLink: "この章を読む",
       chapters: [
-        { number: "01", place: "ランシット", years: "育った場所", title: "好奇心が始まった場所。", text: "ランシット周辺で育ち、中学・高校時代はスアンクラーブ・ウィタヤライ・ランシットで過ごしました。", biographyId: "origins" },
+        { number: "01", place: "ランシット", years: "育った場所", title: "好奇心が始まった場所。", text: "ランシット周辺で育ち、中学時代はチャンタブリーで、高校時代はスアンクラーブ・ウィタヤライ・ランシットで過ごしました。", biographyId: "origins" },
         { number: "02", place: "東京", years: "二年間", title: "心に残り続ける街。", text: "卒業後、東京に移り住み、日本語を学びながら二年間を過ごしました。別の場所で生活をつくる感覚を学んだ時間です。", biographyId: "tokyo" },
         { number: "03", place: "バンコク", years: "現在", title: "大切なものをつくるために学ぶ。", text: "現在は泰日工業大学でデジタルエンジニアリングを学び、システムへの長い好奇心を将来の方向へ変えています。", biographyId: "returning" },
       ],
@@ -80,7 +80,7 @@ export const dokiProfileContent = {
       ...english.personal,
       eyebrow: "คนที่อยู่เบื้องหลังเครื่องจักร", title: "ชีวิตที่ขับเคลื่อนด้วยความอยากรู้", intro: "ผมคือ Doki นักศึกษา Digital Engineering ช่างภาพ คนชอบรถไฟ และคนที่อยู่เบื้องหลัง DOKIMACHINE", heroCaption: "กรุงเทพมหานครและปริมณฑล · ประเทศไทย", journeyLabel: "การเดินทางสั้น ๆ ที่ผ่านมา", journeyTitle: "สามสถานที่ หนึ่งทิศทาง", biographyLink: "อ่านเรื่องราวทั้งหมดของผม", biographyChapterLink: "อ่านบทนี้",
       chapters: [
-        { number: "01", place: "รังสิต", years: "จุดเริ่มต้น", title: "ที่ที่ความอยากรู้เริ่มต้น", text: "ผมโตแถวรังสิต และเรียนระดับมัธยมต้นและมัธยมปลายที่โรงเรียนสวนกุหลาบวิทยาลัย รังสิต", biographyId: "origins" },
+        { number: "01", place: "รังสิต", years: "จุดเริ่มต้น", title: "ที่ที่ความอยากรู้เริ่มต้น", text: "ผมโตแถวรังสิต เรียนระดับมัธยมต้นที่จังหวัดจันทบุรี และเรียนระดับมัธยมปลายที่โรงเรียนสวนกุหลาบวิทยาลัย รังสิต", biographyId: "origins" },
         { number: "02", place: "โตเกียว", years: "สองปี", title: "เมืองที่ยังอยู่ในใจ", text: "หลังเรียนจบ ผมย้ายไปโตเกียวและใช้ชีวิตอยู่ที่นั่นสองปี เรียนภาษาญี่ปุ่นและได้รู้ว่าการสร้างชีวิตในอีกที่หนึ่งเป็นอย่างไร", biographyId: "tokyo" },
         { number: "03", place: "กรุงเทพฯ", years: "ปัจจุบัน", title: "เรียนรู้เพื่อสร้างสิ่งที่สำคัญ", text: "ตอนนี้ผมเรียน Digital Engineering ที่สถาบันเทคโนโลยีไทย-ญี่ปุ่น และกำลังเปลี่ยนความสนใจด้านระบบที่มีมานานให้เป็นเส้นทางในอนาคต", biographyId: "returning" },
       ],

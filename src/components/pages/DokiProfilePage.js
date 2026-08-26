@@ -59,7 +59,7 @@ export default function DokiProfilePage({ locale }) {
             <FadeZoom delay={0.1}>
               <figure className="claris-glass relative aspect-[4/3] overflow-hidden rounded-[2rem] border">
                 <Image
-                  src="/images/personal/doki-intheroom-portrait.jpg"
+                  src="/images/display/personal/doki-intheroom-portrait.webp"
                   alt={c.portraitAlt}
                   fill
                   priority

@@ -49,7 +49,7 @@ export default function SplitHero() {
       <motion.div animate={reducedMotion ? undefined : { opacity: [0.35, 0.62, 0.35], scale: [1, 1.12, 1], x: ["-8%", "8%", "-8%"], y: ["-4%", "7%", "-4%"] }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }} className="pointer-events-none absolute -left-[18%] -top-[28%] z-10 h-[70vw] w-[70vw] rounded-full bg-teal-300/15 blur-3xl" />
       <motion.div animate={reducedMotion ? undefined : { opacity: [0.2, 0.48, 0.2], scale: [1.05, 0.94, 1.05], x: ["10%", "-8%", "10%"] }} transition={{ duration: 21, repeat: Infinity, ease: "easeInOut", delay: 1.5 }} className="pointer-events-none absolute -bottom-[35%] -right-[20%] z-10 h-[70vw] w-[70vw] rounded-full bg-fuchsia-500/15 blur-3xl" />
       <div className="absolute inset-0 grid min-h-[100svh] md:grid-cols-[1.3fr_0.7fr]">
-        <HeroPanel image="/images/personal/doki-hikari.jpg" x={pointerX} y={pointerY} className="md:border-r md:border-white/10" />
+        <HeroPanel image="/images/display/personal/doki-hikari.webp" x={pointerX} y={pointerY} className="md:border-r md:border-white/10" />
         <HeroPanel image="/images/brand/doki_iconrima_square.jpg" x={pointerX} y={pointerY} className="hidden md:block" machine />
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(5,5,7,.2),rgba(5,5,7,.6)_48%,rgba(5,5,7,.3))]" />

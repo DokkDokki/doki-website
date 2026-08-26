@@ -377,20 +377,68 @@ const thai = {
 };
 
 const personalArchiveSources = [
-  { key: "baby-2004", src: "/images/personal/2004-doki-baby-1.JPG", year: "2004" },
-  { key: "grandpa-2004", src: "/images/personal/2004-doki-and-grandpa.JPG", year: "2004" },
-  { key: "grandma-2004", src: "/images/personal/2004-doki-and-grandma.JPG", year: "2004" },
-  { key: "baby-2005-swing", src: "/images/personal/2005-doki-baby-2.JPG", year: "2005" },
-  { key: "baby-2005-outdoors", src: "/images/personal/2005-doki-baby-1.JPG", year: "2005" },
-  { key: "baby-2006", src: "/images/personal/2006-doki-baby-1.JPG", year: "2006" },
-  { key: "sunflower-2007", src: "/images/personal/2007-doki-sunflower.JPG", year: "2007" },
-  { key: "shinkansen-2007", src: "/images/personal/2007-doki-and-shinkansen.JPG", year: "2007" },
-  { key: "train-ride-2007", src: "/images/personal/2007-doki-ride-train.JPG", year: "2007" },
-  { key: "laptop-2007", src: "/images/personal/2007-doki-laptop.JPG", year: "2007" },
-  { key: "airport-link-2010", src: "/images/personal/2010-doki-airport-link.JPG", year: "2010" },
-  { key: "disneyland-2024", src: "/images/personal/2024-doki-disneyland-2.jpg", year: "2024" },
-  { key: "vocaunity-2026", src: "/images/personal/2026-doki-vocaunity.JPG", year: "2026" },
+  { key: "baby-2004", src: "/images/display/personal/2004-doki-baby-1.webp", year: "2004" },
+  { key: "grandpa-2004", src: "/images/display/personal/2004-doki-and-grandpa.webp", year: "2004" },
+  { key: "grandma-2004", src: "/images/display/personal/2004-doki-and-grandma.webp", year: "2004" },
+  { key: "baby-2005-swing", src: "/images/display/personal/2005-doki-baby-2.webp", year: "2005" },
+  { key: "baby-2005-outdoors", src: "/images/display/personal/2005-doki-baby-1.webp", year: "2005" },
+  { key: "baby-2006", src: "/images/display/personal/2006-doki-baby-1.webp", year: "2006" },
+  { key: "sunflower-2007", src: "/images/display/personal/2007-doki-sunflower.webp", year: "2007" },
+  { key: "shinkansen-2007", src: "/images/display/personal/2007-doki-and-shinkansen.webp", year: "2007" },
+  { key: "train-ride-2007", src: "/images/display/personal/2007-doki-ride-train.webp", year: "2007" },
+  { key: "laptop-2007", src: "/images/display/personal/2007-doki-laptop.webp", year: "2007" },
+  { key: "airport-link-2010", src: "/images/display/personal/2010-doki-airport-link.webp", year: "2010" },
+  { key: "disneyland-2024", src: "/images/display/personal/2024-doki-disneyland-2.webp", year: "2024" },
+  { key: "vocaunity-2026", src: "/images/display/personal/2026-doki-vocaunity.webp", year: "2026" },
 ];
+
+const journeyCopy = {
+  en: {
+    eyebrow: "A route through five places",
+    title: "The line so far.",
+    ariaLabel: "Biography journey",
+    imageLabel: "Journey image",
+    placeholderLabel: "A future frame",
+    positionLabel: "Image {current} of {total}",
+    stops: [
+      { id: "rangsit", label: "Rangsit", targetId: "origins-rangsit", imageKey: "grandma-2004" },
+      { id: "chanthaburi", label: "Chanthaburi", targetId: "origins-chanthaburi", imageKey: null },
+      { id: "tokyo", label: "Tokyo", targetId: "tokyo", imageKey: "disneyland-2024" },
+      { id: "bangkok", label: "Bangkok", targetId: "returning", imageKey: "vocaunity-2026" },
+      { id: "next", label: "Next", targetId: "next", imageKey: null },
+    ],
+  },
+  jp: {
+    eyebrow: "5つの場所をつなぐルート",
+    title: "これまでの軌跡。",
+    ariaLabel: "バイオグラフィーの旅",
+    imageLabel: "旅の写真",
+    placeholderLabel: "これからのフレーム",
+    positionLabel: "画像 {current} / {total}",
+    stops: [
+      { id: "rangsit", label: "\u30e9\u30f3\u30b7\u30c3\u30c8", targetId: "origins-rangsit", imageKey: "grandma-2004" },
+      { id: "chanthaburi", label: "\u30c1\u30e3\u30f3\u30bf\u30d6\u30ea\u30fc", targetId: "origins-chanthaburi", imageKey: null },
+      { id: "tokyo", label: "\u6771\u4eac", targetId: "tokyo", imageKey: "disneyland-2024" },
+      { id: "bangkok", label: "\u30d0\u30f3\u30b3\u30af", targetId: "returning", imageKey: "vocaunity-2026" },
+      { id: "next", label: "\u3053\u308c\u304b\u3089", targetId: "next", imageKey: null },
+    ],
+  },
+  th: {
+    eyebrow: "เส้นทางผ่านห้าสถานที่",
+    title: "เส้นทางที่ผ่านมา",
+    ariaLabel: "เส้นทางในชีวประวัติ",
+    imageLabel: "ภาพจากเส้นทาง",
+    placeholderLabel: "ภาพของอนาคต",
+    positionLabel: "ภาพที่ {current} จาก {total}",
+    stops: [
+      { id: "rangsit", label: "รังสิต", targetId: "origins-rangsit", imageKey: "grandma-2004" },
+      { id: "chanthaburi", label: "จันทบุรี", targetId: "origins-chanthaburi", imageKey: null },
+      { id: "tokyo", label: "โตเกียว", targetId: "tokyo", imageKey: "disneyland-2024" },
+      { id: "bangkok", label: "กรุงเทพฯ", targetId: "returning", imageKey: "vocaunity-2026" },
+      { id: "next", label: "ก้าวต่อไป", targetId: "next", imageKey: null },
+    ],
+  },
+};
 
 const personalArchiveCopy = {
   en: {
@@ -472,25 +520,25 @@ const personalArchiveCopy = {
 
 const chapterMediaCopy = {
   en: {
-    origins: { src: "/images/personal/2004-doki-and-grandma.JPG", label: "With Grandma · 2004", alt: "Baby Doki being held by his grandmother in 2004", note: "Family archive · 2004" },
-    lines: { src: "/images/personal/2007-doki-and-shinkansen.JPG", label: "A Shinkansen poster · 2007", alt: "Child Doki and his mother beside a Shinkansen display in 2007", note: "Lop Buri · 2007" },
-    machines: { src: "/images/personal/2007-doki-laptop.JPG", label: "First laptop · 2007", alt: "Child Doki using a laptop in 2007", note: "Early curiosity · 2007" },
-    tokyo: { src: "/images/personal/2024-doki-disneyland-2.jpg", label: "Tokyo Disneyland · 2024", alt: "Doki at Tokyo Disneyland in 2024", note: "Tokyo · 2024" },
-    direction: { src: "/images/personal/2026-doki-vocaunity.JPG", label: "VocaUnity · 2026", alt: "Doki performing at a VocaUnity event in 2026", note: "Creative work · 2026" },
+    origins: { src: "/images/display/personal/2004-doki-and-grandma.webp", label: "With Grandma · 2004", alt: "Baby Doki being held by his grandmother in 2004", note: "Family archive · 2004" },
+    lines: { src: "/images/display/personal/2007-doki-and-shinkansen.webp", label: "A Shinkansen poster · 2007", alt: "Child Doki and his mother beside a Shinkansen display in 2007", note: "Lop Buri · 2007" },
+    machines: { src: "/images/display/personal/2007-doki-laptop.webp", label: "First laptop · 2007", alt: "Child Doki using a laptop in 2007", note: "Early curiosity · 2007" },
+    tokyo: { src: "/images/display/personal/2024-doki-disneyland-2.webp", label: "Tokyo Disneyland · 2024", alt: "Doki at Tokyo Disneyland in 2024", note: "Tokyo · 2024" },
+    direction: { src: "/images/display/personal/2026-doki-vocaunity.webp", label: "VocaUnity · 2026", alt: "Doki performing at a VocaUnity event in 2026", note: "Creative work · 2026" },
   },
   jp: {
-    origins: { src: "/images/personal/2004-doki-and-grandma.JPG", label: "祖母と · 2004", alt: "2004年、祖母に抱かれる赤ちゃんのDoki", note: "家族の記録 · 2004" },
-    lines: { src: "/images/personal/2007-doki-and-shinkansen.JPG", label: "新幹線のポスター · 2007", alt: "2007年、新幹線の展示のそばに立つDokiと母", note: "ロッブリー · 2007" },
-    machines: { src: "/images/personal/2007-doki-laptop.JPG", label: "最初のノートパソコン · 2007", alt: "2007年、ノートパソコンを使う子どものDoki", note: "はじまりの好奇心 · 2007" },
-    tokyo: { src: "/images/personal/2024-doki-disneyland-2.jpg", label: "東京ディズニーランド · 2024", alt: "2024年、東京ディズニーランドにいるDoki", note: "東京 · 2024" },
-    direction: { src: "/images/personal/2026-doki-vocaunity.JPG", label: "VocaUnity · 2026", alt: "2026年、VocaUnityのイベントでパフォーマンスするDoki", note: "創作活動 · 2026" },
+    origins: { src: "/images/display/personal/2004-doki-and-grandma.webp", label: "祖母と · 2004", alt: "2004年、祖母に抱かれる赤ちゃんのDoki", note: "家族の記録 · 2004" },
+    lines: { src: "/images/display/personal/2007-doki-and-shinkansen.webp", label: "新幹線のポスター · 2007", alt: "2007年、新幹線の展示のそばに立つDokiと母", note: "ロッブリー · 2007" },
+    machines: { src: "/images/display/personal/2007-doki-laptop.webp", label: "最初のノートパソコン · 2007", alt: "2007年、ノートパソコンを使う子どものDoki", note: "はじまりの好奇心 · 2007" },
+    tokyo: { src: "/images/display/personal/2024-doki-disneyland-2.webp", label: "東京ディズニーランド · 2024", alt: "2024年、東京ディズニーランドにいるDoki", note: "東京 · 2024" },
+    direction: { src: "/images/display/personal/2026-doki-vocaunity.webp", label: "VocaUnity · 2026", alt: "2026年、VocaUnityのイベントでパフォーマンスするDoki", note: "創作活動 · 2026" },
   },
   th: {
-    origins: { src: "/images/personal/2004-doki-and-grandma.JPG", label: "กับคุณย่า · 2004", alt: "Doki ในวัยทารกอยู่ในอ้อมแขนของคุณย่าในปี 2004", note: "บันทึกครอบครัว · 2004" },
-    lines: { src: "/images/personal/2007-doki-and-shinkansen.JPG", label: "โปสเตอร์ชินคันเซ็น · 2007", alt: "Doki และคุณแม่ยืนข้างนิทรรศการชินคันเซ็นในปี 2007", note: "ลพบุรี · 2007" },
-    machines: { src: "/images/personal/2007-doki-laptop.JPG", label: "แล็ปท็อปเครื่องแรก · 2007", alt: "Doki ในวัยเด็กกำลังใช้แล็ปท็อปในปี 2007", note: "ความอยากรู้อยากเห็นแรกเริ่ม · 2007" },
-    tokyo: { src: "/images/personal/2024-doki-disneyland-2.jpg", label: "โตเกียวดิสนีย์แลนด์ · 2024", alt: "Doki ที่โตเกียวดิสนีย์แลนด์ในปี 2024", note: "โตเกียว · 2024" },
-    direction: { src: "/images/personal/2026-doki-vocaunity.JPG", label: "VocaUnity · 2026", alt: "Doki แสดงดนตรีในงาน VocaUnity ปี 2026", note: "งานสร้างสรรค์ · 2026" },
+    origins: { src: "/images/display/personal/2004-doki-and-grandma.webp", label: "กับคุณย่า · 2004", alt: "Doki ในวัยทารกอยู่ในอ้อมแขนของคุณย่าในปี 2004", note: "บันทึกครอบครัว · 2004" },
+    lines: { src: "/images/display/personal/2007-doki-and-shinkansen.webp", label: "โปสเตอร์ชินคันเซ็น · 2007", alt: "Doki และคุณแม่ยืนข้างนิทรรศการชินคันเซ็นในปี 2007", note: "ลพบุรี · 2007" },
+    machines: { src: "/images/display/personal/2007-doki-laptop.webp", label: "แล็ปท็อปเครื่องแรก · 2007", alt: "Doki ในวัยเด็กกำลังใช้แล็ปท็อปในปี 2007", note: "ความอยากรู้อยากเห็นแรกเริ่ม · 2007" },
+    tokyo: { src: "/images/display/personal/2024-doki-disneyland-2.webp", label: "โตเกียวดิสนีย์แลนด์ · 2024", alt: "Doki ที่โตเกียวดิสนีย์แลนด์ในปี 2024", note: "โตเกียว · 2024" },
+    direction: { src: "/images/display/personal/2026-doki-vocaunity.webp", label: "VocaUnity · 2026", alt: "Doki แสดงดนตรีในงาน VocaUnity ปี 2026", note: "งานสร้างสรรค์ · 2026" },
   },
 };
 
@@ -507,6 +555,7 @@ function withBiographyAssets(content, locale) {
         ...archiveCopy.items[item.key],
       })),
     },
+    journey: journeyCopy[locale] || journeyCopy.en,
     chapters: content.chapters.map((chapter) =>
       mediaCopy[chapter.id]
         ? { ...chapter, media: mediaCopy[chapter.id] }

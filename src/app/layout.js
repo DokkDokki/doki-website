@@ -1,4 +1,4 @@
-import { Kanit, Quicksand, Zen_Kaku_Gothic_New } from "next/font/google";
+import { Kanit, Noto_Sans_JP, Quicksand } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/motion/MotionProvider";
 
@@ -15,7 +15,7 @@ const kanit = Kanit({
   display: "swap",
 });
 
-const zenKakuGothicNew = Zen_Kaku_Gothic_New({
+const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
   variable: "--font-japanese",
@@ -69,7 +69,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${quicksand.variable} ${kanit.variable} ${zenKakuGothicNew.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${quicksand.variable} ${kanit.variable} ${notoSansJp.variable}`}>
       <body>
         <MotionProvider>{children}</MotionProvider>
       </body>
