@@ -27,7 +27,6 @@ const siteTitle = "Doki / DOKIMACHINE";
 const siteDescription =
   "A personal portfolio of engineering, photography, and electronic music.";
 const ogImage = "/og.png";
-const siteIcon = "/images/brand/doki-icon-512.png";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,10 +35,6 @@ export const metadata = {
     template: `%s | ${siteTitle}`,
   },
   description: siteDescription,
-  icons: {
-    icon: [{ url: "/favicon.ico", sizes: "any" }, { url: siteIcon, type: "image/png", sizes: "512x512" }],
-    apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
-  },
   openGraph: {
     title: siteTitle,
     description: siteDescription,
