@@ -22,7 +22,12 @@ export default function LandingExperience({ children, locale }) {
       // Storage can be unavailable in privacy-restricted browsing contexts.
     }
 
-    setIntroState(prefersReducedMotion || hasSeenIntro ? "hidden" : "visible");
+    const timer = window.setTimeout(
+      () => setIntroState(prefersReducedMotion || hasSeenIntro ? "hidden" : "visible"),
+      0,
+    );
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {

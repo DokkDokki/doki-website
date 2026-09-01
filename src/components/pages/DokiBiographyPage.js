@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "motion/react";
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -20,28 +19,13 @@ import { FadeZoom, Stagger, StaggerItem } from "@/components/motion/FadeZoom";
 export default function DokiBiographyPage({ locale }) {
   const c = dokiBiographyContent[locale] || dokiBiographyContent.en;
   const [selectedArchiveIndex, setSelectedArchiveIndex] = useState(null);
-  const [activeJourneyIndex, setActiveJourneyIndex] = useState(0);
   const archiveTriggerRef = useRef(null);
   const lightboxRef = useRef(null);
   const closeButtonRef = useRef(null);
   const previousButtonRef = useRef(null);
   const nextButtonRef = useRef(null);
-  const journeyRefs = useRef({});
-  const reducedMotion = useReducedMotion();
   const selectedArchive =
     selectedArchiveIndex === null ? null : c.archive.items[selectedArchiveIndex];
-
-  const setJourneyRef = (id) => (node) => {
-    if (node) journeyRefs.current[id] = node;
-    else delete journeyRefs.current[id];
-  };
-
-  const openArchiveByKey = (key, trigger) => {
-    const index = c.archive.items.findIndex((item) => item.key === key);
-    if (index < 0) return;
-    archiveTriggerRef.current = trigger;
-    setSelectedArchiveIndex(index);
-  };
 
   const closeArchive = () => {
     setSelectedArchiveIndex(null);
@@ -95,34 +79,6 @@ export default function DokiBiographyPage({ locale }) {
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [selectedArchiveIndex, c.archive.items.length]);
-
-  useEffect(() => {
-    const targets = c.journey.stops
-      .map((stop) => ({ stop, node: journeyRefs.current[stop.id] }))
-      .filter(({ node }) => node);
-    if (!targets.length) return undefined;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (!visible.length) return;
-        const activeId = visible[0].target.dataset.journeyStop;
-        const activeIndex = c.journey.stops.findIndex(
-          (stop) => stop.id === activeId,
-        );
-        if (activeIndex >= 0) setActiveJourneyIndex(activeIndex);
-      },
-      { rootMargin: "-28% 0px -55%", threshold: [0, 0.2, 0.6] },
-    );
-
-    targets.forEach(({ stop, node }) => {
-      node.dataset.journeyStop = stop.id;
-      observer.observe(node);
-    });
-    return () => observer.disconnect();
-  }, [c.journey.stops]);
 
   return (
     <div className="claris-page min-h-screen overflow-x-clip text-slate-100">
@@ -204,28 +160,11 @@ export default function DokiBiographyPage({ locale }) {
           </div>
         </section>
 
-        <BiographyJourney
-          copy={c.journey}
-          archiveItems={c.archive.items}
-          activeIndex={activeJourneyIndex}
-          reducedMotion={reducedMotion}
-          onSelectJourney={setActiveJourneyIndex}
-          onOpenArchive={openArchiveByKey}
-        />
-
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           {c.chapters.map((chapter, index) => (
             <section
               key={chapter.id}
               id={chapter.id}
-              ref={
-                c.journey.stops.some((stop) => stop.targetId === chapter.id)
-                  ? setJourneyRef(
-                      c.journey.stops.find((stop) => stop.targetId === chapter.id)
-                        .id,
-                    )
-                  : undefined
-              }
               className="scroll-mt-24 border-b border-white/10 py-20 sm:py-28"
             >
               <div className="grid min-w-0 gap-10 lg:grid-cols-[.24fr_1fr] lg:gap-16">
@@ -249,15 +188,10 @@ export default function DokiBiographyPage({ locale }) {
                             ? "origins-rangsit"
                             : "origins-chanthaburi"
                           : undefined;
-                      const journeyId =
-                        targetId &&
-                        c.journey.stops.find((stop) => stop.targetId === targetId)
-                          ?.id;
                       return (
                         <p
                           key={paragraph}
                           id={targetId}
-                          ref={journeyId ? setJourneyRef(journeyId) : undefined}
                           className={targetId ? "scroll-mt-28" : undefined}
                         >
                           {paragraph}
@@ -363,7 +297,7 @@ export default function DokiBiographyPage({ locale }) {
               onClick={(event) => event.stopPropagation()}
             >
               <p className="sr-only" aria-live="polite">
-                {c.journey.positionLabel
+                {c.archive.positionLabel
                   .replace("{current}", String(selectedArchiveIndex + 1))
                   .replace("{total}", String(c.archive.items.length))}
               </p>
@@ -430,234 +364,6 @@ export default function DokiBiographyPage({ locale }) {
       </main>
       <SiteFooter locale={locale} />
     </div>
-  );
-}
-
-function BiographyJourney({
-  copy,
-  archiveItems,
-  activeIndex,
-  reducedMotion,
-  onSelectJourney,
-  onOpenArchive,
-}) {
-  const archiveByKey = Object.fromEntries(
-    archiveItems.map((item) => [item.key, item]),
-  );
-  const progress = activeIndex / Math.max(copy.stops.length - 1, 1);
-  const activeStop = copy.stops[activeIndex] || copy.stops[0];
-  const activeItem = activeStop?.imageKey
-    ? archiveByKey[activeStop.imageKey]
-    : null;
-  const progressStyle = `${Math.max(0, Math.min(progress, 1)) * 100}%`;
-
-  return (
-    <section
-      aria-labelledby="biography-journey-title"
-      className="relative isolate overflow-hidden border-b border-white/10 bg-[var(--claris-ink-soft)] px-5 py-16 sm:px-8 sm:py-24"
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-40 top-1/3 h-96 w-96 rounded-full bg-fuchsia-300/[.07] blur-3xl"
-      />
-      <div className="relative mx-auto max-w-7xl">
-        <FadeZoom>
-          <p className="text-xs font-bold uppercase tracking-[.3em] text-teal-300">
-            {copy.eyebrow}
-          </p>
-          <h2
-            id="biography-journey-title"
-            className="mt-4 max-w-3xl text-4xl font-light tracking-tight text-white sm:text-6xl"
-          >
-            {copy.title}
-          </h2>
-        </FadeZoom>
-
-        <div className="mt-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012))] shadow-[0_28px_90px_rgba(0,0,0,.28)]">
-          <nav
-            aria-label={copy.ariaLabel}
-            className="border-b border-white/10 px-5 py-7 sm:px-8 sm:py-9"
-          >
-            <div className="relative hidden md:block">
-              <div
-                aria-hidden="true"
-                className="absolute left-[10%] right-[10%] top-3 h-px bg-white/12"
-              >
-                <span
-                  className={`block h-full bg-gradient-to-r from-teal-300 via-sky-300 to-fuchsia-300 ${reducedMotion ? "" : "transition-[width] duration-700 ease-out"}`}
-                  style={{ width: progressStyle }}
-                />
-              </div>
-              <ol className="relative grid grid-cols-5">
-                {copy.stops.map((stop, index) => {
-                  const active = index === activeIndex;
-                  const passed = index < activeIndex;
-                  return (
-                    <li key={stop.id} className="relative min-w-0 px-2 text-center">
-                      <a
-                        href={`#${stop.targetId}`}
-                        onClick={() => onSelectJourney(index)}
-                        aria-current={active ? "step" : undefined}
-                        className="group relative z-10 inline-flex min-w-0 flex-col items-center rounded-2xl px-2 pb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
-                      >
-                        <span
-                          className={`flex h-6 w-6 items-center justify-center rounded-full border-4 border-[var(--claris-ink-soft)] transition duration-300 ${
-                            active
-                              ? "bg-teal-200 shadow-[0_0_0_5px_rgba(103,232,209,.1),0_0_24px_rgba(103,232,209,.75)]"
-                              : passed
-                                ? "bg-teal-200/75"
-                                : "bg-white/20 group-hover:bg-white/40"
-                          }`}
-                        >
-                          <span className="sr-only">{index + 1}</span>
-                        </span>
-                        <span
-                          className={`mt-4 block truncate text-[10px] font-bold uppercase tracking-[.17em] transition sm:text-xs ${
-                            active
-                              ? "text-white"
-                              : passed
-                                ? "text-teal-100/70"
-                                : "text-white/45 group-hover:text-white/75"
-                          }`}
-                        >
-                          {stop.label}
-                        </span>
-                      </a>
-                    </li>
-                  );
-                })}
-              </ol>
-            </div>
-
-            <div className="relative md:hidden">
-              <div
-                aria-hidden="true"
-                className="absolute bottom-6 left-3 top-6 w-px bg-white/12"
-              >
-                <span
-                  className={`block w-full bg-gradient-to-b from-teal-300 via-sky-300 to-fuchsia-300 ${reducedMotion ? "" : "transition-[height] duration-700 ease-out"}`}
-                  style={{ height: progressStyle }}
-                />
-              </div>
-              <ol className="relative space-y-1">
-                {copy.stops.map((stop, index) => {
-                  const active = index === activeIndex;
-                  const passed = index < activeIndex;
-                  const item = stop.imageKey ? archiveByKey[stop.imageKey] : null;
-                  return (
-                    <li key={stop.id} className="relative">
-                      <a
-                        href={`#${stop.targetId}`}
-                        onClick={() => onSelectJourney(index)}
-                        aria-current={active ? "step" : undefined}
-                        className={`group relative z-10 grid min-h-16 grid-cols-[1.5rem_1fr_auto] items-center gap-4 rounded-2xl px-0 py-2 pr-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${active ? "bg-teal-300/[.07]" : "hover:bg-white/[.025]"}`}
-                      >
-                        <span
-                          className={`mx-auto h-3 w-3 rounded-full border-2 border-[var(--claris-ink-soft)] transition ${active ? "bg-teal-200 shadow-[0_0_18px_rgba(103,232,209,.8)]" : passed ? "bg-teal-200/70" : "bg-white/25"}`}
-                        />
-                        <span className="min-w-0">
-                          <span className="block text-[9px] font-bold uppercase tracking-[.2em] text-white/30">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-                          <span className={`mt-1 block truncate text-xs font-bold uppercase tracking-[.14em] ${active ? "text-white" : "text-white/55"}`}>
-                            {stop.label}
-                          </span>
-                        </span>
-                        {item ? (
-                          <span className="relative h-11 w-11 overflow-hidden rounded-xl border border-white/10">
-                            <Image
-                              src={item.src}
-                              alt=""
-                              fill
-                              sizes="44px"
-                              className="object-cover"
-                            />
-                          </span>
-                        ) : (
-                          <span
-                            aria-hidden="true"
-                            className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[.025] text-xs text-teal-200/55"
-                          >
-                            +
-                          </span>
-                        )}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ol>
-            </div>
-          </nav>
-
-          <div className="grid min-w-0 md:grid-cols-[minmax(15rem,.7fr)_minmax(0,1.3fr)]">
-            <div className="flex min-h-64 flex-col justify-between border-b border-white/10 p-6 sm:p-8 md:border-b-0 md:border-r">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[.24em] text-white/35">
-                  {copy.positionLabel
-                    .replace("{current}", String(activeIndex + 1))
-                    .replace("{total}", String(copy.stops.length))}
-                </p>
-                <p className="mt-7 text-5xl font-light text-teal-200 sm:text-6xl">
-                  {String(activeIndex + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-4 text-2xl font-light text-white sm:text-3xl">
-                  {activeStop?.label}
-                </h3>
-                <p className="mt-4 max-w-sm text-sm leading-7 text-white/55">
-                  {activeItem?.caption || copy.placeholderLabel}
-                </p>
-              </div>
-              <a
-                href={`#${activeStop?.targetId}`}
-                className="signal-link mt-8 inline-flex min-h-11 w-fit items-center gap-3 text-[10px] font-bold uppercase tracking-[.16em] text-teal-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
-              >
-                {activeStop?.label}
-                <FaArrowRight className="h-3 w-3" />
-              </a>
-            </div>
-
-            <div className="relative min-h-72 overflow-hidden bg-[radial-gradient(circle_at_35%_25%,rgba(103,232,209,.16),transparent_42%),linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015))] sm:min-h-96">
-              {activeItem ? (
-                <button
-                  type="button"
-                  onClick={(event) =>
-                    onOpenArchive(activeStop.imageKey, event.currentTarget)
-                  }
-                  className="group/journey-feature absolute inset-0 w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-teal-300"
-                  aria-label={`${copy.imageLabel}: ${activeItem.alt}`}
-                >
-                  <Image
-                    src={activeItem.src}
-                    alt=""
-                    fill
-                    sizes="(min-width: 768px) 58vw, 100vw"
-                    className="object-cover transition duration-700 group-hover/journey-feature:scale-[1.025] motion-reduce:transition-none"
-                  />
-                  <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
-                  <span className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8">
-                    <span className="block max-w-xl text-sm leading-6 text-white/85 sm:text-base">
-                      {activeItem.alt}
-                    </span>
-                  </span>
-                </button>
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center p-8 text-center">
-                  <div>
-                    <span className="mx-auto block h-px w-16 bg-gradient-to-r from-transparent via-teal-200/70 to-transparent" />
-                    <p className="mt-5 text-xs font-bold uppercase tracking-[.25em] text-teal-100/65">
-                      {copy.placeholderLabel}
-                    </p>
-                    <p className="mt-3 text-5xl font-light text-white/10">
-                      {String(activeIndex + 1).padStart(2, "0")}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
 

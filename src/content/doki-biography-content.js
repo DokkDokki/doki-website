@@ -392,54 +392,6 @@ const personalArchiveSources = [
   { key: "vocaunity-2026", src: "/images/display/personal/2026-doki-vocaunity.webp", year: "2026" },
 ];
 
-const journeyCopy = {
-  en: {
-    eyebrow: "A route through five places",
-    title: "The line so far.",
-    ariaLabel: "Biography journey",
-    imageLabel: "Journey image",
-    placeholderLabel: "A future frame",
-    positionLabel: "Image {current} of {total}",
-    stops: [
-      { id: "rangsit", label: "Rangsit", targetId: "origins-rangsit", imageKey: "grandma-2004" },
-      { id: "chanthaburi", label: "Chanthaburi", targetId: "origins-chanthaburi", imageKey: null },
-      { id: "tokyo", label: "Tokyo", targetId: "tokyo", imageKey: "disneyland-2024" },
-      { id: "bangkok", label: "Bangkok", targetId: "returning", imageKey: "vocaunity-2026" },
-      { id: "next", label: "Next", targetId: "next", imageKey: null },
-    ],
-  },
-  jp: {
-    eyebrow: "5つの場所をつなぐルート",
-    title: "これまでの軌跡。",
-    ariaLabel: "バイオグラフィーの旅",
-    imageLabel: "旅の写真",
-    placeholderLabel: "これからのフレーム",
-    positionLabel: "画像 {current} / {total}",
-    stops: [
-      { id: "rangsit", label: "\u30e9\u30f3\u30b7\u30c3\u30c8", targetId: "origins-rangsit", imageKey: "grandma-2004" },
-      { id: "chanthaburi", label: "\u30c1\u30e3\u30f3\u30bf\u30d6\u30ea\u30fc", targetId: "origins-chanthaburi", imageKey: null },
-      { id: "tokyo", label: "\u6771\u4eac", targetId: "tokyo", imageKey: "disneyland-2024" },
-      { id: "bangkok", label: "\u30d0\u30f3\u30b3\u30af", targetId: "returning", imageKey: "vocaunity-2026" },
-      { id: "next", label: "\u3053\u308c\u304b\u3089", targetId: "next", imageKey: null },
-    ],
-  },
-  th: {
-    eyebrow: "เส้นทางผ่านห้าสถานที่",
-    title: "เส้นทางที่ผ่านมา",
-    ariaLabel: "เส้นทางในชีวประวัติ",
-    imageLabel: "ภาพจากเส้นทาง",
-    placeholderLabel: "ภาพของอนาคต",
-    positionLabel: "ภาพที่ {current} จาก {total}",
-    stops: [
-      { id: "rangsit", label: "รังสิต", targetId: "origins-rangsit", imageKey: "grandma-2004" },
-      { id: "chanthaburi", label: "จันทบุรี", targetId: "origins-chanthaburi", imageKey: null },
-      { id: "tokyo", label: "โตเกียว", targetId: "tokyo", imageKey: "disneyland-2024" },
-      { id: "bangkok", label: "กรุงเทพฯ", targetId: "returning", imageKey: "vocaunity-2026" },
-      { id: "next", label: "ก้าวต่อไป", targetId: "next", imageKey: null },
-    ],
-  },
-};
-
 const personalArchiveCopy = {
   en: {
     eyebrow: "Personal archive",
@@ -449,6 +401,7 @@ const personalArchiveCopy = {
     close: "Close photo",
     previous: "Previous photo",
     next: "Next photo",
+    positionLabel: "Image {current} of {total}",
     dialogLabel: "Photo details",
     items: {
       "baby-2004": { caption: "First days · 2004", alt: "Baby Doki in January 2004" },
@@ -474,6 +427,7 @@ const personalArchiveCopy = {
     close: "写真を閉じる",
     previous: "前の写真",
     next: "次の写真",
+    positionLabel: "画像 {current} / {total}",
     dialogLabel: "写真の詳細",
     items: {
       "baby-2004": { caption: "はじまりの日々 · 2004", alt: "2004年1月の赤ちゃんの頃のDoki" },
@@ -499,6 +453,7 @@ const personalArchiveCopy = {
     close: "ปิดภาพ",
     previous: "ภาพก่อนหน้า",
     next: "ภาพถัดไป",
+    positionLabel: "ภาพที่ {current} จาก {total}",
     dialogLabel: "รายละเอียดภาพ",
     items: {
       "baby-2004": { caption: "วันแรก ๆ · 2004", alt: "Doki ในวัยทารกเมื่อเดือนมกราคม 2004" },
@@ -555,7 +510,6 @@ function withBiographyAssets(content, locale) {
         ...archiveCopy.items[item.key],
       })),
     },
-    journey: journeyCopy[locale] || journeyCopy.en,
     chapters: content.chapters.map((chapter) =>
       mediaCopy[chapter.id]
         ? { ...chapter, media: mediaCopy[chapter.id] }

@@ -18,7 +18,7 @@ export default function WorldNav({ locale = "en", world = "doki" }) {
   const isDoki = world === "doki";
   const active = isDoki ? "text-teal-200" : "text-fuchsia-200";
   const links = isDoki
-    ? [[`/${locale}/doki`, t.doki], [`/${locale}/photography`, t.photo], [`/${locale}/doki/projects`, t.projects], [`/${locale}/doki/gear`, t.gear]]
+    ? [[`/${locale}/doki`, t.doki], [`/${locale}/photography`, t.photo], [`/${locale}/doki/gear`, t.gear]]
     : [[`/${locale}/music`, t.music], [`/${locale}/music/discography`, t.releases]];
   const localePath = pathname?.replace(new RegExp(`^/${locale}(?=/|$)`), "") || "";
   const linkClass = "signal-link min-h-11 shrink-0 pt-3 text-[10px] font-medium uppercase tracking-[.14em] text-white/50 transition hover:text-white";
