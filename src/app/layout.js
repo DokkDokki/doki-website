@@ -26,7 +26,7 @@ const siteUrl = "https://dokimachine.net";
 const siteTitle = "Doki / DOKIMACHINE";
 const siteDescription =
   "A personal portfolio of engineering, photography, and electronic music.";
-const ogImage = "/og.png";
+const previewImage = "/images/brand/doki-banner.png";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -40,14 +40,14 @@ export const metadata = {
     description: siteDescription,
     url: siteUrl,
     siteName: siteTitle,
-    images: [{ url: ogImage, width: 1731, height: 909, alt: "Doki / DOKIMACHINE — systems, moments, sound" }],
+    images: [{ url: previewImage, width: 1920, height: 1080, alt: "Doki signature banner" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [ogImage],
+    images: [previewImage],
     creator: "@dokimachine",
   },
   robots: {
