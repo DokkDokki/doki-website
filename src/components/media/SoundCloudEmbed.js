@@ -16,6 +16,8 @@ export default function SoundCloudEmbed({ trackUrl }) {
         height="166" 
         scrolling="no" 
         frameBorder="no" 
+        loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
         allow="autoplay" 
         src={`https://w.soundcloud.com/player/?url=${encodedUrl}&color=%238b5cf6&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`}
       ></iframe>

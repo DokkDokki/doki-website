@@ -13,9 +13,11 @@ export default function YouTubeEmbed({ videoId }) {
       <iframe 
         width="100%" 
         height="100%" 
-        src={`https://www.youtube.com/embed/${videoId}?color=white&modestbranding=1&rel=0`} 
+        src={`https://www.youtube-nocookie.com/embed/${videoId}?color=white&modestbranding=1&rel=0`}
         title="YouTube video player" 
         frameBorder="0" 
+        loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowFullScreen
       ></iframe>

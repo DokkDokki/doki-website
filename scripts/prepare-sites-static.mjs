@@ -19,7 +19,28 @@ cpSync(join(projectRoot, ".openai", "hosting.json"), join(hostingDir, "hosting.j
 
 writeFileSync(
   join(serverDir, "index.js"),
-  `const STATIC_EXTENSIONS = /\\\\.[a-z0-9]{2,8}$/i;
+  `const STATIC_EXTENSIONS = /\\.[a-z0-9]{2,8}$/i;
+const SECURITY_HEADERS = {
+  "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com; font-src 'self' data:; connect-src 'self'; frame-src https://www.youtube-nocookie.com https://w.soundcloud.com; media-src 'self'; upgrade-insecure-requests",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy": "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+  "Strict-Transport-Security": "max-age=31536000",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY",
+};
+
+function secureResponse(response) {
+  const headers = new Headers(response.headers);
+  for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+    headers.set(name, value);
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
 
 function assetRequest(request, pathname) {
   const url = new URL(request.url);
@@ -40,7 +61,7 @@ export default {
     const direct = await fetchAsset(env, request, url.pathname);
 
     if (direct.status !== 404 || STATIC_EXTENSIONS.test(url.pathname)) {
-      return direct;
+      return secureResponse(direct);
     }
 
     const normalized = url.pathname.endsWith("/")
@@ -50,10 +71,10 @@ export default {
     const page = await fetchAsset(env, request, htmlPath);
 
     if (page.status !== 404) {
-      return page;
+      return secureResponse(page);
     }
 
-    return fetchAsset(env, request, "/404.html");
+    return secureResponse(await fetchAsset(env, request, "/404.html"));
   },
 };
 `
